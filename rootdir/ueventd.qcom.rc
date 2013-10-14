@@ -131,3 +131,4 @@
 /sys/devices/virtual/optical_sensors/proximity                ps_adc                   0660  input      system
 /sys/devices/virtual/optical_sensors/proximity                ps_poll_delay            0660  input      system
 /sys/devices/virtual/smdpkt/smdcntl*                          open_timeout             0664  radio      radio
+/sys/devices/virtual/timed_output/vibrator                    vtg_level                0660  system     system
