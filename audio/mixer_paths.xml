@@ -22,6 +22,7 @@
 <ctl name="AFE_PCM_RX Audio Mixer MultiMedia2" value="0" />
 <ctl name="AFE_PCM_RX Audio Mixer MultiMedia4" value="0" />
 <ctl name="AFE_PCM_RX_Voice Mixer VoLTE" value="0" />
+<ctl name="AFE_PCM_RX Port Mixer INTERNAL_FM_TX" value="0" />
 <ctl name="AFE_PCM_RX_Voice Mixer Voice2" value="0" />
 <ctl name="AFE_PCM_RX_Voice Mixer Voip" value="0" />
 <ctl name="AIF1_CAP Mixer SLIM TX1" value="0"/>
@@ -396,6 +397,12 @@
 
     <path name="play-fm speaker">
         <path name="play-fm"/>
+    </path>
+
+    <path name="play-fm usb-headphones">
+        <ctl name="Internal FM RX Volume" value="1" />
+        <ctl name="AFE_PCM_RX Port Mixer INTERNAL_FM_TX" value="1" />
+        <ctl name="SLIMBUS_DL_HL Switch" value="1" />
     </path>
 
     <path name="volte-call">
