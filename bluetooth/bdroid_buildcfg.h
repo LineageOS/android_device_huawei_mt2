@@ -21,10 +21,10 @@
 
 #define BTM_DEF_LOCAL_NAME   "Mate 2"
 // Disables read remote device feature
-#define BTA_SKIP_BLE_READ_REMOTE_FEAT TRUE
+#define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
 #define MAX_L2CAP_CHANNELS    14
 // skips conn update at conn completion
-#define BTA_BLE_SKIP_CONN_UPD  TRUE
+#define BTA_BLE_SKIP_CONN_UPD  FALSE
 // Enables interleaved scan
 #define BTA_HOST_INTERLEAVE_SEARCH TRUE
 #endif
