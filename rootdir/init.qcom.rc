@@ -30,8 +30,13 @@
 import init.target.rc
 
 on init
+    mkdir /log 0770 system log
+    mkdir /config 0500 root root
+
     mkdir /persist 0771 system system
     mkdir /firmware 0771 system system
+
+    mkdir /cust
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -56,7 +61,10 @@ on init
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on fs
-    mount_all ./fstab.qcom
+# pstore/ramoops previous console log
+    mount pstore pstore /sys/fs/pstore
+    chown system log /sys/fs/pstore/console-ramoops
+    chmod 0440 /sys/fs/pstore/console-ramoops
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -108,6 +116,9 @@ on boot
 
 
     setprop ro.telephony.call_ring.multiple false
+
+# Set this property so surfaceflinger is not started by system_init
+    setprop system_init.startsurfaceflinger 0
 
     #Set SUID bit for usbhub
     chmod 4755 /system/bin/usbhub
@@ -767,6 +778,21 @@ service compact_memory /system/bin/sh /system/etc/memory_compact.sh
     user root
     group root
     disabled
+    oneshot
+
+service libqmi_oem_main /sbin/libqmi_oem_main
+    class main
+
+service wlan_detect /system/bin/wlan_detect
+    class main
+    user root
+    group root
+    oneshot
+
+service bd_addr /system/bin/bd_addr
+    class main
+    user root
+    group root
     oneshot
 
 # virtual sdcard daemon running as media_rw (1023)
