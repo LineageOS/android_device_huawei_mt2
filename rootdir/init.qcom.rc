@@ -27,7 +27,6 @@
 
 # /* disable init.qcom.usb.rc and init.qcom.usb.sh, we use init.usb.rc */
 # import init.qcom.usb.rc
-import init.target.rc
 
 on init
     mkdir /log 0770 system log
