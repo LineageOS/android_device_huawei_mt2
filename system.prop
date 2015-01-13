@@ -21,3 +21,15 @@ ro.qualcomm.svi=1
 
 ro.nfc.port=I2C
 
+# Camera
+ro.config.camera.afctl.enable=true
+ro.camera.sound.forced=1
+debug.camera.landscape=true
+ro.config.hw_camera_omron=true
+ro.config.hw_camera_hdr=true
+ro.config.camera_target_track=true
+ro.config.hw_camera_davinci=true
+ro.config.hw_camera_zsl=true
+ro.config.hw_camera_zsl_default=true
+ro.config.hw_camera_mfd=true
+persist.camera.longshot.enable=1
