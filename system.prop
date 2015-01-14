@@ -5,6 +5,9 @@
 ro.sf.lcd_density=320
 rild.libpath=/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
+ro.telephony.default_network=9
+telephony.lteOnGsmDevice=1
+ril.subscription.types=NV,RUIM
 
 ro.opengles.version=196608
 
