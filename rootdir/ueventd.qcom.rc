@@ -103,11 +103,6 @@
 /dev/msm_camera/*         0660   system     camera
 /dev/gemini/              0660   system     camera
 /dev/mercury0             0660   system     camera
-
-#/*<DTS2013101604494 yuhaitao 20131016 begin*/
-#/*delete DTS2013091600960 modify and other overwritenn dev-node*/
-#/*DTS2013101604494 yuhaitao 20131016 end*/
-
 /dev/msm_vidc_reg         0660   system     audio
 /dev/msm_vidc_dec         0660   system     audio
 /dev/msm_vidc_dec_sec     0660   system     audio
