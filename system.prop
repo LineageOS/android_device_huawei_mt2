@@ -33,3 +33,10 @@ ro.config.hw_camera_zsl=true
 ro.config.hw_camera_zsl_default=true
 ro.config.hw_camera_mfd=true
 persist.camera.longshot.enable=1
+
+# GPS
+ro.qc.sdk.izat.premium_enabled=1
+ro.qc.sdk.izat.service_mask=0x0
+persist.gps.qc_nlp_in_use=0
+ro.gps.agps_provider=1
+ro.set_gps_engine_lock=true
