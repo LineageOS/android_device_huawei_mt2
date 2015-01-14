@@ -66,10 +66,10 @@ PRODUCT_COPY_FILES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-	copybit.msm8928 \
-	gralloc.msm8928 \
-	hwcomposer.msm8928 \
-	memtrack.msm8928 \
+	copybit.msm8226 \
+	gralloc.msm8226 \
+	hwcomposer.msm8226 \
+	memtrack.msm8226 \
 	liboverlay
 
 # WiFi
