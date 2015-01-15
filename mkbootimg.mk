@@ -1,17 +1,18 @@
 LOCAL_PATH := $(call my-dir)
 
-CM_DTB_FILES = $(wildcard $(TOP)/$(TARGET_KERNEL_SOURCE)/arch/arm/boot/*.dtb)
+CM_DTS_FILES = $(wildcard $(TOP)/$(TARGET_KERNEL_SOURCE)/arch/arm/boot/dts/msm8926-mate2*.dts)
 CM_DTS_FILE = $(lastword $(subst /, ,$(1)))
-DTB_FILE := $(addprefix $(KERNEL_OUT)/arch/arm/boot/,$(patsubst %.dts,%.dtb,$(call CM_DTS_FILE,$(1))))
+DTB_FILE = $(addprefix $(KERNEL_OUT)/arch/arm/boot/,$(patsubst %.dts,%.dtb,$(call CM_DTS_FILE,$(1))))
 ZIMG_FILE = $(addprefix $(KERNEL_OUT)/arch/arm/boot/,$(patsubst %.dts,%-zImage,$(call CM_DTS_FILE,$(1))))
 KERNEL_ZIMG = $(KERNEL_OUT)/arch/arm/boot/zImage
+DTC = $(KERNEL_OUT)/scripts/dtc/dtc
 
 define append-cm-dtb
 mkdir -p $(KERNEL_OUT)/arch/arm/boot;\
-$(foreach d, $(CM_DTB_FILES), \
+$(foreach d, $(CM_DTS_FILES), \
+    $(DTC) -p 1024 -O dtb -o $(call DTB_FILE,$(d)) $(d); \
     cat $(KERNEL_ZIMG) $(call DTB_FILE,$(d)) > $(call ZIMG_FILE,$(d));)
 endef
-
 
 ## Build and run dtbtool
 DTBTOOL := $(HOST_OUT_EXECUTABLES)/dtbToolCM$(HOST_EXECUTABLE_SUFFIX)
