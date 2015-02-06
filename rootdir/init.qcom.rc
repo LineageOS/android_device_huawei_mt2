@@ -97,15 +97,16 @@ on boot
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
     chmod 0640 /dev/radio0
-    #Create QMUX deamon socket area in init.rc
-    #mkdir /dev/socket/qmux_radio 0770 radio radio
-    #chmod 2770 /dev/socket/qmux_radio
-    #mkdir /dev/socket/qmux_audio 0770 media audio
-    #chmod 2770 /dev/socket/qmux_audio
-    #mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
-    #chmod 2770 /dev/socket/qmux_bluetooth
-    #mkdir /dev/socket/qmux_gps 0770 gps gps
-    #chmod 2770 /dev/socket/qmux_gps
+
+    #Create QMUX deamon socket area
+    mkdir /dev/socket/qmux_radio 0770 radio radio
+    chmod 2770 /dev/socket/qmux_radio
+    mkdir /dev/socket/qmux_audio 0770 media audio
+    chmod 2770 /dev/socket/qmux_audio
+    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
+    chmod 2770 /dev/socket/qmux_bluetooth
+    mkdir /dev/socket/qmux_gps 0770 gps gps
+    chmod 2770 /dev/socket/qmux_gps
 
     setprop wifi.interface wlan0
 
@@ -321,6 +322,10 @@ service irsc_util /system/bin/logwrapper /system/bin/irsc_util "/etc/sec_config"
     class main
     user root
     oneshot
+
+service rmt_oeminfo /system/bin/rmt_oeminfo
+    class core
+    user root
 
 service rmt_storage /system/bin/rmt_storage
     class core
@@ -643,7 +648,6 @@ service atfwd /system/bin/ATFWD-daemon
     class late_start
     user system
     group system radio
-    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
 
 service hdmid /system/bin/hdmid
     class late_start
@@ -779,7 +783,7 @@ service compact_memory /system/bin/sh /system/etc/memory_compact.sh
     disabled
     oneshot
 
-service libqmi_oem_main /sbin/libqmi_oem_main
+service libqmi_oem_main /system/bin/libqmi_oem_main
     class main
 
 service wlan_detect /system/bin/wlan_detect
