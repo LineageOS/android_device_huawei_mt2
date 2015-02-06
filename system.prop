@@ -9,6 +9,12 @@ ro.telephony.default_network=9
 telephony.lteOnGsmDevice=1
 ril.subscription.types=NV,RUIM
 
+persist.radio.msgtunnel.start=false
+persist.radio.force_nw_search=1
+persist.radio.use_nv_force=false
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.rat_on=combine
+
 ro.opengles.version=196608
 
 ro.use_data_netmgrd=true
