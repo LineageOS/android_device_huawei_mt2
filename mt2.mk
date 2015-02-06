@@ -72,6 +72,19 @@ PRODUCT_PACKAGES += \
 	memtrack.msm8226 \
 	liboverlay
 
+# Audio
+PRODUCT_PACKAGES += \
+	audio.a2dp.default \
+	audio_policy.msm8226 \
+	audio.primary.msm8226 \
+	audio.r_submix.default \
+	audio.usb.default \
+	libaudio-resampler \
+	libqcomvisualizer \
+	libqcompostprocbundle \
+	libqcomvoiceprocessing \
+	tinymix
+
 # WiFi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
