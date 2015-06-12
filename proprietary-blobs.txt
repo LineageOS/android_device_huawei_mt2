@@ -1,11 +1,3 @@
-# Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
-
-# Perf
-bin/mpdecision
-vendor/lib/libqc-opt.so
-
 # ADSP
 bin/adsprpcd
 vendor/lib/libadsprpc.so
@@ -18,30 +10,47 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 
-# Venus (media) firmware
-etc/firmware/venus.b00
-etc/firmware/venus.b01
-etc/firmware/venus.b02
-etc/firmware/venus.b03
-etc/firmware/venus.b04
-etc/firmware/venus.mbn
-etc/firmware/venus.mdt
+# Bluetooth
+bin/btnvtool
+bin/hci_qcomm_init
+
+# Battery firmware
+etc/batt_fw.bin
+
+# CnE
+bin/cnd
+bin/ims_rtp_daemon
+bin/imsdatadaemon
+bin/imsqmidaemon
+lib/libcnefeatureconfig.so
+lib/libxml2.so
+vendor/lib/libcneapiclient.so
+vendor/lib/libcneqmiutils.so
+vendor/lib/libcneutils.so
+vendor/lib/libxml.so
 
 # DRM
 bin/qseecomd
+vendor/lib/libStDrvInt.so
 vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
-vendor/lib/libStDrvInt.so
 
 # GPS
 app/com.qualcomm.location.apk
+bin/gpsone_daemon
 bin/gsiff_daemon
+etc/gps.conf
 etc/permissions/com.qualcomm.location.xml
+etc/quipc.conf
+lib/hw/gps.default.so
+lib/libgps.utils.so
 lib/libloc_api_v02.so
+lib/libloc_core.so
 lib/libloc_ds_api.so
+lib/libloc_eng.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
@@ -50,44 +59,346 @@ vendor/lib/libquipc_os_api.so
 vendor/lib/libquipc_ulp_adapter.so
 vendor/lib/libulp2.so
 
+# Camera
+bin/mm-qcamera-daemon
+lib/hw/camera.msm8226.so
+lib/libhdr.so
+lib/libmmcamera_interface.so
+lib/libmmjpeg_interface.so
+lib/libmrc_cg_mfdenoise.so
+lib/libmrc_cg_postprocess.so
+lib/libtrack.so
+vendor/lib/libchromatix_SKUAA_ST_gc0339_common.so
+vendor/lib/libchromatix_SKUAA_ST_gc0339_default_video.so
+vendor/lib/libchromatix_SKUAA_ST_gc0339_preview.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_common.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_default_video.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_hfr_120fps.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_hfr_60fps.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_hfr_90fps.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_liveshot.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_preview.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_snapshot.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_video_hd.so
+vendor/lib/libchromatix_SKUAB_ST_s5k4e1_zsl.so
+vendor/lib/libchromatix_hw_hi542_sunny_common.so
+vendor/lib/libchromatix_hw_hi542_sunny_default_video.so
+vendor/lib/libchromatix_hw_hi542_sunny_preview.so
+vendor/lib/libchromatix_hw_imx134_liteon_common.so
+vendor/lib/libchromatix_hw_imx134_liteon_preview.so
+vendor/lib/libchromatix_hw_imx134_liteon_snapshot.so
+vendor/lib/libchromatix_hw_imx134_liteon_video.so
+vendor/lib/libchromatix_hw_imx134_sunny_common.so
+vendor/lib/libchromatix_hw_imx134_sunny_preview.so
+vendor/lib/libchromatix_hw_imx134_sunny_snapshot.so
+vendor/lib/libchromatix_hw_imx134_sunny_video.so
+vendor/lib/libchromatix_hw_imx135_liteon_common.so
+vendor/lib/libchromatix_hw_imx135_liteon_default_video.so
+vendor/lib/libchromatix_hw_imx135_liteon_hfr_120.so
+vendor/lib/libchromatix_hw_imx135_liteon_liveshot.so
+vendor/lib/libchromatix_hw_imx135_liteon_preview.so
+vendor/lib/libchromatix_hw_imx135_liteon_snapshot.so
+vendor/lib/libchromatix_hw_imx135_liteon_video_hd.so
+vendor/lib/libchromatix_hw_imx219_liteon_common.so
+vendor/lib/libchromatix_hw_imx219_liteon_preview.so
+vendor/lib/libchromatix_hw_imx219_liteon_video.so
+vendor/lib/libchromatix_hw_mt9d015_sunny_common.so
+vendor/lib/libchromatix_hw_mt9d015_sunny_default_video.so
+vendor/lib/libchromatix_hw_mt9d015_sunny_preview.so
+vendor/lib/libchromatix_hw_ov2680_ofilm_common.so
+vendor/lib/libchromatix_hw_ov2680_ofilm_default_video.so
+vendor/lib/libchromatix_hw_ov2680_ofilm_preview.so
+vendor/lib/libchromatix_hw_ov5648_back_common.so
+vendor/lib/libchromatix_hw_ov5648_back_common_g535.so
+vendor/lib/libchromatix_hw_ov5648_back_common_g730.so
+vendor/lib/libchromatix_hw_ov5648_back_default_video.so
+vendor/lib/libchromatix_hw_ov5648_back_default_video_g535.so
+vendor/lib/libchromatix_hw_ov5648_back_default_video_g730.so
+vendor/lib/libchromatix_hw_ov5648_back_preview.so
+vendor/lib/libchromatix_hw_ov5648_back_preview_g535.so
+vendor/lib/libchromatix_hw_ov5648_back_preview_g730.so
+vendor/lib/libchromatix_hw_ov5648_back_snapshot.so
+vendor/lib/libchromatix_hw_ov5648_back_snapshot_g535.so
+vendor/lib/libchromatix_hw_ov5648_back_snapshot_g730.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_common.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_common_mate2.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_default_video.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_default_video_mate2.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_preview.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_preview_mate2.so
+vendor/lib/libchromatix_hw_ov8858_foxconn_common.so
+vendor/lib/libchromatix_hw_ov8858_foxconn_default_video.so
+vendor/lib/libchromatix_hw_ov8858_foxconn_preview.so
+vendor/lib/libchromatix_hw_ov8858_foxconn_snapshot.so
+vendor/lib/libchromatix_hw_ov9724_foxconn_common.so
+vendor/lib/libchromatix_hw_ov9724_foxconn_default_video.so
+vendor/lib/libchromatix_hw_ov9724_foxconn_liveshot.so
+vendor/lib/libchromatix_hw_ov9724_foxconn_preview.so
+vendor/lib/libchromatix_hw_s5k4e1_back_common.so
+vendor/lib/libchromatix_hw_s5k4e1_back_common_g535.so
+vendor/lib/libchromatix_hw_s5k4e1_back_common_g730.so
+vendor/lib/libchromatix_hw_s5k4e1_back_default_video.so
+vendor/lib/libchromatix_hw_s5k4e1_back_default_video_g535.so
+vendor/lib/libchromatix_hw_s5k4e1_back_default_video_g730.so
+vendor/lib/libchromatix_hw_s5k4e1_back_preview.so
+vendor/lib/libchromatix_hw_s5k4e1_back_preview_g535.so
+vendor/lib/libchromatix_hw_s5k4e1_back_preview_g730.so
+vendor/lib/libchromatix_hw_s5k4e1_back_snapshot.so
+vendor/lib/libchromatix_hw_s5k4e1_back_snapshot_g535.so
+vendor/lib/libchromatix_hw_s5k4e1_back_snapshot_g730.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_common.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_common_mate2.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_default_video.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_default_video_mate2.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_preview.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_preview_mate2.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_snapshot.so
+vendor/lib/libchromatix_hw_s5k4e1_sunny_snapshot_mate2.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_common.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_common_g660.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_default_video.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_default_video_g660.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_liveshot.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_liveshot_g660.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_preview.so
+vendor/lib/libchromatix_hw_s5k9a1_liteon_preview_g660.so
+vendor/lib/libchromatix_imx134_common.so
+vendor/lib/libchromatix_imx134_default_video.so
+vendor/lib/libchromatix_imx134_hfr_120.so
+vendor/lib/libchromatix_imx134_hfr_60.so
+vendor/lib/libchromatix_imx134_preview.so
+vendor/lib/libchromatix_imx134_snapshot.so
+vendor/lib/libchromatix_imx135_common.so
+vendor/lib/libchromatix_imx135_default_video.so
+vendor/lib/libchromatix_imx135_hfr_120.so
+vendor/lib/libchromatix_imx135_preview.so
+vendor/lib/libchromatix_imx135_snapshot.so
+vendor/lib/libchromatix_imx135_video_hd.so
+vendor/lib/libchromatix_ov2720_common.so
+vendor/lib/libchromatix_ov2720_default_video.so
+vendor/lib/libchromatix_ov2720_hfr.so
+vendor/lib/libchromatix_ov2720_liveshot.so
+vendor/lib/libchromatix_ov2720_preview.so
+vendor/lib/libchromatix_ov2720_zsl.so
+vendor/lib/libchromatix_ov5648_oty5f03_common.so
+vendor/lib/libchromatix_ov5648_oty5f03_default_video.so
+vendor/lib/libchromatix_ov5648_oty5f03_preview.so
+vendor/lib/libchromatix_ov5648_oty5f03_snapshot.so
+vendor/lib/libchromatix_ov5648_oty5f03_zsl.so
+vendor/lib/libchromatix_ov8825_common.so
+vendor/lib/libchromatix_ov8825_default_video.so
+vendor/lib/libchromatix_ov8825_hfr_120fps.so
+vendor/lib/libchromatix_ov8825_hfr_60fps.so
+vendor/lib/libchromatix_ov8825_hfr_90fps.so
+vendor/lib/libchromatix_ov8825_liveshot.so
+vendor/lib/libchromatix_ov8825_liveshot_hd.so
+vendor/lib/libchromatix_ov8825_preview.so
+vendor/lib/libchromatix_ov8825_preview_hd.so
+vendor/lib/libchromatix_ov8825_snapshot.so
+vendor/lib/libchromatix_ov8825_snapshot_hd.so
+vendor/lib/libchromatix_ov8825_video_hd.so
+vendor/lib/libchromatix_ov8825_zsl.so
+vendor/lib/libchromatix_ov8865_q8v18a_common.so
+vendor/lib/libchromatix_ov8865_q8v18a_default_video.so
+vendor/lib/libchromatix_ov8865_q8v18a_hfr_120fps.so
+vendor/lib/libchromatix_ov8865_q8v18a_hfr_60fps.so
+vendor/lib/libchromatix_ov8865_q8v18a_hfr_90fps.so
+vendor/lib/libchromatix_ov8865_q8v18a_liveshot.so
+vendor/lib/libchromatix_ov8865_q8v18a_preview.so
+vendor/lib/libchromatix_ov8865_q8v18a_snapshot.so
+vendor/lib/libchromatix_ov8865_q8v18a_video_hd.so
+vendor/lib/libchromatix_ov8865_q8v18a_zsl.so
+vendor/lib/libchromatix_ov9724_common.so
+vendor/lib/libchromatix_ov9724_default_video.so
+vendor/lib/libchromatix_ov9724_liveshot.so
+vendor/lib/libchromatix_ov9724_preview.so
+vendor/lib/libchromatix_s5k3l1yx_common.so
+vendor/lib/libchromatix_s5k3l1yx_default_video.so
+vendor/lib/libchromatix_s5k3l1yx_hfr_120fps.so
+vendor/lib/libchromatix_s5k3l1yx_hfr_60fps.so
+vendor/lib/libchromatix_s5k3l1yx_hfr_90fps.so
+vendor/lib/libchromatix_s5k3l1yx_liveshot.so
+vendor/lib/libchromatix_s5k3l1yx_preview.so
+vendor/lib/libchromatix_s5k3l1yx_snapshot.so
+vendor/lib/libchromatix_s5k3l1yx_video_hd.so
+vendor/lib/libchromatix_s5k3l1yx_zsl.so
+vendor/lib/libchromatix_skuab_shinetech_gc0339_common.so
+vendor/lib/libchromatix_skuab_shinetech_gc0339_default_video.so
+vendor/lib/libchromatix_skuab_shinetech_gc0339_liveshot.so
+vendor/lib/libchromatix_skuab_shinetech_gc0339_preview.so
+vendor/lib/libchromatix_skuab_shinetech_gc0339_snapshot.so
+vendor/lib/libchromatix_skuab_shinetech_gc0339_zsl.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_common.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_default_video.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_hfr_120fps.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_hfr_60fps.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_hfr_90fps.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_preview.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_snapshot.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_video_hd.so
+vendor/lib/libchromatix_skuf_ov12830_p12v01c_zsl.so
+vendor/lib/libchromatix_skuf_ov5648_p5v23c_common.so
+vendor/lib/libchromatix_skuf_ov5648_p5v23c_default_video.so
+vendor/lib/libchromatix_skuf_ov5648_p5v23c_preview.so
+vendor/lib/libchromatix_skuf_ov5648_p5v23c_snapshot.so
+vendor/lib/libmmcamera2_c2d_module.so
+vendor/lib/libmmcamera2_cpp_module.so
+vendor/lib/libmmcamera2_iface_modules.so
+vendor/lib/libmmcamera2_imglib_modules.so
+vendor/lib/libmmcamera2_isp_modules.so
+vendor/lib/libmmcamera2_pproc_modules.so
+vendor/lib/libmmcamera2_sensor_modules.so
+vendor/lib/libmmcamera2_stats_algorithm.so
+vendor/lib/libmmcamera2_stats_modules.so
+vendor/lib/libmmcamera2_vpe_module.so
+vendor/lib/libmmcamera2_wnr_module.so
+vendor/lib/libmmcamera_SKUAA_ST_gc0339.so
+vendor/lib/libmmcamera_SKUAB_ST_s5k4e1.so
+vendor/lib/libmmcamera_faceproc.so
+vendor/lib/libmmcamera_hdr_gb_lib.so
+vendor/lib/libmmcamera_hdr_lib.so
+vendor/lib/libmmcamera_hi256.so
+vendor/lib/libmmcamera_hw_bf3905_byd.so
+vendor/lib/libmmcamera_hw_imx134.so
+vendor/lib/libmmcamera_hw_imx135_liteon.so
+vendor/lib/libmmcamera_hw_imx219_liteon.so
+vendor/lib/libmmcamera_hw_mt9d015_sunny.so
+vendor/lib/libmmcamera_hw_mt9v113.so
+vendor/lib/libmmcamera_hw_ov2680_ofilm.so
+vendor/lib/libmmcamera_hw_ov5648_back.so
+vendor/lib/libmmcamera_hw_ov5648_foxconn.so
+vendor/lib/libmmcamera_hw_ov8858_foxconn.so
+vendor/lib/libmmcamera_hw_ov9724.so
+vendor/lib/libmmcamera_hw_s5k4e1_back.so
+vendor/lib/libmmcamera_hw_s5k4e1_sunny.so
+vendor/lib/libmmcamera_hw_s5k9a1.so
+vendor/lib/libmmcamera_imglib.so
+vendor/lib/libmmcamera_imx134.so
+vendor/lib/libmmcamera_imx134_eeprom.so
+vendor/lib/libmmcamera_imx135.so
+vendor/lib/libmmcamera_liteon_imx219_eeprom.so
+vendor/lib/libmmcamera_mt9m114.so
+vendor/lib/libmmcamera_ofilm_oty5f03_eeprom.so
+vendor/lib/libmmcamera_ov2720.so
+vendor/lib/libmmcamera_ov5648_oty5f03.so
+vendor/lib/libmmcamera_ov8825.so
+vendor/lib/libmmcamera_ov8865_q8v18a.so
+vendor/lib/libmmcamera_ov9724.so
+vendor/lib/libmmcamera_s5k3l1yx.so
+vendor/lib/libmmcamera_skuab_shinetech_gc0339.so
+vendor/lib/libmmcamera_skuf_ov12830_p12v01c.so
+vendor/lib/libmmcamera_skuf_ov5648_p5v23c.so
+vendor/lib/libmmcamera_sp1628.so
+vendor/lib/libmmcamera_sunny_p12v01m_eeprom.so
+vendor/lib/libmmcamera_sunny_p5v23c_eeprom.so
+vendor/lib/libmmcamera_sunny_q8v18a_eeprom.so
+vendor/lib/libmmcamera_tintless_algo.so
+vendor/lib/libmmcamera_tintless_bg_pca_algo.so
+vendor/lib/libmmcamera_truly_cm7700_eeprom.so
+vendor/lib/libmmcamera_tuning.so
+vendor/lib/libmmcamera_wavelet_lib.so
+vendor/lib/liboemcamera.so
+vendor/lib/libscale.so
+
+# Camera configuration
+etc/camera/davinci/default/cm_correction.dat
+etc/camera/davinci/default/cm_foliage.dat
+etc/camera/davinci/default/cm_normal.dat
+etc/camera/davinci/default/cm_sky.dat
+etc/camera/davinci/default/cm_sunset.dat
+etc/camera/davinci/default/imgproc.xml
+etc/camera/davinci/default/multiframe.xml
+etc/camera/davinci/device.config
+etc/camera/davinci/hw_imx134/imgproc.xml
+etc/camera/davinci/hw_imx134/multiframe.xml
+etc/camera/davinci/hw_imx135_liteon/imgproc.xml
+etc/camera/davinci/hw_imx135_liteon/multiframe.xml
+etc/camera/davinci/hw_imx219_liteon/imgproc.xml
+etc/camera/davinci/hw_imx219_liteon/multiframe.xml
+etc/camera/davinci/hw_ov5648_back/imgproc.xml
+etc/camera/davinci/hw_ov5648_back/multiframe.xml
+etc/camera/davinci/hw_ov5648_foxconn/imgproc.xml
+etc/camera/davinci/hw_ov8858_foxconn/imgproc.xml
+etc/camera/davinci/hw_ov8858_foxconn/multiframe.xml
+etc/camera/davinci/hw_ov9724/imgproc.xml
+etc/camera/davinci/hw_s5k4e1_back/imgproc.xml
+etc/camera/davinci/hw_s5k4e1_back/multiframe.xml
+etc/camera/davinci/hw_s5k4e1_sunny/imgproc.xml
+etc/camera/davinci/hw_s5k9a1/imgproc.xml
+etc/camera/tornado/FoliageMinMaxTOA.txt
+etc/camera/tornado/FoliageModelTOA.model
+etc/camera/tornado/NightMinMaxTOA.txt
+etc/camera/tornado/NightModelTOA.model
+etc/camera/tornado/SunsetMinMaxTOA.txt
+etc/camera/tornado/SunsetModelTOA.model
+etc/camera/tornado/TornadoI.ini
+etc/camera/tracking/targettracking.xml
+
+# Camera firmware
+etc/firmware/cpp_firmware_v1_1_1.fw
+etc/firmware/cpp_firmware_v1_1_6.fw
+etc/firmware/cpp_firmware_v1_2_0.fw
+
 # Graphics
 vendor/lib/egl/eglsubAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
 vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/libadreno_utils.so
 vendor/lib/libC2D2.so
 vendor/lib/libCB.so
-vendor/lib/libc2d30.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-a3xx.so
-vendor/lib/libllvm-arm.so
 vendor/lib/libOpenCL.so
 vendor/lib/libOpenVG.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/librs_adreno.so
+vendor/lib/librs_adreno_sha1.so
 vendor/lib/libsc-a3xx.so
-#vendor/lib/libRSDriver_adreno.so
-#vendor/lib/librs_adreno.so
-#vendor/lib/librs_adreno_sha1.so
+
+# DRM
+vendor/lib/libQSEEComAPI.so
 
 # Graphics firmware
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 
+# Init scripts
+etc/init.ath3k.bt.sh
+etc/init.crda.sh
+etc/init.qcom.audio.sh
+etc/init.qcom.bt.sh
+etc/init.qcom.coex.sh
+etc/init.qcom.efs.sync.sh
+etc/init.qcom.fm.sh
+etc/init.qcom.post_boot.sh
+etc/init.qcom.sdio.sh
+etc/init.qcom.wifi.sh
+
 # Media
+lib/libqomx_core.so
+vendor/lib/libExtendedExtractor.so
 vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
-vendor/lib/libmmosal.so
-vendor/lib/libmmparser.so
-vendor/lib/libmm-color-convertor.so
-vendor/lib/libExtendedExtractor.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxAmrwbplusDec.so
 vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxMux.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libSHIMDivxDrm.so
+vendor/lib/libmm-color-convertor.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmparser.so
+vendor/lib/libqomx_jpegdec.so
+vendor/lib/libqomx_jpegenc.so
+
+# Performance
+bin/mpdecision
+vendor/lib/libqc-opt.so
 
 # Postprocessing
 bin/mm-pp-daemon
@@ -97,6 +408,14 @@ vendor/lib/libmm-abl-oem.so
 
 # Qualcomm framework
 bin/irsc_util
+bin/libqmi_oem_main
+bin/qcom-system-daemon
+bin/qmiproxy
+bin/qrngd
+bin/rmt_oeminfo
+bin/rmt_storage
+bin/ssr_diag
+etc/sec_config
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsnetutils.so
@@ -106,7 +425,6 @@ vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqmi.so
-vendor/lib/libqmiservices.so
 vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
@@ -114,6 +432,8 @@ vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_csvt_srvc.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
+vendor/lib/libqmiservices.so
+vendor/lib/libsubsystem_control.so
 
 # Radio
 app/qcrilmsgtunnel.apk
@@ -133,20 +453,46 @@ vendor/lib/libril-qcril-hook-oem.so
 
 # Sensors
 bin/sensors.qcom
+etc/sensor_def_qcomdev.conf
 vendor/lib/hw/sensors.msm8226.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 
 # Thermal
 bin/thermal-engine
+etc/thermal-engine-8226.conf
 vendor/lib/libthermalclient.so
 
 # Time services
 bin/time_daemon
 vendor/lib/libtime_genoff.so
 
+# Touchscreen firmware
+etc/firmware/cyttsp4_fw_g6.bin
+etc/firmware/cyttsp4_fw_g750.bin
+etc/firmware/cyttsp4_fw_mainboard.bin
+etc/firmware/cyttsp4_fw_mate2.bin
+etc/firmware/g620L_junda_fw.img
+etc/firmware/g620L_ofilm_fw.img
+etc/firmware/g660L_ofilm_fw.img
+etc/firmware/g660L_truly_fw.img
+etc/firmware/g730L_junda_fw.img
+etc/firmware/g730L_ofilm_fw.img
+
 # Listen service
 vendor/lib/liblistensoundmodel.so
 
-# Fastcharge
+# Quick charge
 bin/hvdcp
+
+# Venus (media) firmware
+etc/firmware/venus.b00
+etc/firmware/venus.b01
+etc/firmware/venus.b02
+etc/firmware/venus.b03
+etc/firmware/venus.b04
+etc/firmware/venus.mbn
+etc/firmware/venus.mdt
+
+# WLAN
+bin/wlan_detect
