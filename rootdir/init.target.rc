@@ -43,6 +43,7 @@ on post-fs-data
     mkdir /tombstones/modem 0771 system system
 
 on boot
+    chmod 0664 /proc/cmdline
     start imsqmidaemon
     insmod /system/lib/modules/adsprpc.ko
     # Enable writing to led blink node from userspace
