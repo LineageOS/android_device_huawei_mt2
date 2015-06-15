@@ -10,6 +10,15 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 
+# Audio calibration
+etc/sound_param/mate2/Bluetooth_cal.acdb
+etc/sound_param/mate2/General_cal.acdb
+etc/sound_param/mate2/Global_cal.acdb
+etc/sound_param/mate2/Handset_cal.acdb
+etc/sound_param/mate2/Hdmi_cal.acdb
+etc/sound_param/mate2/Headset_cal.acdb
+etc/sound_param/mate2/Speaker_cal.acdb
+
 # Bluetooth
 bin/btnvtool
 bin/hci_qcomm_init
