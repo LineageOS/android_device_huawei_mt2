@@ -98,6 +98,8 @@ TARGET_QCOM_MEDIA_VARIANT := caf-new
 BOARD_USES_ALSA_AUDIO := true
 TARGET_QCOM_AUDIO_VARIANT := caf
 
+TARGET_POWERHAL_VARIANT := qcom
+
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/mt2/include
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37
