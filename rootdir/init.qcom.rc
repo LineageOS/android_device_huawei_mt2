@@ -243,9 +243,6 @@ service usbhub_init /system/bin/usbhub_init
    disabled
    oneshot
 
-on property:persist.radio.atfwd.start=false
-    stop atfwd
-
 on property:init.svc.surfaceflinger=stopped
 #   stop ppd
     stop hdmid
@@ -485,12 +482,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service ptt_socket_app /system/bin/ptt_socket_app
-    class main
-    user system
-    group system
-    oneshot
-
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
     disabled
@@ -616,11 +607,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
 
 on property:sys.boot_completed=1
     start qcom-post-boot
-
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
 
 service hdmid /system/bin/hdmid
     class late_start
@@ -760,12 +746,6 @@ service libqmi_oem_main /system/bin/libqmi_oem_main
     class main
 
 service wlan_detect /system/bin/wlan_detect
-    class main
-    user root
-    group root
-    oneshot
-
-service bd_addr /system/bin/bd_addr
     class main
     user root
     group root
