@@ -61,8 +61,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
 	$(LOCAL_PATH)/rootdir/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
 	$(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
-	$(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
-	$(LOCAL_PATH)/rootdir/ueventd.rc:root/ueventd.rc
+	$(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
 # Graphics
 PRODUCT_PACKAGES += \
