@@ -62,9 +62,6 @@ TARGET_USES_C2D_COMPOSITION := true
 
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
-
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
 BOARD_HAS_QCOM_WLAN_SDK          := true
