@@ -383,7 +383,6 @@ etc/init.qcom.bt.sh
 etc/init.qcom.coex.sh
 etc/init.qcom.efs.sync.sh
 etc/init.qcom.fm.sh
-etc/init.qcom.post_boot.sh
 etc/init.qcom.sdio.sh
 etc/init.qcom.wifi.sh
 
