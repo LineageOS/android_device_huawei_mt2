@@ -420,7 +420,6 @@ bin/irsc_util
 bin/libqmi_oem_main
 bin/qcom-system-daemon
 bin/qmiproxy
-bin/qrngd
 bin/rmt_oeminfo
 bin/rmt_storage
 bin/ssr_diag
