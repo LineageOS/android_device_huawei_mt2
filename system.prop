@@ -17,6 +17,7 @@ persist.radio.rat_on=combine
 
 ro.opengles.version=196608
 
+ro.baseband.arch=msm
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 
