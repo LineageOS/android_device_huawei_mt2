@@ -29,8 +29,6 @@ ro.qc.sdk.audio.fluencetype=none
 ro.qualcomm.cabl=0
 ro.qualcomm.svi=1
 
-ro.nfc.port=I2C
-
 # Camera
 ro.config.camera.afctl.enable=true
 ro.camera.sound.forced=1
