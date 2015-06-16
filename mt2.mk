@@ -108,6 +108,10 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     libdashplayer
 
+# Power HAL
+PRODUCT_PACKAGES += \
+    power.msm8226
+
 # QCOM RNG
 PRODUCT_PACKAGES += \
     qrngd \
