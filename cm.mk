@@ -18,9 +18,6 @@ TARGET_SCREEN_WIDTH := 720
 
 $(call inherit-product, device/huawei/mt2/full_mt2.mk)
 
-# Specify phone tech before including full_phone
-$(call inherit-product, vendor/cm/config/gsm.mk)
-
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
