@@ -129,21 +129,14 @@ on property:sys.boot_completed=1
     write /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
     write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10
-    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core 3
-    write /sys/devices/system/cpu/cpufreq/ondemand/hispeed_freq 1190400
-    write /sys/devices/system/cpu/cpufreq/ondemand/input_freq 1190400
+    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core 10
     write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/ondemand/lpspeed_count_threshold 5
-    write /sys/devices/system/cpu/cpufreq/ondemand/lpspeed_enabled 1
-    write /sys/devices/system/cpu/cpufreq/ondemand/lpspeed_freq 1401600
     write /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq 300000
-    write /sys/devices/system/cpu/cpufreq/ondemand/restrict_enabled 0
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 2
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
     write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 300000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 80
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
     start qrngp
 
