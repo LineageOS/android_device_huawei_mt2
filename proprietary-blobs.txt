@@ -32,7 +32,6 @@ bin/ims_rtp_daemon
 bin/imsdatadaemon
 bin/imsqmidaemon
 lib/libcnefeatureconfig.so
-lib/libxml2.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
 vendor/lib/libcneutils.so
