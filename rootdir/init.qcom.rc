@@ -669,12 +669,6 @@ service compact_memory /system/bin/sh /system/etc/memory_compact.sh
 service libqmi_oem_main /system/bin/libqmi_oem_main
     class main
 
-service wlan_detect /system/bin/wlan_detect
-    class main
-    user root
-    group root
-    oneshot
-
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
     class late_start
     disabled
