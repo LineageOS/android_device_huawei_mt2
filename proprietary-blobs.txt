@@ -32,10 +32,17 @@ bin/ims_rtp_daemon
 bin/imsdatadaemon
 bin/imsqmidaemon
 lib/libcnefeatureconfig.so
+vendor/lib/lib-dplmedia.so
+vendor/lib/lib-imsdpl.so
+vendor/lib/lib-rtpcommon.so
+vendor/lib/lib-rtpcore.so
+vendor/lib/lib-rtpdaemoninterface.so
+vendor/lib/lib-rtpsl.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
 vendor/lib/libcneutils.so
 vendor/lib/libxml.so
+
 
 # DRM
 bin/qseecomd
