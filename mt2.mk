@@ -124,14 +124,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_hw_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_hw_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
-    wpa_supplicant_overlay.conf \
-    p2p_supplicant_overlay.conf \
+    dhcpcd.conf \
+    hostapd \
     hostapd_default.conf \
-    hostapd.accept \
-    hostapd.deny
-
-PRODUCT_PACKAGES += \
-    wcnss_service
+    libwpa_client \
+    wcnss_service \
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 $(call inherit-product,frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
