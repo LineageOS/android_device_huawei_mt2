@@ -31,6 +31,8 @@ bin/cnd
 bin/ims_rtp_daemon
 bin/imsdatadaemon
 bin/imsqmidaemon
+etc/permissions/ims.xml
+framework/imslibrary.jar
 lib/libcnefeatureconfig.so
 vendor/lib/lib-dplmedia.so
 vendor/lib/lib-imsdpl.so
@@ -42,7 +44,6 @@ vendor/lib/libcneapiclient.so
 vendor/lib/libcneqmiutils.so
 vendor/lib/libcneutils.so
 vendor/lib/libxml.so
-
 
 # DRM
 bin/qseecomd
