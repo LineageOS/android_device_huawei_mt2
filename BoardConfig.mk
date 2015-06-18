@@ -83,6 +83,9 @@ TARGET_POWERHAL_VARIANT := qcom
 # Recovery
 TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
 
+# SELinux
+-include device/qcom/sepolicy/sepolicy.mk
+
 # Time
 BOARD_USES_QC_TIME_SERVICES := true
 
