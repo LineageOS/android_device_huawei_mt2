@@ -292,11 +292,6 @@ on property:bluetooth.dun.status=stopped
 on property:ro.bluetooth.ftm_enabled=true
     start ftmd
 
-service qcom-c_main-sh /system/bin/sh /init.qcom.class_main.sh
-    class main
-    user root
-    oneshot
-
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start config_bluetooth
@@ -399,14 +394,12 @@ service qmiproxy /system/bin/qmiproxy
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
-    class main
+    class core
     user radio
     group radio audio bluetooth gps qcom_diag
-    disabled
 
 service netmgrd /system/bin/netmgrd
-    class main
-    disabled
+    class core
 
 service sensors /system/bin/sensors.qcom
     class main
@@ -419,9 +412,8 @@ service qcom-sensor-sh /system/bin/sh /init.qcom.sensor.sh
     user root
     oneshot
 
-on property:ro.use_data_netmgrd=false
-    # netmgr not supported on specific target
-    stop netmgrd
+on property:ro.use_data_netmgrd=true
+   start netmgrd
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
