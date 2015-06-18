@@ -85,6 +85,7 @@ TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
 
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
 
 # Time
 BOARD_USES_QC_TIME_SERVICES := true
