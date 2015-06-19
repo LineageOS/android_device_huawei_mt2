@@ -96,6 +96,8 @@
 /dev/smem_log             0640  system     radio
 /dev/smuxctl32            0640  radio      radio
 /dev/ttyGS0               0660  system     system
+/dev/ttyHS1               0660  bluetooth  bluetooth
+/dev/ttyHS2               0660  bluetooth  bluetooth
 /dev/ttyHSL1              0660  system     system
 /dev/tty_sdio_00          0660  system     system
 /dev/uio*                 0660  system     system
@@ -103,13 +105,22 @@
 /dev/video*               0660  system     camera
 /dev/wcnss_wlan           0660  system     system
 
-/sys/devices/f9925000.i2c/i2c-0/0-*               enable         0660  input   system
-/sys/devices/f9925000.i2c/i2c-0/0-*               poll_delay     0660  input   system
-/sys/devices/i2c-12/12-*                          pollrate_ms    0664  system  system
-/sys/devices/virtual/input/input*                 poll           0660  input   system
-/sys/devices/virtual/input/input*                 pollrate_ms    0660  input   system
-/sys/devices/virtual/optical_sensors/lightsensor  ls_auto        0660  input   system
-/sys/devices/virtual/optical_sensors/lightsensor  ls_poll_delay  0660  input   system
-/sys/devices/virtual/optical_sensors/proximity    ps_adc         0660  input   system
-/sys/devices/virtual/optical_sensors/proximity    ps_poll_delay  0660  input   system
-/sys/devices/virtual/smdpkt/smdcntl*              open_timeout   0664  radio   radio
+/sys/devices/f9925000.i2c/i2c-0/0-*                           enable            0660  input      system
+/sys/devices/f9925000.i2c/i2c-0/0-*                           poll_delay        0660  input      system
+/sys/devices/fb000000.qcom,wcnss-wlan/ieee80211/phy0/rfkill0  state             0660  bluetooth  bluetooth
+/sys/devices/fb000000.qcom,wcnss-wlan/ieee80211/phy0/rfkill0  type              0660  bluetooth  bluetooth
+/sys/devices/i2c-12/12-*                                      pollrate_ms       0664  system     system
+/sys/devices/leds-qpnp-*                                      leds/blue/blink   0660  system     system
+/sys/devices/leds-qpnp-*                                      leds/green/blink  0660  system     system
+/sys/devices/leds-qpnp-*                                      leds/red/blink    0660  system     system
+/sys/devices/msm_sdcc.*                                       polling           0664  system     system
+/sys/devices/platform/msm_hsusb/gadget                        usb_state         0444  system     system
+/sys/devices/platform/msm_serial_hs.0                         clock             0660  bluetooth  bluetooth
+/sys/devices/virtual/android_usb/android0/f_rmnet_smd_sdio    transport         0644  system     system
+/sys/devices/virtual/input/input*                             poll              0660  input      system
+/sys/devices/virtual/input/input*                             pollrate_ms       0660  input      system
+/sys/devices/virtual/optical_sensors/lightsensor              ls_auto           0660  input      system
+/sys/devices/virtual/optical_sensors/lightsensor              ls_poll_delay     0660  input      system
+/sys/devices/virtual/optical_sensors/proximity                ps_adc            0660  input      system
+/sys/devices/virtual/optical_sensors/proximity                ps_poll_delay     0660  input      system
+/sys/devices/virtual/smdpkt/smdcntl*                          open_timeout      0664  radio      radio
