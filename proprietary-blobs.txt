@@ -383,13 +383,11 @@ etc/firmware/a330_pm4.fw
 
 # Init scripts
 etc/init.ath3k.bt.sh
-etc/init.crda.sh
 etc/init.qcom.audio.sh
 etc/init.qcom.bt.sh
 etc/init.qcom.coex.sh
 etc/init.qcom.efs.sync.sh
 etc/init.qcom.fm.sh
-etc/init.qcom.sdio.sh
 etc/init.qcom.wifi.sh
 
 # Media
