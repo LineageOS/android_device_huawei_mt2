@@ -125,6 +125,10 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+# Misc
+PRODUCT_PACKAGES += \
+    libxml2
+
 $(call inherit-product,frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # inherit from the non-open-source side, if present
