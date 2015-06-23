@@ -121,8 +121,10 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd_default.conf \
     libwpa_client \
+    p2p_supplicant_overlay.conf \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    wpa_supplicant_overlay.conf
 
 # Misc
 PRODUCT_PACKAGES += \
