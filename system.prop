@@ -21,6 +21,8 @@ ro.baseband.arch=msm
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 
+ro.vendor.extension_library=/vendor/lib/libqc-opt.so
+
 persist.timed.enable=true
 
 ro.qc.sdk.audio.ssr=false
