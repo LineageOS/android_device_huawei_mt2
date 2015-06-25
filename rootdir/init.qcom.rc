@@ -60,6 +60,7 @@ on init
 
 on fs
     mount_all fstab.qcom
+    restorecon_recursive /persist
 
 # msm specific files that need to be created on /data
 on post-fs-data

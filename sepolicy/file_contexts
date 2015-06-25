@@ -1,1 +1,2 @@
 /dev/rfkill			u:object_r:bluetooth_device:s0
+/data/app/sensor_ctl_socket	u:object_r:sensors_socket:s0
