@@ -210,6 +210,39 @@
     <ctl name="SPK DRV Volume" value="100" />
 </path>
 
+<path name="headphones-lite" >
+    <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
+    <ctl name="SLIM RX2 MUX" value="AIF1_PB" />
+    <ctl name="SLIM_0_RX Channels" value="Two" />
+    <ctl name="RX1 MIX1 INP1" value="RX1" />
+    <ctl name="RX2 MIX1 INP1" value="RX2" />
+    <ctl name="CLASS_H_DSM MUX" value="RX_HPHL" />
+    <ctl name="HPHL DAC Switch" value="1" />
+    <ctl name="HPHL Volume" value="100" />
+    <ctl name="HPHR Volume" value="100" />
+    <ctl name="RX1 Digital Volume" value="68" />
+    <ctl name="RX2 Digital Volume" value="68" />
+</path>
+
+<path name="speaker-and-headphones-lite" >
+    <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
+    <ctl name="SLIM RX2 MUX" value="AIF1_PB" />
+    <ctl name="SLIM_0_RX Channels" value="Two" />
+    <ctl name="RX1 MIX1 INP1" value="RX1" />
+    <ctl name="RX2 MIX1 INP1" value="RX2" />
+    <ctl name="CLASS_H_DSM MUX" value="RX_HPHL" />
+    <ctl name="HPHL DAC Switch" value="1" />
+    <ctl name="HPHL Volume" value="100" />
+    <ctl name="HPHR Volume" value="100" />
+    <ctl name="RX1 Digital Volume" value="68" />
+    <ctl name="RX2 Digital Volume" value="68" />
+    <ctl name="RX3 MIX1 INP1" value="RX1" />
+    <ctl name="RX3 MIX1 INP2" value="RX2" />
+    <ctl name="RX3 Digital Volume" value="68" />
+    <ctl name="SPK DAC Switch" value="1" />
+    <ctl name="SPK DRV Volume" value="100" />
+</path>
+
 <path name="low-latency-playback" >
     <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="1" />
 </path>
@@ -220,6 +253,10 @@
 
 <path name="deep-buffer-playback speaker" >
     <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia1" value="1" />
+</path>
+
+<path name="low-latency-playback speaker-and-headphones" >
+    <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="1" />
 </path>
 
 <path name="low-latency-record">
