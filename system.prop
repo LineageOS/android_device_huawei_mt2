@@ -54,3 +54,6 @@ ro.vendor.extension_library=/vendor/lib/libqc-opt.so
 
 # Time
 persist.timed.enable=true
+
+# USB
+persist.sys.isUsbOtgEnabled=true
