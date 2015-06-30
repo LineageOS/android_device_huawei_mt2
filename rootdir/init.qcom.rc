@@ -243,6 +243,10 @@ service rfs_access /system/bin/rfs_access
 on property:ro.boot.emmc=true
     start rfs_access
 
+service oeminfo_server /system/bin/oeminfo_server
+    class core
+    user root
+
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
     user root
