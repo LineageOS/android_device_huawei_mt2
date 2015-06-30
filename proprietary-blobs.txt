@@ -248,12 +248,6 @@ vendor/lib/libqomx_jpegenc.so
 bin/mpdecision
 vendor/lib/libqc-opt.so
 
-# Postprocessing
-bin/mm-pp-daemon
-vendor/lib/libdisp-aba.so
-vendor/lib/libmm-abl.so
-vendor/lib/libmm-abl-oem.so
-
 # Qualcomm framework
 bin/irsc_util
 bin/libqmi_oem_main
