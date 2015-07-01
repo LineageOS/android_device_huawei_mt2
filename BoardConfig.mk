@@ -73,6 +73,10 @@ TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_mt2
+TARGET_LIBINIT_DEFINES_FILE := device/huawei/mt2/init/init_mt2.c
+
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/huawei/mt2/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x0
