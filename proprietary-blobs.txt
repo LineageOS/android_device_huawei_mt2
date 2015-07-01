@@ -70,7 +70,6 @@ vendor/lib/libwvdrm_L3.so
 vendor/lib/libwvm.so
 
 # GPS
-app/com.qualcomm.location.apk
 bin/gpsone_daemon
 bin/gsiff_daemon
 etc/gps.conf
@@ -82,6 +81,7 @@ lib/libloc_api_v02.so
 lib/libloc_core.so
 lib/libloc_ds_api.so
 lib/libloc_eng.so
+priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
@@ -265,7 +265,7 @@ vendor/lib/libqmiservices.so
 vendor/lib/libsubsystem_control.so
 
 # Radio
-app/qcrilmsgtunnel.apk
+app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/netmgrd
 bin/qmuxd
 bin/radish
