@@ -7,6 +7,7 @@ ro.qc.sdk.audio.ssr=false
 ro.qc.sdk.audio.fluencetype=none
 
 # Camera
+camera2.portability.force_api=1
 debug.camera.landscape=true
 persist.camera.longshot.enable=1
 ro.camera.sound.forced=1
