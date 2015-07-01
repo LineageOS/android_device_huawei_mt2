@@ -103,6 +103,7 @@
 /dev/uio*                 0660  system     system
 /dev/v4l-subdev*          0660  system     camera
 /dev/video*               0660  system     camera
+/dev/wcnss_ctrl           0660  system     system
 /dev/wcnss_wlan           0660  system     system
 
 /sys/devices/f9925000.i2c/i2c-0/0-*                           enable            0660  input      system
