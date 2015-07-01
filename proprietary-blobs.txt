@@ -37,7 +37,6 @@ bin/ims_rtp_daemon
 bin/imsdatadaemon
 bin/imsqmidaemon
 etc/permissions/ims.xml
-framework/imslibrary.jar
 lib/libcnefeatureconfig.so
 vendor/lib/lib-dplmedia.so
 vendor/lib/lib-imsdpl.so
@@ -55,7 +54,6 @@ bin/qseecomd
 vendor/lib/libDivxDrm.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/libSHIMDivxDrm.so
-vendor/lib/libStDrvInt.so
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
@@ -112,25 +110,12 @@ vendor/lib/libchromatix_hw_imx135_liteon_liveshot.so
 vendor/lib/libchromatix_hw_imx135_liteon_preview.so
 vendor/lib/libchromatix_hw_imx135_liteon_snapshot.so
 vendor/lib/libchromatix_hw_imx135_liteon_video_hd.so
-vendor/lib/libchromatix_hw_s5k4e1_back_common.so
-vendor/lib/libchromatix_hw_s5k4e1_back_common_g535.so
-vendor/lib/libchromatix_hw_s5k4e1_back_common_g730.so
-vendor/lib/libchromatix_hw_s5k4e1_back_default_video.so
-vendor/lib/libchromatix_hw_s5k4e1_back_default_video_g535.so
-vendor/lib/libchromatix_hw_s5k4e1_back_default_video_g730.so
-vendor/lib/libchromatix_hw_s5k4e1_back_preview.so
-vendor/lib/libchromatix_hw_s5k4e1_back_preview_g535.so
-vendor/lib/libchromatix_hw_s5k4e1_back_preview_g730.so
-vendor/lib/libchromatix_hw_s5k4e1_back_snapshot.so
-vendor/lib/libchromatix_hw_s5k4e1_back_snapshot_g535.so
-vendor/lib/libchromatix_hw_s5k4e1_back_snapshot_g730.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_common.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_common_mate2.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_default_video.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_default_video_mate2.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_preview.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_preview_mate2.so
-vendor/lib/libchromatix_hw_s5k4e1_sunny_snapshot.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_snapshot_mate2.so
 vendor/lib/libchromatix_imx135_common.so
 vendor/lib/libchromatix_imx135_default_video.so
@@ -156,7 +141,6 @@ vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_hw_imx135_liteon.so
-vendor/lib/libmmcamera_hw_s5k4e1_back.so
 vendor/lib/libmmcamera_hw_s5k4e1_sunny.so
 vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_imx135.so
@@ -178,22 +162,9 @@ etc/camera/davinci/default/cm_sunset.dat
 etc/camera/davinci/default/imgproc.xml
 etc/camera/davinci/default/multiframe.xml
 etc/camera/davinci/device.config
-etc/camera/davinci/hw_imx134/imgproc.xml
-etc/camera/davinci/hw_imx134/multiframe.xml
 etc/camera/davinci/hw_imx135_liteon/imgproc.xml
 etc/camera/davinci/hw_imx135_liteon/multiframe.xml
-etc/camera/davinci/hw_imx219_liteon/imgproc.xml
-etc/camera/davinci/hw_imx219_liteon/multiframe.xml
-etc/camera/davinci/hw_ov5648_back/imgproc.xml
-etc/camera/davinci/hw_ov5648_back/multiframe.xml
-etc/camera/davinci/hw_ov5648_foxconn/imgproc.xml
-etc/camera/davinci/hw_ov8858_foxconn/imgproc.xml
-etc/camera/davinci/hw_ov8858_foxconn/multiframe.xml
-etc/camera/davinci/hw_ov9724/imgproc.xml
-etc/camera/davinci/hw_s5k4e1_back/imgproc.xml
-etc/camera/davinci/hw_s5k4e1_back/multiframe.xml
 etc/camera/davinci/hw_s5k4e1_sunny/imgproc.xml
-etc/camera/davinci/hw_s5k9a1/imgproc.xml
 etc/camera/tornado/FoliageMinMaxTOA.txt
 etc/camera/tornado/FoliageModelTOA.model
 etc/camera/tornado/NightMinMaxTOA.txt
@@ -219,7 +190,6 @@ vendor/lib/libCB.so
 vendor/lib/libOpenCL.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libadreno_utils.so
-vendor/lib/libbccQTI.so
 vendor/lib/libc2d30-a3xx.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-qcom.so
@@ -320,8 +290,6 @@ etc/firmware/g620L_junda_fw.img
 etc/firmware/g620L_ofilm_fw.img
 etc/firmware/g660L_ofilm_fw.img
 etc/firmware/g660L_truly_fw.img
-etc/firmware/g730L_junda_fw.img
-etc/firmware/g730L_ofilm_fw.img
 
 # Listen service
 vendor/lib/liblistensoundmodel.so
