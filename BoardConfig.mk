@@ -20,7 +20,7 @@
 #   ro.build.product=MT2L03
 # Also:
 #   ro.build.id=HuaweiMT2L03
-TARGET_OTA_ASSERT_DEVICE := MT2L03,hwMT2L03,mt2
+TARGET_OTA_ASSERT_DEVICE := MT2L03,hwMT2L03,mt2,mt2l03
 
 # Architecture
 TARGET_ARCH := arm
