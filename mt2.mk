@@ -53,6 +53,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
+# Encryption
+PRODUCT_PACKAGES += \
+    keystore.msm8226
+
 # Graphics
 PRODUCT_PACKAGES += \
     copybit.msm8226 \
