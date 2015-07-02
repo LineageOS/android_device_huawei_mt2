@@ -94,6 +94,9 @@ TARGET_POWERHAL_VARIANT := qcom
 # Recovery
 TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
 
+# RIL
+BOARD_PROVIDES_LIBRIL := true
+
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
