@@ -38,7 +38,6 @@ bin/cnd
 bin/ims_rtp_daemon
 bin/imsdatadaemon
 bin/imsqmidaemon
-etc/permissions/ims.xml
 lib/libcnefeatureconfig.so
 vendor/lib/lib-dplmedia.so
 vendor/lib/lib-imsdpl.so
