@@ -59,6 +59,10 @@ PRODUCT_PACKAGES += \
     libgenlock \
     liboverlay
 
+# GPS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/izat.conf:system/etc/izat.conf
+
 # Media
 PRODUCT_PACKAGES += \
     libOmxAacEnc \
