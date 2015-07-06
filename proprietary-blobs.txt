@@ -55,6 +55,10 @@ vendor/lib/libxml.so
 
 # DRM
 bin/qseecomd
+etc/permissions/com.google.widevine.software.drm.xml
+framework/com.google.widevine.software.drm.jar
+vendor/lib/drm/libdrmprplugin.so
+vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/libDivxDrm.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/libSHIMDivxDrm.so
@@ -65,8 +69,11 @@ vendor/lib/libdrmtime.so
 vendor/lib/libhuawei_secure.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
+vendor/lib/libtzplayready.so
 vendor/lib/libwvdrm_L3.so
 vendor/lib/libwvm.so
+vendor/lib/mediadrm/libdrmclearkeyplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
 bin/gpsone_daemon
