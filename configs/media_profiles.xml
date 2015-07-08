@@ -55,6 +55,9 @@
 <!ATTLIST VideoEncoderCap maxFrameHeight CDATA #REQUIRED>
 <!ATTLIST VideoEncoderCap minFrameRate CDATA #REQUIRED>
 <!ATTLIST VideoEncoderCap maxFrameRate CDATA #REQUIRED>
+<!ATTLIST VideoEncoderCap maxHFRFrameWidth CDATA #REQUIRED>
+<!ATTLIST VideoEncoderCap maxHFRFrameHeight CDATA #REQUIRED>
+<!ATTLIST VideoEncoderCap maxHFRMode CDATA #REQUIRED>
 <!ELEMENT AudioEncoderCap EMPTY>
 <!ATTLIST AudioEncoderCap name (amrnb|amrwb|aac|wma) #REQUIRED>
 <!ATTLIST AudioEncoderCap enabled (true|false) #REQUIRED>
@@ -70,18 +73,6 @@
 <!ELEMENT AudioDecoderCap EMPTY>
 <!ATTLIST AudioDecoderCap name (wma) #REQUIRED>
 <!ATTLIST AudioDecoderCap enabled (true|false) #REQUIRED>
-<!--DTS2013122802827 huangdezhi/00176038 20131230 begin-->
-<!ELEMENT VideoEditorCap EMPTY>
-<!ATTLIST VideoEditorCap maxInputFrameWidth CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxInputFrameHeight CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxOutputFrameWidth CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxOutputFrameHeight CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxPrefetchYUVFrames CDATA #REQUIRED>
-<!ELEMENT ExportVideoProfile EMPTY>
-<!ATTLIST ExportVideoProfile name (h264|h263|m4v) #REQUIRED>
-<!ATTLIST ExportVideoProfile profile CDATA #REQUIRED>
-<!ATTLIST ExportVideoProfile level CDATA #REQUIRED>
-<!--DTS2013122802827 huangdezhi/00176038 20131230 end-->
 ]>
 <!--
      This file is used to declare the multimedia profiles and capabilities
@@ -89,8 +80,8 @@
 -->
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
+    <!-- DTS2014051404290 wangdongdong/wx204551 20140519 begin -->
     <CamcorderProfiles cameraId="0">
-        <!--liuweiguo begin-->
         <EncoderProfile quality="1080p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="20000000"
@@ -100,9 +91,8 @@
             <Audio codec="aac"
                    bitRate="156000"
                    sampleRate="48000"
-                   channels="1" />
+                   channels="2" />
         </EncoderProfile>
-        <!--liuweiguo end-->
         <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="8000000"
@@ -112,7 +102,7 @@
             <Audio codec="aac"
                    bitRate="156000"
                    sampleRate="48000"
-                   channels="1" />
+                   channels="2" />
         </EncoderProfile>
         <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
             <Video codec="h264"
@@ -123,16 +113,38 @@
             <Audio codec="aac"
                    bitRate="156000"
                    sampleRate="48000"
+                   channels="2" />
+        </EncoderProfile>
+        <EncoderProfile quality="wvga" fileFormat="mp4" duration="30">
+            <Video codec="h264"
+                   bitRate="2000000"
+                   width="800"
+                   height="480"
+                   frameRate="30" />
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
+                   channels="2" />
+        </EncoderProfile>
+        <EncoderProfile quality="qvga" fileFormat="mp4" duration="30">
+            <!--DTS2013042406900 liukeke/00126999 20130424 begin-->
+            <Video codec="h264"
+                   bitRate="512000"
+                   width="320"
+                   height="240"
+                   frameRate="30" />
+            <!--DTS2013042406900 liukeke/00126999 20130424 end-->
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
                    channels="1" />
         </EncoderProfile>
         <EncoderProfile quality="qcif" fileFormat="mp4" duration="30">
-            <!--DTS2013042406900 liukeke/00126999 20130424 begin-->
             <Video codec="h264"
                    bitRate="192000"
                    width="176"
                    height="144"
                    frameRate="30" />
-            <!--DTS2013042406900 liukeke/00126999 20130424 end-->
             <Audio codec="amrnb"
                    bitRate="12200"
                    sampleRate="8000"
@@ -152,7 +164,6 @@
                    channels="1" />
 
         </EncoderProfile>
-        <!--liuweiguo begin-->
         <EncoderProfile quality="timelapse1080p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="20000000"
@@ -162,9 +173,8 @@
             <Audio codec="aac"
                    bitRate="156000"
                    sampleRate="48000"
-                   channels="1" />
+                   channels="2" />
         </EncoderProfile>
-        <!--liuweiguo end-->
         <EncoderProfile quality="timelapse720p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="8000000"
@@ -174,14 +184,36 @@
             <Audio codec="aac"
                    bitRate="156000"
                    sampleRate="48000"
-                   channels="1" />
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="5000000"
-                   width="720"
+                   width="640"
                    height="480"
+                   frameRate="30" />
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
+                   channels="2" />
+        </EncoderProfile>
+        <EncoderProfile quality="timelapsewvga" fileFormat="mp4" duration="30">
+            <Video codec="h264"
+                   bitRate="2000000"
+                   width="800"
+                   height="480"
+                   frameRate="30" />
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
+                   channels="2" />
+        </EncoderProfile>
+        <EncoderProfile quality="timelapseqvga" fileFormat="mp4" duration="30">
+            <Video codec="h264"
+                   bitRate="512000"
+                   width="320"
+                   height="240"
                    frameRate="30" />
             <Audio codec="aac"
                    bitRate="156000"
@@ -199,6 +231,7 @@
                    sampleRate="8000"
                    channels="1" />
         </EncoderProfile>
+        <!-- DTS2014051404290 wangdongdong/wx204551 20140519 end -->
         <EncoderProfile quality="timelapselow" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="192000"
@@ -220,7 +253,7 @@
     </CamcorderProfiles>
 
     <CamcorderProfiles cameraId="1">
-        <!--DTS2014031808885 liuweiguo/KF51030 20140324 begin-->
+        <!-- DTS2014051404290 wangdongdong/wx204551 20140519 begin -->
         <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="8000000"
@@ -232,19 +265,6 @@
                    sampleRate="48000"
                    channels="1" />
         </EncoderProfile>
-        <!--DTS2014031808885 liuweiguo/KF51030 20140324 end-->
-        <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
-            <Video codec="h264"
-                   bitRate="5000000"
-                   width="640"
-                   height="480"
-                   frameRate="30" />
-            <Audio codec="aac"
-                   bitRate="156000"
-                   sampleRate="48000"
-                   channels="1" />
-        </EncoderProfile>
-        <!--DTS2014031808885 liuweiguo/KF51030 20140324 begin-->
         <EncoderProfile quality="timelapse720p" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="8000000"
@@ -256,10 +276,9 @@
                    sampleRate="48000"
                    channels="1" />
         </EncoderProfile>
-        <!--DTS2014031808885 liuweiguo/KF51030 20140324 end-->
-        <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
+        <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
             <Video codec="h264"
-                   bitRate="2000000"
+                   bitRate="5000000"
                    width="640"
                    height="480"
                    frameRate="30" />
@@ -268,6 +287,40 @@
                    sampleRate="48000"
                    channels="1" />
         </EncoderProfile>
+        <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
+            <Video codec="h264"
+                   bitRate="5000000"
+                   width="640"
+                   height="480"
+                   frameRate="30" />
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
+                   channels="1" />
+        </EncoderProfile>
+        <EncoderProfile quality="qvga" fileFormat="mp4" duration="30">
+            <Video codec="h264"
+                   bitRate="512000"
+                   width="320"
+                   height="240"
+                   frameRate="30" />
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
+                   channels="1" />
+        </EncoderProfile>
+        <EncoderProfile quality="timelapseqvga" fileFormat="mp4" duration="30">
+            <Video codec="h264"
+                   bitRate="512000"
+                   width="320"
+                   height="240"
+                   frameRate="30" />
+            <Audio codec="aac"
+                   bitRate="156000"
+                   sampleRate="48000"
+                   channels="1" />
+        </EncoderProfile>
+        <!-- DTS2014051404290 wangdongdong/wx204551 20140519 end -->
         <EncoderProfile quality="qcif" fileFormat="mp4" duration="30">
             <Video codec="h264"
                    bitRate="192000"
@@ -344,17 +397,25 @@
         minBitRate="64000" maxBitRate="20000000"
         minFrameWidth="176" maxFrameWidth="1920"
         minFrameHeight="144" maxFrameHeight="1088"
-        minFrameRate="15" maxFrameRate="30" />
+        minFrameRate="15" maxFrameRate="30"
+        maxHFRFrameWidth="720" maxHFRFrameHeight="480"
+        maxHFRMode="120" />
+
     <VideoEncoderCap name="h263" enabled="true"
         minBitRate="192000" maxBitRate="2000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
-        minFrameRate="15" maxFrameRate="30" />
+        minFrameRate="15" maxFrameRate="30"
+        maxHFRFrameWidth="0" maxHFRFrameHeight="0"
+        maxHFRMode="0"  />
+
     <VideoEncoderCap name="m4v" enabled="true"
         minBitRate="192000" maxBitRate="14000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
-        minFrameRate="15" maxFrameRate="30" />
+        minFrameRate="15" maxFrameRate="30"
+        maxHFRFrameWidth="0" maxHFRFrameHeight="0"
+        maxHFRMode="0"  />
     <!-- DTS2013111909758 liweipeng/00219942 20131120 end -->
     <!--DTS2013042406900 liukeke/00126999 20130424 begin-->
     <AudioEncoderCap name="amrwb" enabled="true"
@@ -381,40 +442,13 @@
     <VideoDecoderCap name="wmv" enabled="false"/>
     <AudioDecoderCap name="wma" enabled="false"/>
     <!--DTS2013042604779 zhangyu/00106393 20130503 end-->
-    <!--DTS2013122802827 huangdezhi/00176038 20131230 begin-->
-    <!--
-        The VideoEditor Capability configuration:
-        - maxInputFrameWidth: maximum video width of imported video clip.
-        - maxInputFrameHeight: maximum video height of imported video clip.
-        - maxOutputFrameWidth: maximum video width of exported video clip.
-        - maxOutputFrameHeight: maximum video height of exported video clip.
-        - maxPrefetchYUVFrames: maximum prefetch YUV frames for encoder,
-        used to limit the amount of memory for prefetched YUV frames.
-        For this platform, it allows maximum 30MB(3MB per 1080p frame x 10
-        frames) memory.
-    -->
+    <!-- DTS2014052208446 guoshuai 00224455 20140526 begin -->
     <VideoEditorCap  maxInputFrameWidth="1280"
         maxInputFrameHeight="720" maxOutputFrameWidth="1280"
         maxOutputFrameHeight="720" maxPrefetchYUVFrames="3"/>
-    <!--
-        The VideoEditor Export codec profile and level values
-        correspond to the values in OMX_Video.h.
-        E.g. for h264, profile value 1 means OMX_VIDEO_AVCProfileBaseline
-        and  level 4096 means OMX_VIDEO_AVCLevel41.
-        Please note that the values are in decimal.
-        These values are for video encoder.
-    -->
-    <!--
-      Codec = h.264, Baseline profile, level 4.1
-    -->
+
     <ExportVideoProfile name="h264" profile= "1" level="512"/>
-    <!--
-      Codec = h.263, Baseline profile, level 0
-    -->
     <ExportVideoProfile name="h263" profile= "1" level="1"/>
-    <!--
-      Codec = mpeg4, Simple profile, level 5
-    -->
     <ExportVideoProfile name="m4v" profile= "1" level="128"/>
-    <!--DTS2013122802827 huangdezhi/00176038 20131230 end-->
+    <!-- DTS2014052208446 guoshuai 00224455 20140526 end -->
 </MediaSettings>
