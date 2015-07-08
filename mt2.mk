@@ -139,6 +139,7 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd \
     hostapd_default.conf \
+    libwcnss_qmi \
     libwpa_client \
     p2p_supplicant_overlay.conf \
     wcnss_service \
