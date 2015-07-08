@@ -141,6 +141,7 @@ PRODUCT_PACKAGES += \
     hostapd_default.conf \
     libwpa_client \
     p2p_supplicant_overlay.conf \
+    wcnss_service \
     wpa_supplicant \
     wpa_supplicant.conf \
     wpa_supplicant_overlay.conf
