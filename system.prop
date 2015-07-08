@@ -3,7 +3,15 @@
 #
 
 # Audio
-ro.qc.sdk.audio.fluencetype=none
+audio.offload.24bit.enable=false
+audio.offload.buffer.size.kb=32
+audio.offload.gapless.enabled=false
+audio.offload.multiple.enabled=false
+persist.audio.fluence.speaker=true
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.ssr=false
 
 # Camera
 camera2.portability.force_api=1
@@ -21,10 +29,19 @@ ro.qc.sdk.izat.premium_enabled=1
 ro.qc.sdk.izat.service_mask=0x0
 
 # Graphics
+debug.sf.hw=1
+persist.hwc.mdpcomp.enable=true
 ro.opengles.version=196608
 ro.qualcomm.cabl=0
 ro.qualcomm.svi=1
 ro.sf.lcd_density=320
+
+# Media
+av.offload.enable=false
+av.streaming.offload.enable=false
+media.aac_51_output_enabled=true
+mm.enable.qcom_parser=3310129
+mm.enable.smoothstreaming=true
 
 # Radio
 persist.data.netmgrd.qos.enable=true
