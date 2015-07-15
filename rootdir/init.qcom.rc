@@ -43,7 +43,7 @@ on init
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
-    # See storage config details at http://source.android.com/tech/storage/
+    # See storage config details at https://source.android.com/devices/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
@@ -66,6 +66,7 @@ on init
 on fs
     mount_all fstab.qcom
     restorecon_recursive /persist
+    setprop ro.crypto.fuse_sdcard true
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -557,7 +558,6 @@ service ims_rtp_daemon /system/bin/ims_rtp_daemon
    group radio ims net_raw diag qcom_diag log
    disabled
 
-# virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
