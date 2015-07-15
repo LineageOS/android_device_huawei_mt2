@@ -93,6 +93,7 @@ TARGET_POWERHAL_VARIANT := qcom
 
 # Recovery
 TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -103,6 +104,20 @@ BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
 
 # Time
 BOARD_USES_QC_TIME_SERVICES := true
+
+# TWRP
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+# RECOVERY_VARIANT := twrp
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
+TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
+TW_INCLUDE_CRYPTO := true
+TW_THEME := portrait_hdpi
+
+# Vold
+BOARD_VOLD_MAX_PARTITIONS := 25
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
