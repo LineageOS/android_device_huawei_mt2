@@ -97,6 +97,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
+TARGET_RIL_VARIANT := caf
 
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
