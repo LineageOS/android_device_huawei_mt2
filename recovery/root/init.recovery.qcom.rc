@@ -7,12 +7,17 @@ on boot
     setprop usb.product.adb 1038
     setprop usb.product.mtpadb 1052
     setprop recovery.cpu.power_params 1
+    start chargeled
     setprop recovery.perf.mode 0
 
 on charger
     start offmode_charging
     setprop recovery.cpu.power_params 1
     setprop recovery.perf.mode 0
+
+service chargeled /sbin/chargeled
+    disabled
+    seclabel u:r:healthd:s0
 
 service offmode_charging /sbin/offmode_charging
     disabled
