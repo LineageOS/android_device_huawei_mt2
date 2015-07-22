@@ -11,17 +11,17 @@ on boot
     setprop recovery.perf.mode 0
 
 on charger
-    start offmode_charging
     setprop recovery.cpu.power_params 1
     setprop recovery.perf.mode 0
+
+service charger /sbin/healthd -c
+    class charger
+    critical
+    seclabel u:r:healthd:s0
 
 service chargeled /sbin/chargeled
     disabled
     seclabel u:r:healthd:s0
-
-service offmode_charging /sbin/offmode_charging
-    disabled
-    seclabel u:r:recovery:s0
 
 on property:recovery.cpu.power_params=1
     write /sys/block/mmcblk0/queue/scheduler row
