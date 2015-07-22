@@ -89,6 +89,9 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 TARGET_KERNEL_CONFIG := cyanogenmod_mt2_defconfig
 TARGET_KERNEL_SOURCE := kernel/huawei/msm8928
 
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
