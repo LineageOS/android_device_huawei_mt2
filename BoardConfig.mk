@@ -99,6 +99,8 @@ TARGET_POWERHAL_VARIANT := qcom
 TARGET_RECOVERY_DEVICE_MODULES := chargeled
 TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+BOARD_CHARGING_CMDLINE_NAME := "androidboot.huawei_bootmode"
+BOARD_CHARGING_CMDLINE_VALUE := "hwcharger"
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := device/huawei/mt2
