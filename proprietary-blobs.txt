@@ -55,7 +55,6 @@ vendor/lib/libxml.so
 
 # DRM
 bin/qseecomd
-etc/permissions/com.google.widevine.software.drm.xml
 framework/com.google.widevine.software.drm.jar
 vendor/lib/drm/libdrmprplugin.so
 vendor/lib/drm/libdrmwvmplugin.so
@@ -78,9 +77,6 @@ vendor/lib/mediadrm/libwvdrmengine.so
 # GPS
 bin/gpsone_daemon
 bin/gsiff_daemon
-etc/gps.conf
-etc/permissions/com.qualcomm.location.xml
-etc/quipc.conf
 lib/hw/gps.default.so
 lib/libgps.utils.so
 lib/libloc_api_v02.so
@@ -246,7 +242,6 @@ bin/qmiproxy
 bin/rmt_oeminfo
 bin/rmt_storage
 bin/ssr_diag
-etc/sec_config
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsnetutils.so
@@ -272,8 +267,6 @@ bin/netmgrd
 bin/qmuxd
 bin/radish
 bin/rfs_access
-etc/permissions/qcnvitems.xml
-etc/permissions/qcrilhook.xml
 framework/qcnvitems.jar
 framework/qcrilhook.jar
 lib/libqmi_nv_api.so
@@ -284,7 +277,6 @@ vendor/lib/libril-qcril-hook-oem.so
 
 # Sensors
 bin/sensors.qcom
-etc/sensor_def_qcomdev.conf
 vendor/lib/hw/sensors.msm8226.so
 vendor/lib/libAKM8975.so
 vendor/lib/libsensor1.so
@@ -292,7 +284,6 @@ vendor/lib/libsensor_reg.so
 
 # Thermal
 bin/thermal-engine
-etc/thermal-engine-8226.conf
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 

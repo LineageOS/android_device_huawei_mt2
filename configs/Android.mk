@@ -16,11 +16,37 @@ LOCAL_PATH:= $(call my-dir)
 
 # GPS
 
+# Cannot override gps.conf package,
+# so PRODUCT_COPY_FILES instead
+
 include $(CLEAR_VARS)
 LOCAL_MODULE       := izat.conf
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_TAGS  := optional
 LOCAL_SRC_FILES    := izat.conf
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := quipc.conf
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS  := optional
+LOCAL_SRC_FILES    := quipc.conf
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := sap.conf
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS  := optional
+LOCAL_SRC_FILES    := sap.conf
+include $(BUILD_PREBUILT)
+
+# IRSC
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := sec_config
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS  := optional
+LOCAL_SRC_FILES    := sec_config
 include $(BUILD_PREBUILT)
 
 # Media
@@ -42,8 +68,17 @@ include $(BUILD_PREBUILT)
 # Sensors
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := sap.conf
+LOCAL_MODULE       := sensor_def_qcomdev.conf
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_TAGS  := optional
-LOCAL_SRC_FILES    := sap.conf
+LOCAL_SRC_FILES    := sensor_def_qcomdev.conf
+include $(BUILD_PREBUILT)
+
+# Thermal
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := thermal-engine-8226.conf
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS  := optional
+LOCAL_SRC_FILES    := thermal-engine-8226.conf
 include $(BUILD_PREBUILT)

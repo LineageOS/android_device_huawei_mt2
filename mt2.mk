@@ -60,8 +60,13 @@ PRODUCT_PACKAGES += \
     liboverlay
 
 # GPS
+PRODUCT_COPY_FILES += \
+    device/huawei/mt2/configs/gps.conf:system/etc/gps.conf
+
 PRODUCT_PACKAGES += \
-    izat.conf
+    izat.conf \
+    quipc.conf \
+    sap.conf
 
 # Init
 PRODUCT_PACKAGES += \
@@ -70,6 +75,10 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
     ueventd.qcom.rc
+
+# IRSC
+PRODUCT_PACKAGES += \
+    sec_config
 
 # Media
 PRODUCT_PACKAGES += \
@@ -126,13 +135,23 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
+PRODUCT_PACKAGES += \
+    com.google.widevine.software.drm.xml \
+    com.qualcomm.location.xml \
+    qcnvitems.xml \
+    qcrilhook.xml
+
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8226
 
 # Sensors
 PRODUCT_PACKAGES += \
-    sap.conf
+    sensor_def_qcomdev.conf
+
+# Thermal
+PRODUCT_PACKAGES += \
+    thermal-engine-8226.conf
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
