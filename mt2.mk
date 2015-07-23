@@ -49,6 +49,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8226
 
+# FM
+PRODUCT_PACKAGES += \
+    FM2 \
+    FMRecord \
+    libqcomfm_jni \
+    qcom.fmradio
+
 # Graphics
 PRODUCT_PACKAGES += \
     copybit.msm8226 \
@@ -65,8 +72,7 @@ PRODUCT_COPY_FILES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh \
-    init.qcom.fm.sh
+    init.qcom.bt.sh
 
 # Media
 PRODUCT_PACKAGES += \
