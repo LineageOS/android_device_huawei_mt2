@@ -267,6 +267,7 @@ bin/netmgrd
 bin/qmuxd
 bin/radish
 bin/rfs_access
+etc/ons.bin
 framework/qcnvitems.jar
 framework/qcrilhook.jar
 lib/libqmi_nv_api.so

@@ -26,10 +26,7 @@ $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
     ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
 	   $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
 
-# Create symlink spn-conf.xml which points to selective-spn-conf.xml
-# since Huawei's modem does not pull in network operator names
-$(shell mkdir -p $(TARGET_OUT)/etc; \
-    ln -sf /system/etc/selective-spn-conf.xml \
-	   $(TARGET_OUT)/etc/spn-conf.xml)
+# Create symlink for network operator names database
+$(ln -sf /system/etc/ons.bin $(TARGET_OUT)/ons.bin)
 
 endif

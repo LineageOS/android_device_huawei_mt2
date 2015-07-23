@@ -51,6 +51,7 @@ persist.radio.msgtunnel.start=false
 ril.subscription.types=NV,RUIM
 rild.libargs=-d /dev/smd0
 rild.libpath=/vendor/lib/libril-qc-qmi-1.so
+ro.hwpp.cust_ons_bin=true
 ro.telephony.call_ring.multiple=false
 ro.telephony.default_network=9
 ro.use_data_netmgrd=true
