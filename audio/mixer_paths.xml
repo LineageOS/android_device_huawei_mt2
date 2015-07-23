@@ -369,6 +369,10 @@
         <ctl name="SLIMBUS_DL_HL Switch" value="1" />
     </path>
 
+    <path name="play-fm speaker">
+        <path name="play-fm"/>
+    </path>
+
     <path name="volte-call">
         <ctl name="SLIM_0_RX_Voice Mixer VoLTE" value="1" />
         <ctl name="VoLTE_Tx Mixer SLIM_0_TX_VoLTE" value="1" />
