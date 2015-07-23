@@ -33,10 +33,10 @@ PRODUCT_PACKAGES += \
     tinymix
 
 # Audio config files
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+PRODUCT_PACKAGES += \
+    audio_platform_info.xml \
+    audio_policy.conf \
+    mixer_paths.xml
 
 # Encryption
 PRODUCT_PACKAGES += \
@@ -60,8 +60,8 @@ PRODUCT_PACKAGES += \
     liboverlay
 
 # GPS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/izat.conf:system/etc/izat.conf
+PRODUCT_PACKAGES += \
+    izat.conf
 
 # Init
 PRODUCT_PACKAGES += \
@@ -93,9 +93,11 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
+PRODUCT_PACKAGES += \
+    media_codecs.xml \
+    media_profiles.xml
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -129,19 +131,12 @@ PRODUCT_PACKAGES += \
     power.msm8226
 
 # Sensors
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sap.conf:system/etc/sap.conf
+PRODUCT_PACKAGES += \
+    sap.conf
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
-
-# WiFi
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-    $(LOCAL_PATH)/wifi/WCNSS_hw_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_hw_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -150,6 +145,10 @@ PRODUCT_PACKAGES += \
     libwcnss_qmi \
     libwpa_client \
     p2p_supplicant_overlay.conf \
+    WCNSS_cfg.dat \
+    WCNSS_hw_wlan_nv.bin \
+    WCNSS_qcom_cfg.ini \
+    WCNSS_qcom_wlan_nv.bin \
     wcnss_service \
     wpa_supplicant \
     wpa_supplicant.conf \
