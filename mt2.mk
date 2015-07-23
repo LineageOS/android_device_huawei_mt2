@@ -63,6 +63,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/izat.conf:system/etc/izat.conf
 
+# Init
+PRODUCT_PACKAGES += \
+    init.qcom.bt.sh \
+    init.qcom.fm.sh
+
 # Media
 PRODUCT_PACKAGES += \
     libOmxAacEnc \

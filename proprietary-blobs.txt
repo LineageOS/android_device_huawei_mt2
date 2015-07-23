@@ -223,10 +223,6 @@ vendor/lib/libsc-a3xx.so
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 
-# Init scripts
-etc/init.qcom.bt.sh
-etc/init.qcom.fm.sh
-
 # Media
 lib/libqomx_core.so
 vendor/lib/libExtendedExtractor.so
