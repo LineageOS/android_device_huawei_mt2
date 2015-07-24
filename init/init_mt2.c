@@ -24,7 +24,7 @@
 #include "util.h"
 #include "vendor_init.h"
 
-#define SBL1_PART "/dev/block/platform/msm_sdcc.1/by-name/sbl1"
+#define APP_INFO "/proc/app_info"
 
 /* Serial number */
 #define SERIAL_PROP "ro.serialno"
@@ -37,8 +37,6 @@
 /* Bootloader version */
 /* Example: MSM8926C00B309_BOOT */
 #define BOOTLOADER_PROP "ro.bootloader"
-#define MSG_OFFSET 0x38DCC
-#define MSG_LENGTH 20
 
 static void import_kernel_nv(char *name, int for_emulator)
 {
@@ -75,18 +73,25 @@ static void import_kernel_nv(char *name, int for_emulator)
 static void get_bootloader_version()
 {
 	int ret = 0;
-	char buf[MSG_LENGTH] = { 0 };
-	char value[MSG_LENGTH] = { 0 };
+	char buf[128] = { 0 };
+	char value[32] = { 0 };
+	char *tok;
 	prop_info *pi;
 
-	FILE* f = fopen(SBL1_PART, "rb");
+	FILE* f = fopen(APP_INFO, "rb");
 	if (f == NULL) return;
 
-	fseek(f, MSG_OFFSET, SEEK_SET);
-
-	ret = fread(&buf, MSG_LENGTH, 1, f);
-	if (ret == 1 && !strncmp("MSM8926", buf, 7)) {
-		snprintf(value, MSG_LENGTH, "%s", buf);
+	while (!feof(f)) {
+		if (fgets(buf, 128, f) != NULL &&
+				strstr(buf, "huawei_sbl1_version") != NULL) {
+			tok = strchr(buf, ':');
+			if (tok != NULL)
+				tok = strtok(tok, ": ");
+			if (tok != NULL) {
+				snprintf(value, 32, "%s", tok);
+				strtok(value, "\n");
+			}
+		}
 	}
 
 	fclose(f);
