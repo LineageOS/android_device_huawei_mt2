@@ -38,6 +38,10 @@ PRODUCT_PACKAGES += \
     audio_policy.conf \
     mixer_paths.xml
 
+# Charging
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # Encryption
 PRODUCT_PACKAGES += \
     keystore.msm8226

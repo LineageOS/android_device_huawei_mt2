@@ -10,15 +10,6 @@ on boot
 #    start chargeled
     setprop recovery.perf.mode 0
 
-on charger
-    setprop recovery.cpu.power_params 1
-    setprop recovery.perf.mode 0
-
-service charger /sbin/healthd -c
-    class charger
-    critical
-    seclabel u:r:healthd:s0
-
 #service chargeled /sbin/chargeled
 #    disabled
 #    seclabel u:r:healthd:s0
