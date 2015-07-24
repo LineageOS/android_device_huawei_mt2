@@ -158,6 +158,13 @@ is_lit(struct light_state_t const* state)
 }
 
 static int
+is_blink(struct light_state_t const* state)
+{
+    return (state->flashMode == LIGHT_FLASH_TIMED &&
+            state->flashOnMS > 0 && state->flashOffMS > 0);
+}
+
+static int
 rgb_to_brightness(struct light_state_t const* state)
 {
     int color = state->color & 0x00ffffff;
@@ -177,13 +184,14 @@ set_light_backlight(struct light_device_t* dev,
     return err;
 }
 
-static int
-set_speaker_light_locked(struct light_device_t* dev,
+static void
+set_indicator_led_locked(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int red, green;
-    int blink;
-    int onMS, offMS;
+    int blink = 0;
+    int onMS = 0;
+    int offMS = 0;
     unsigned int colorRGB;
 
     /* DT LED */
@@ -192,33 +200,20 @@ set_speaker_light_locked(struct light_device_t* dev,
     int stepMS;
     int n;
 
-    switch (state->flashMode) {
-        case LIGHT_FLASH_TIMED:
-            onMS = state->flashOnMS;
-            offMS = state->flashOffMS;
-            break;
-        case LIGHT_FLASH_NONE:
-        default:
-            onMS = 0;
-            offMS = 0;
-            break;
+    if (is_blink(state)) {
+        blink = 1;
+        onMS = state->flashOnMS;
+        offMS = state->flashOffMS;
     }
 
     colorRGB = state->color;
-
-#if 0
-    ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
-            state->flashMode, colorRGB, onMS, offMS);
-#endif
-
     red = (colorRGB >> 16) & 0xFF;
     green = (colorRGB >> 8) & 0xFF;
 
-    if (onMS > 0 && offMS > 0) {
-        blink = 1;
-    } else {
-        blink = 0;
-    }
+#if 0
+    ALOGD("set_indicator_led_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
+            state->flashMode, colorRGB, onMS, offMS);
+#endif
 
     if (blink) {
         if (g_led_is_dt) {
@@ -253,17 +248,124 @@ set_speaker_light_locked(struct light_device_t* dev,
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
     }
+}
 
-    return 0;
+/* Dual indication flow:
+ *
+ * Battery              | Notification  | Red      | Green
+ * -------------------------------------------------------------
+ * Green (Full)         | Green blink   | 0        | 0.2 <--> 1
+ * Amber (Charging)     | Green blink   | 0.5      | 0.2 <--> 1
+ * Red (Very low)       | Green blink   | 1        | 0   <--> 1
+ * Red blink (Very low) | Green blink   | 0 <--> 1 | 0
+ * Green (Full)         | Green         | 0        | 1
+ * Amber (Charging)     | Green         | 0.5      | 1
+ * Red (Very low)       | Green         | 1        | 1
+ * Red blink (Very low) | Green         | 0 <--> 1 | 0
+ */
+
+static void
+handle_dual_indication_locked(struct light_device_t* dev)
+{
+    struct light_state_t const* b_state = &g_battery;
+    struct light_state_t const* n_state = &g_notification;
+
+    int b_blink = 0;
+    int n_blink = 0;
+
+    int red, green;
+    int onMS = 0;
+    int offMS = 0;
+    unsigned int colorRGB;
+
+    /* DT LED */
+    int duty_step;
+    char dutystr[(3+1)*LED_DT_DUTY_STEPS+1];
+    char* p = dutystr;
+    int stepMS;
+    int n;
+
+    b_blink = is_blink(b_state);
+    n_blink = (is_blink(n_state) && !b_blink);
+
+    colorRGB = b_state->color;
+    red = (colorRGB >> 16) & 0xFF;
+    green = (colorRGB >> 8) & 0xFF;
+
+    if (n_blink) {
+        onMS = n_state->flashOnMS;
+        offMS = n_state->flashOffMS;
+
+        if (g_led_is_dt) {
+            onMS = max(onMS, LED_DT_RAMP_MS);
+            offMS = max(offMS, LED_DT_RAMP_MS);
+            stepMS = (onMS+offMS)/LED_DT_DUTY_STEPS;
+
+            if (red && !green)
+                p += sprintf(p, "0");
+            else
+                p += sprintf(p, "20");
+            for (n = 1; n < (onMS/stepMS); ++n) {
+                if (red && !green)
+                    duty_step = min((100*n*stepMS)/LED_DT_RAMP_MS, 100);
+                else
+                    duty_step = min(20+(4*100*n*stepMS)/(5*LED_DT_RAMP_MS), 100);
+                p += sprintf(p, ",%d", duty_step);
+            }
+            for (n = 0; n < LED_DT_DUTY_STEPS-(onMS/stepMS); ++n) {
+                if (red && !green)
+                    duty_step = 100 - min((100*n*stepMS)/LED_DT_RAMP_MS, 100);
+                else
+                    duty_step = 100 - min((4*100*n*stepMS)/(5*LED_DT_RAMP_MS), 80);
+                p += sprintf(p, ",%d", duty_step);
+            }
+            p += sprintf(p, "\n");
+
+            write_int(LED_DT_GREEN_RAMP_STEP_FILE, stepMS);
+            write_string(LED_DT_GREEN_DUTY_FILE, dutystr);
+        }
+
+        write_int(GREEN_BLINK_FILE, 1);
+        write_int(RED_LED_FILE, red);
+    } else if (b_blink) {
+        onMS = b_state->flashOnMS;
+        offMS = b_state->flashOffMS;
+
+        if (g_led_is_dt) {
+            onMS = max(onMS, LED_DT_RAMP_MS);
+            offMS = max(offMS, LED_DT_RAMP_MS);
+            stepMS = (onMS+offMS)/LED_DT_DUTY_STEPS;
+
+            p += sprintf(p, "0");
+            for (n = 1; n < (onMS/stepMS); ++n) {
+                p += sprintf(p, ",%d", min((100*n*stepMS)/LED_DT_RAMP_MS, 100));
+            }
+            for (n = 0; n < LED_DT_DUTY_STEPS-(onMS/stepMS); ++n) {
+                p += sprintf(p, ",%d", 100 - min((100*n*stepMS)/LED_DT_RAMP_MS, 100));
+            }
+            p += sprintf(p, "\n");
+
+            write_int(LED_DT_RED_RAMP_STEP_FILE, stepMS);
+            write_string(LED_DT_RED_DUTY_FILE, dutystr);
+        }
+
+        write_int(RED_BLINK_FILE, 1);
+        write_int(GREEN_LED_FILE, 0);
+    } else {
+        write_int(RED_LED_FILE, red);
+        write_int(GREEN_LED_FILE, 1);
+    }
 }
 
 static void
-handle_speaker_battery_locked(struct light_device_t* dev)
+handle_indicator_led_locked(struct light_device_t* dev)
 {
-    if (is_lit(&g_battery)) {
-        set_speaker_light_locked(dev, &g_battery);
+    if (is_lit(&g_battery) && is_lit(&g_notification)) {
+        handle_dual_indication_locked(dev);
+    } else if (is_lit(&g_battery)) {
+        set_indicator_led_locked(dev, &g_battery);
     } else {
-        set_speaker_light_locked(dev, &g_notification);
+        set_indicator_led_locked(dev, &g_notification);
     }
 }
 
@@ -273,7 +375,7 @@ set_light_notifications(struct light_device_t* dev,
 {
     pthread_mutex_lock(&g_lock);
     g_notification = *state;
-    handle_speaker_battery_locked(dev);
+    handle_indicator_led_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
@@ -288,7 +390,7 @@ set_light_attention(struct light_device_t* dev,
     } else if (state->flashMode == LIGHT_FLASH_NONE) {
         g_attention = 0;
     }
-    handle_speaker_battery_locked(dev);
+    handle_indicator_led_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
@@ -299,7 +401,7 @@ set_light_battery(struct light_device_t* dev,
 {
     pthread_mutex_lock(&g_lock);
     g_battery = *state;
-    handle_speaker_battery_locked(dev);
+    handle_indicator_led_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
