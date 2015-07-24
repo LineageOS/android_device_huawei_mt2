@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project.
  * Copyright (C) 2012-2014, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,32 +67,17 @@ char const*const RED_BLINK_FILE
 char const*const GREEN_BLINK_FILE
         = "/sys/class/leds/green/blink";
 
-#if 0
-char const*const BLUE_BLINK_FILE
-        = "/sys/class/leds/blue/blink";
-#endif
-
 char const *const LED_DT_RED_RAMP_STEP_FILE
         = "/sys/class/leds/red/ramp_step_ms";
 
 char const *const LED_DT_GREEN_RAMP_STEP_FILE
         = "/sys/class/leds/green/ramp_step_ms";
 
-#if 0
-char const *const LED_DT_BLUE_RAMP_STEP_FILE
-        = "/sys/class/leds/blue/ramp_step_ms";
-#endif
-
 char const *const LED_DT_RED_DUTY_FILE
         = "/sys/class/leds/red/duty_pcts";
 
 char const *const LED_DT_GREEN_DUTY_FILE
         = "/sys/class/leds/green/duty_pcts";
-
-#if 0
-char const *const LED_DT_BLUE_DUTY_FILE
-        = "/sys/class/leds/blue/duty_pcts";
-#endif
 
 /* Number of steps to use in the duty array */
 #define LED_DT_DUTY_STEPS       50
@@ -119,9 +105,6 @@ void init_globals(void)
     g_led_is_dt = (
             access(LED_DT_RED_DUTY_FILE, R_OK) == 0
             && access(LED_DT_GREEN_DUTY_FILE, R_OK) == 0
-#if 0
-            && access(LED_DT_BLUE_DUTY_FILE, R_OK) == 0
-#endif
     );
 }
 
@@ -198,8 +181,7 @@ static int
 set_speaker_light_locked(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int len;
-    int alpha, red, green, blue;
+    int red, green;
     int blink;
     int onMS, offMS;
     unsigned int colorRGB;
@@ -231,7 +213,6 @@ set_speaker_light_locked(struct light_device_t* dev,
 
     red = (colorRGB >> 16) & 0xFF;
     green = (colorRGB >> 8) & 0xFF;
-    blue = colorRGB & 0xFF;
 
     if (onMS > 0 && offMS > 0) {
         blink = 1;
@@ -262,26 +243,15 @@ set_speaker_light_locked(struct light_device_t* dev,
                 write_int(LED_DT_GREEN_RAMP_STEP_FILE, stepMS);
                 write_string(LED_DT_GREEN_DUTY_FILE, dutystr);
             }
-#if 0
-            if (blue) {
-                write_int(LED_DT_BLUE_RAMP_STEP_FILE, stepMS);
-                write_string(LED_DT_BLUE_DUTY_FILE, dutystr);
-            }
-#endif
         }
 
         if (red)
             write_int(RED_BLINK_FILE, blink);
         if (green)
             write_int(GREEN_BLINK_FILE, blink);
-#if 0
-        if (blue)
-            write_int(BLUE_BLINK_FILE, blink);
-#endif
     } else {
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
-        write_int(BLUE_LED_FILE, blue);
     }
 
     return 0;
