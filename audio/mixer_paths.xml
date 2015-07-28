@@ -328,6 +328,11 @@
         <ctl name="Voice_Tx Mixer SLIM_0_TX_Voice" value="1" />
     </path>
 
+    <path name="voice-call voice-speaker">
+        <path name="voice-call" />
+        <ctl name="RX3 Digital Volume" value="90" />
+    </path>
+
     <path name="voice-call bt-sco">
         <ctl name="INTERNAL_BT_SCO_RX_Voice Mixer CSVoice" value="1" />
         <ctl name="Voice_Tx Mixer INTERNAL_BT_SCO_TX_Voice" value="1" />
