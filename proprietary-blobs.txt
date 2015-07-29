@@ -151,7 +151,8 @@ etc/camera/davinci/default/imgproc.xml
 etc/camera/davinci/default/multiframe.xml
 etc/camera/davinci/device.config
 etc/camera/davinci/hw_imx135_liteon/imgproc.xml
-etc/camera/davinci/hw_imx135_liteon/multiframe.xml
+etc/camera/davinci/hw_ov5648_foxconn/imgproc.xml
+etc/camera/davinci/hw_ov5648_foxconn_mate2/imgproc.xml
 etc/camera/davinci/hw_s5k4e1_sunny/imgproc.xml
 etc/camera/davinci/hw_s5k4e1_sunny_mate2/imgproc.xml
 etc/camera/filter/filter.xml
