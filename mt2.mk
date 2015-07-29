@@ -38,6 +38,10 @@ PRODUCT_PACKAGES += \
     audio_policy.conf \
     mixer_paths.xml
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libbtaddr
+
 # Charging
 PRODUCT_PACKAGES += \
     charger_res_images

@@ -24,7 +24,6 @@ etc/sound_param/mate2/workspaceFile.qwsp
 bin/btnvtool
 bin/hci_qcomm_init
 bin/oeminfo_server
-vendor/lib/libbtaddr.so
 vendor/lib/libbtnv.so
 vendor/lib/libbtpower.so
 vendor/lib/liboeminfo.so
