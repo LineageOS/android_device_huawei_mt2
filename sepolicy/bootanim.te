@@ -1,0 +1,2 @@
+unix_socket_connect(bootanim, mpctl, mpdecision)
+allow bootanim socket_device:sock_file write;
