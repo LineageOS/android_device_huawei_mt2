@@ -55,7 +55,6 @@ vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
-bin/gpsone_daemon
 bin/gsiff_daemon
 lib/hw/gps.default.so
 lib/libgps.utils.so

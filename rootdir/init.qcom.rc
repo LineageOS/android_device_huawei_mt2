@@ -96,9 +96,6 @@ on post-fs-data
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
 
-    #Create directories for gpsone_daemon services
-    mkdir /data/misc/location/gpsone_d 0770 system gps
-
     #Create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
 
@@ -211,6 +208,8 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_oeminfo /system/bin/rmt_oeminfo
     class core
     user root
+# ToDo: create context
+#    seclabel u:r:oeminfo_domain:s0
 
 service rmt_storage /system/bin/rmt_storage
     class core
@@ -221,9 +220,9 @@ on property:ro.boot.emmc=true
     start rmt_storage
 
 service rfs_access /system/bin/rfs_access
-   class core
-   user system
-   group system net_raw
+    class core
+    user system
+    group system net_raw
 
 on property:ro.boot.emmc=true
     start rfs_access
@@ -231,6 +230,8 @@ on property:ro.boot.emmc=true
 service oeminfo_server /system/bin/oeminfo_server
     class core
     user root
+# ToDo: create context
+#    seclabel u:r:oeminfo_domain:s0
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -263,20 +264,15 @@ service qmuxd /system/bin/qmuxd
     group radio audio bluetooth gps qcom_diag
 
 service netmgrd /system/bin/netmgrd
-    class core
+    class main
 
 service sensors /system/bin/sensors.qcom
     class main
     user root
     group root
 
-on property:ro.use_data_netmgrd=true
-   start netmgrd
-
-# Adjust socket buffer to enlarge TCP receive window for high bandwidth
-# but only if ro.data.large_tcp_window_size property is set.
-on property:ro.data.large_tcp_window_size=true
-    write /proc/sys/net/ipv4/tcp_adv_win_scale  2
+on property:ro.use_data_netmgrd=false
+    stop netmgrd
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -349,12 +345,6 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
-service gpsone_daemon /system/bin/gpsone_daemon
-    class late_start
-    user gps
-    group gps qcom_oncrpc inet net_raw
-    disabled
-
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
@@ -377,6 +367,8 @@ on property:persist.usb.hvdcp.detect=false
 
 service libqmi_oem_main /system/bin/libqmi_oem_main
     class main
+# ToDo: create context
+#    seclabel u:r:libqmi_oem_main:s0
 
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
@@ -398,34 +390,34 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 
 # Allow usb charging to be disabled persistently
 on property:persist.usb.chgdisabled=1
-   write /sys/class/power_supply/battery/charging_enabled 0
+    write /sys/class/power_supply/battery/charging_enabled 0
 
 on property:persist.usb.chgdisabled=0
-   write /sys/class/power_supply/battery/charging_enabled 1
+    write /sys/class/power_supply/battery/charging_enabled 1
 
 service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
+    class late_start
+    user root
+    group root
 
 service mpdecision /system/bin/mpdecision --avg_comp
-   user root
-   disabled
+    user root
+    disabled
 
 #start GNSS/Sensor interface daemon
 service gsiff_daemon /system/bin/gsiff_daemon
-   class late_start
-   user gps
-   group gps net_raw misc
-   disabled
+    class late_start
+    user gps
+    group gps net_raw misc
+    disabled
 
 service thermal-engine /system/bin/thermal-engine
-   class main
-   user root
-   group root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
+    class main
+    user root
+    group root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
 
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler row
@@ -502,18 +494,18 @@ service qseecomd /system/bin/qseecomd
     group root
 
 service adsprpcd /system/bin/adsprpcd
-   class main
-   user media
-   group media
+    class main
+    user media
+    group media
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
 service wcnss-service /system/bin/wcnss_service
-   class late_start
-   user root
-   group system wifi
-   oneshot
+    class late_start
+    user root
+    group system wifi
+    oneshot
 
 service charger /sbin/healthd -c
     class charger
