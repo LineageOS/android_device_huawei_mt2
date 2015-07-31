@@ -118,6 +118,9 @@ TARGET_RIL_VARIANT := caf
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
+BOARD_SEPOLICY_UNION += \
+    libqmi_oem_main.te \
+    oeminfo.te
 
 # Time
 BOARD_USES_QC_TIME_SERVICES := true

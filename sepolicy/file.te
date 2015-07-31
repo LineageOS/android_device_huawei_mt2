@@ -1,1 +1,2 @@
+type oeminfoserver_socket, file_type;
 type sysfs_wcnss_writable, fs_type, sysfs_type;

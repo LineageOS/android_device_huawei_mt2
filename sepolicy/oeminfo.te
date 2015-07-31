@@ -1,0 +1,12 @@
+type oeminfo, domain;
+type oeminfo_exec, exec_type, file_type;
+init_daemon_domain(oeminfo)
+
+type_transition oeminfo socket_device:sock_file oeminfoserver_socket;
+
+allow oeminfo oeminfo_partition_device:blk_file { read write open };
+allow oeminfo self:capability { fowner chown fsetid dac_override };
+allow oeminfo self:socket { read bind create write ioctl };
+allow oeminfo socket_device:dir { write add_name };
+allow oeminfo oeminfoserver_socket:sock_file { create setattr };
+allow oeminfo smem_log_device:chr_file { read write ioctl open };

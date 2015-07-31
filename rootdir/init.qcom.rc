@@ -453,7 +453,7 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 
 service libqmi_oem_main /system/bin/libqmi_oem_main
     class main
-#    seclabel u:r:libqmi_oem_main:s0
+    seclabel u:r:libqmi_oem_main:s0
 
 service mpdecision /system/bin/mpdecision --avg_comp
     user root
@@ -465,7 +465,7 @@ service netmgrd /system/bin/netmgrd
 service oeminfo_server /system/bin/oeminfo_server
     class core
     user root
-#    seclabel u:r:oeminfo_domain:s0
+    seclabel u:r:oeminfo:s0
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -513,7 +513,7 @@ service rfs_access /system/bin/rfs_access
 service rmt_oeminfo /system/bin/rmt_oeminfo
     class core
     user root
-#    seclabel u:r:oeminfo_domain:s0
+    seclabel u:r:oeminfo:s0
 
 service rmt_storage /system/bin/rmt_storage
     class core
