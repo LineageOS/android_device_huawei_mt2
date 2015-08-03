@@ -7,12 +7,12 @@ on boot
     setprop usb.product.adb 1038
     setprop usb.product.mtpadb 1052
     setprop recovery.cpu.power_params 1
-#    start chargeled
+    start chargeled
     setprop recovery.perf.mode 0
 
-#service chargeled /sbin/chargeled
-#    disabled
-#    seclabel u:r:healthd:s0
+service chargeled /sbin/chargeled
+    disabled
+    seclabel u:r:healthd:s0
 
 on property:recovery.cpu.power_params=1
     write /sys/block/mmcblk0/queue/scheduler row
