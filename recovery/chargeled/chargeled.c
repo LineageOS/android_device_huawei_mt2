@@ -28,17 +28,16 @@
 #include <sys/epoll.h>
 #include <sys/timerfd.h>
 
-#define POWER_SUPPLY_SUBSYSTEM "SUBSYSTEM=power_supply"
+#define POWER_SUPPLY_CHG_MSG "change@/devices/f9a55000.usb/power_supply/usb"
 
 #define BATTERY_STATUS_FILE "/sys/class/power_supply/battery/status"
 #define RED_LED "/sys/class/leds/red/brightness"
 #define GREEN_LED "/sys/class/leds/green/brightness"
-#define BLUE_LED "/sys/class/leds/blue/brightness"
 
-/* Max brightness is 255. Half of this is plenty bright. */
 #define LED_OFF "0"
-#define LED_ON_HALF "95"
-#define LED_ON_FULL "127"
+#define LED_ON_RED_CHRG "255"
+#define LED_ON_GRN_CHRG "127"
+#define LED_ON_GRN_FULL "255"
 
 #define STR_BUF_SIZE 128
 #define UEVENT_BUF_SIZE 64*1024
@@ -72,10 +71,8 @@ static int map_sysfs_string(const char* str) {
 
     for (i = 0; battery_status_map[i].str; i++) {
         if (!strcmp(str, battery_status_map[i].str)) {
-            /* Debugging
-            KLOG_INFO(LOG_TAG, "%s: battery status '%s'\n",
+            KLOG_DEBUG(LOG_TAG, "%s: battery status '%s'\n",
                     __func__, str);
-            */
             ret = battery_status_map[i].val;
         }
     }
@@ -123,7 +120,7 @@ static int get_charging_status() {
 }
 
 static void update_led(int charge_status) {
-    FILE *rled, *gled, *bled;
+    FILE *rled, *gled;
     rled = fopen(RED_LED, "w");
     if (!rled) {
         KLOG_ERROR(LOG_TAG, "%s: could not open red LED: %s\n",
@@ -136,15 +133,6 @@ static void update_led(int charge_status) {
             KLOG_ERROR(LOG_TAG, "%s: could not open green LED: %s\n",
                 __func__, GREEN_LED);
             return;
-        } else {
-            bled = fopen(BLUE_LED, "w");
-            if (!bled) {
-                fclose(rled);
-                fclose(gled);
-                KLOG_ERROR(LOG_TAG, "%s: could not open blue LED: %s\n",
-                    __func__, BLUE_LED);
-                return;
-            }
         }
     }
 
@@ -153,25 +141,21 @@ static void update_led(int charge_status) {
 
     switch (charge_status) {
         case BATTERY_STATUS_CHARGING:
-            fputs(LED_ON_FULL, rled);
-            fputs(LED_ON_HALF, gled);
-            fputs(LED_OFF, bled);
+            fputs(LED_ON_RED_CHRG, rled);
+            fputs(LED_ON_GRN_CHRG, gled);
             break;
         case BATTERY_STATUS_FULL:
             fputs(LED_OFF, rled);
-            fputs(LED_ON_FULL, gled);
-            fputs(LED_OFF, bled);
+            fputs(LED_ON_GRN_CHRG, gled);
             break;
         default:
             fputs(LED_OFF, rled);
             fputs(LED_OFF, gled);
-            fputs(LED_OFF, bled);
             break;
     }
 
     fclose(rled);
     fclose(gled);
-    fclose(bled);
 }
 
 static void chargeled_update() {
@@ -215,8 +199,11 @@ static void uevent_event() {
     msg[n+1] = '\0';
     cp = msg;
 
+    KLOG_DEBUG(LOG_TAG, "%s: %s\n", __func__, msg);
+
     while (*cp) {
-        if (!strcmp(cp, POWER_SUPPLY_SUBSYSTEM)) {
+        if (!strcmp(cp, POWER_SUPPLY_CHG_MSG)) {
+            sleep(1);
             chargeled_update();
             break;
         }
