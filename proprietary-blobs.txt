@@ -34,7 +34,7 @@ etc/batt_fw.bin
 
 # DRM
 bin/qseecomd
-framework/com.google.widevine.software.drm.jar
+-framework/com.google.widevine.software.drm.jar
 vendor/lib/drm/libdrmprplugin.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/libDivxDrm.so
@@ -61,7 +61,7 @@ lib/libloc_api_v02.so
 lib/libloc_core.so
 lib/libloc_ds_api.so
 lib/libloc_eng.so
-priv-app/com.qualcomm.location/com.qualcomm.location.apk
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
@@ -201,7 +201,7 @@ etc/firmware/a330_pm4.fw
 # Media
 lib/libqomx_core.so
 vendor/lib/libExtendedExtractor.so
-vendor/lib/libHevcSwDecoder.so
+-vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libmmosal.so
@@ -241,14 +241,14 @@ vendor/lib/libqmiservices.so
 vendor/lib/libsubsystem_control.so
 
 # Radio
-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/netmgrd
 bin/qmuxd
 bin/radish
 bin/rfs_access
 etc/ons.bin
-framework/qcnvitems.jar
-framework/qcrilhook.jar
+-framework/qcnvitems.jar
+-framework/qcrilhook.jar
 lib/libqmi_nv_api.so
 lib/libqmi_oem_api.so
 vendor/lib/libnetmgr.so
@@ -269,7 +269,7 @@ vendor/lib/libthermalioctl.so
 
 # Time services
 bin/time_daemon
-vendor/lib/libtime_genoff.so
+-vendor/lib/libtime_genoff.so
 
 # Touchscreen firmware
 etc/firmware/cyttsp4_fw_g6.bin

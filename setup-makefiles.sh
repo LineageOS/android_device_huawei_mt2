@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 VENDOR=huawei
 DEVICE=mt2
@@ -6,7 +6,7 @@ OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
 
 (cat << EOF) > $MAKEFILE
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,17 +26,28 @@ PRODUCT_COPY_FILES += \\
 EOF
 
 LINEEND=" \\"
-COUNT=$(cat proprietary-blobs.txt | grep -v '^#' | grep -v '^$' | wc -l | awk {'print $1'})
-for FILE in $(cat proprietary-blobs.txt | grep -v '^#' | grep -v '^$'); do
-    COUNT=$(expr $COUNT - 1)
-    if [ $COUNT = "0" ]; then
-        LINEEND=""
+COUNT=`wc -l proprietary-blobs.txt | awk {'print $1'}`
+DISM=`egrep -c '(^#|^$)' proprietary-blobs.txt`
+COUNT=`expr $COUNT - $DISM`
+for FILE in `egrep -v '(^#|^$)' proprietary-blobs.txt`; do
+  COUNT=`expr $COUNT - 1`
+  if [ $COUNT = "0" ]; then
+    LINEEND=""
+  fi
+  # Split the file from the destination (format is "file[:destination]")
+  OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
+  if [[ ! "$FILE" =~ ^-.* ]]; then
+    FILE=`echo ${PARSING_ARRAY[0]} | sed -e "s/^-//g"`
+    DEST=${PARSING_ARRAY[1]}
+    if [ -n "$DEST" ]; then
+      FILE=$DEST
     fi
     echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+  fi
 done
 
 (cat << EOF) > ../../../$OUTDIR/$DEVICE-vendor.mk
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -56,22 +67,11 @@ done
 PRODUCT_PACKAGES += \\
     com.qualcomm.location \\
     qcrilmsgtunnel \\
+    com.google.widevine.software.drm \\
     qcnvitems \\
     qcrilhook \\
     libHevcSwDecoder \\
     libtime_genoff
-
-# Live wallpaper packages
-PRODUCT_PACKAGES := \\
-    LiveWallpapers \\
-    LiveWallpapersPicker \\
-    MagicSmokeWallpapers \\
-    VisualizationWallpapers \\
-    librs_jni
-
-# Publish that we support the live wallpaper feature.
-PRODUCT_COPY_FILES := \\
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
 
 # Pick up overlay for features that depend on non-open-source files
 DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
@@ -80,7 +80,7 @@ DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
 EOF
 
 (cat << EOF) > ../../../$OUTDIR/BoardConfigVendor.mk
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ USE_CAMERA_STUB := false
 EOF
 
 (cat << EOF) > ../../../$OUTDIR/Android.mk
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -138,6 +138,16 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := platform
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := com.google.widevine.software.drm
+LOCAL_MODULE_OWNER := $VENDOR
+LOCAL_SRC_FILES := proprietary/framework/com.google.widevine.software.drm.jar
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_CERTIFICATE := PRESIGNED
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
