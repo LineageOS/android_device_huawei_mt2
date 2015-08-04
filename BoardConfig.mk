@@ -120,7 +120,8 @@ TARGET_RIL_VARIANT := caf
 BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
 BOARD_SEPOLICY_UNION += \
     libqmi_oem_main.te \
-    oeminfo.te
+    oeminfo.te \
+    platform_app.te
 
 # TWRP
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
