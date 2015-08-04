@@ -122,9 +122,6 @@ BOARD_SEPOLICY_UNION += \
     libqmi_oem_main.te \
     oeminfo.te
 
-# Time
-BOARD_USES_QC_TIME_SERVICES := true
-
 # TWRP
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
