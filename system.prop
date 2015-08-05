@@ -39,7 +39,7 @@ ro.qualcomm.svi=1
 ro.sf.lcd_density=320
 
 # Media
-av.offload.enable=false
+av.offload.enable=true
 av.streaming.offload.enable=false
 media.aac_51_output_enabled=true
 mm.enable.qcom_parser=103027
