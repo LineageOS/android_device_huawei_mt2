@@ -43,6 +43,7 @@ av.offload.enable=true
 av.streaming.offload.enable=false
 mm.enable.qcom_parser=103027
 mm.enable.smoothstreaming=true
+mmp.enable.3g2=true
 
 # Radio
 persist.data.netmgrd.qos.enable=true
