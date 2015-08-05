@@ -42,7 +42,7 @@ ro.sf.lcd_density=320
 av.offload.enable=false
 av.streaming.offload.enable=false
 media.aac_51_output_enabled=true
-mm.enable.qcom_parser=3310129
+mm.enable.qcom_parser=103027
 mm.enable.smoothstreaming=true
 
 # Radio
