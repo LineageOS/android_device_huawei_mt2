@@ -109,8 +109,6 @@ vendor/lib/libchromatix_imx135_hfr_120.so
 vendor/lib/libchromatix_imx135_preview.so
 vendor/lib/libchromatix_imx135_snapshot.so
 vendor/lib/libchromatix_imx135_video_hd.so
-vendor/lib/libjpegdhw.so
-vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_iface_modules.so
@@ -134,8 +132,6 @@ vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmcamera_wavelet_lib.so
-vendor/lib/libmmjpeg.so
-vendor/lib/libmmqjpeg_codec.so
 vendor/lib/liboemcamera.so
 vendor/lib/libscale.so
 
@@ -203,9 +199,13 @@ lib/libqomx_core.so
 vendor/lib/libExtendedExtractor.so
 -vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
+vendor/lib/libjpegdhw.so
+vendor/lib/libjpegehw.so
 vendor/lib/libmm-color-convertor.so
+vendor/lib/libmmjpeg.so
 vendor/lib/libmmosal.so
 vendor/lib/libmmparser.so
+vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
 
