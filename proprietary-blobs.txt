@@ -133,7 +133,6 @@ vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmcamera_wavelet_lib.so
 vendor/lib/liboemcamera.so
-vendor/lib/libscale.so
 
 # Camera configuration
 etc/camera/davinci/default/cm_correction.dat
@@ -144,20 +143,22 @@ etc/camera/davinci/default/cm_sunset.dat
 etc/camera/davinci/default/imgproc.xml
 etc/camera/davinci/default/multiframe.xml
 etc/camera/davinci/device.config
+etc/camera/davinci/hw_imx134/imgproc.xml
+etc/camera/davinci/hw_imx134/multiframe.xml
 etc/camera/davinci/hw_imx135_liteon/imgproc.xml
+etc/camera/davinci/hw_imx135_liteon/multiframe.xml
+etc/camera/davinci/hw_imx219_liteon/imgproc.xml
+etc/camera/davinci/hw_imx219_liteon/multiframe.xml
+etc/camera/davinci/hw_ov5648_back/imgproc.xml
+etc/camera/davinci/hw_ov5648_back/multiframe.xml
 etc/camera/davinci/hw_ov5648_foxconn/imgproc.xml
-etc/camera/davinci/hw_ov5648_foxconn_mate2/imgproc.xml
+etc/camera/davinci/hw_ov8858_foxconn/imgproc.xml
+etc/camera/davinci/hw_ov8858_foxconn/multiframe.xml
+etc/camera/davinci/hw_ov9724/imgproc.xml
+etc/camera/davinci/hw_s5k4e1_back/imgproc.xml
+etc/camera/davinci/hw_s5k4e1_back/multiframe.xml
 etc/camera/davinci/hw_s5k4e1_sunny/imgproc.xml
-etc/camera/davinci/hw_s5k4e1_sunny_mate2/imgproc.xml
-etc/camera/filter/filter.xml
-etc/camera/filter/mixIm.dat
-etc/camera/nicefood/config/default/niceFood.dat
-etc/camera/nicefood/config/device.config
-etc/camera/smartae/config/hw_imx214_foxconn/SmartAE.xml
-etc/camera/smartae/config/hw_imx214_sunny/SmartAE.xml
-etc/camera/smartae/config/hw_ov5648_foxconn/SmartAE.xml
-etc/camera/smartae/config/hw_s5k4e1_sunny/SmartAE.xml
-etc/camera/smartae/device.config
+etc/camera/davinci/hw_s5k9a1/imgproc.xml
 etc/camera/tornado/FoliageMinMaxTOA.txt
 etc/camera/tornado/FoliageModelTOA.model
 etc/camera/tornado/NightMinMaxTOA.txt
