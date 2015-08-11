@@ -57,9 +57,7 @@
             <Quirk name="requires-allocate-on-output-ports" />
         </MediaCodec>
         <!-- Audio Software  -->
-        <!-- DTS2015010704558 ywx204552 20150107 begin-->
         <MediaCodec name="AACEncoder" type="audio/mp4a-latm" />
-        <!-- DTS2015010704558 ywx204552 20150107 end-->
         <!-- Video Hardware  -->
         <MediaCodec name="OMX.qcom.video.encoder.avc" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -94,36 +92,12 @@
     </Encoders>
     <Decoders>
         <!-- Audio Hardware  -->
-        <!-- DTS2013111909758 liweipeng/00219942 20131120 begin -->
-        <!--
-        <MediaCodec name="OMX.qcom.audio.decoder.wma" type="audio/x-ms-wma" >
-            <Quirk name="requires-global-flush" />
-            <Quirk name="requires-wma-pro-component" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.audio.decoder.wmaLossLess" type="audio/x-ms-wma" >
-            <Quirk name="requires-global-flush" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.audio.decoder.wma10Pro" type="audio/x-ms-wma" >
-            <Quirk name="requires-global-flush" />
-        </MediaCodec>
-        -->
-        <!-- DTS2013111909758 liweipeng/00219942 20131120 end -->
         <!-- Audio Software  -->
-        <!-- DTS2015010704558 ywx204552 20150107 begin-->
         <MediaCodec name="MP3Decoder" type="audio/mpeg" />
         <MediaCodec name="OMX.google.aac.decoder" type="audio/mp4a-latm" />
         <MediaCodec name="AACDecoder" type="audio/mp4a-latm" />
         <MediaCodec name="FLACDecoder" type="audio/flac" />
-        <!--
-            Use Google's RAW decoder to support ACodec path for FLAC clips as
-            FLACDecoder is non-OMX component based. A component can be used to
-            support several mimetypes, so existing raw decoder usecases will not
-            be affected by this.
-        -->
-        <!-- DTS2015060504380 wufan/wx271203 20150609 begin -->
         <MediaCodec name="OMX.google.raw.decoder" type="audio/raw" />
-        <!-- DTS2015060504380 wufan/wx271203 20150609 end -->
-        <!-- DTS2015010704558 ywx204552 20150107 end-->
         <MediaCodec name="OMX.qcom.audio.decoder.Qcelp13" type="audio/qcelp" >
             <Quirk name="requires-global-flush" />
         </MediaCodec>
@@ -141,31 +115,6 @@
             <Limit name="bitrate" range="1-20000000" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
-        <!-- DTS2013111909758 liweipeng/00219942 20131120 begin -->
-        <!--
-        <MediaCodec name="OMX.qcom.video.decoder.avc.secure" type="video/avc" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-            <Limit name="size" min="64x64" max="1920x1088" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="244800" />
-            <Limit name="bitrate" range="1-20000000" />
-            <Feature name="adaptive-playback" />
-            <Feature name="secure-playback" required="true" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.video.decoder.mpeg2" type="video/mpeg2" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-            <Limit name="size" min="96x64" max="1920x1088" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="244800" />
-            <Limit name="bitrate" range="1-20000000" />
-            <Feature name="adaptive-playback" />
-        </MediaCodec>
-        -->
-        <!-- DTS2013111909758 liweipeng/00219942 20131120 end -->
         <MediaCodec name="OMX.qcom.video.decoder.mpeg4" type="video/mp4v-es" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
@@ -206,21 +155,6 @@
             <Limit name="bitrate" range="1-10000000" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
-        <!-- DTS2013111909758 liweipeng/00219942 20131120 begin -->
-        <!--
-        <MediaCodec name="OMX.qcom.video.decoder.divx311" type="video/divx311" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-            <Limit name="size" min="64x64" max="720x480" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="40500" />
-            <Limit name="bitrate" range="1-2000000" />
-            <Feature name="adaptive-playback" />
-        </MediaCodec>
-        -->
-        <!-- DTS2013111909758 liweipeng/00219942 20131120 end -->
-        <!-- DTS2015010704558 ywx204552 20150107 begin-->
         <MediaCodec name="OMX.qcom.video.decoder.divx4" type="video/divx4" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
@@ -249,22 +183,9 @@
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="108000" />
             <Limit name="bitrate" range="1-2000000" />
-            <!-- DTS2015060504380 wufan/wx271203 20150609 begin -->
             <Feature name="adaptive-playback" />
-            <!-- DTS2015060504380 wufan/wx271203 20150609 end -->
         </MediaCodec>
         <!-- Video Software -->
-        <!--
-            Use Google's mpeg4 decoder for mpeg4 DP content which is not
-            supported by HW. A component can be used to support several
-            mimetypes, so non-DP mpeg4 usecases will not be affected by this.
-        -->
-        <!-- DTS2015060504380 wufan/wx271203 20150609 begin -->
-        <!-- delete this
-        <MediaCodec name="OMX.google.mpeg4.decoder" type="video/mp4v-esdp" />
-        -->
-        <!-- DTS2015060504380 wufan/wx271203 20150609 end -->
-        <!-- DTS2014120207232 ywx204552 20141202 end-->
     </Decoders>
     <Include href="media_codecs_google_video.xml" />
     <Include href="media_codecs_ffmpeg.xml" />
