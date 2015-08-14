@@ -28,6 +28,10 @@ service chargeled /sbin/chargeled
     disabled
     seclabel u:r:healthd:s0
 
+on property:ro.twrp.boot=1
+    mkdir /firmware
+    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro
+
 on property:recovery.cpu.power_params=1
     write /sys/block/mmcblk0/queue/scheduler row
     write /sys/module/lpm_levels/enable_low_power/l2 2
