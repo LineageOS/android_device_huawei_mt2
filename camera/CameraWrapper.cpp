@@ -106,6 +106,9 @@ static char *camera_fixup_getparams(const char *settings)
     params.dump();
 #endif
 
+    if(!strcmp(params.get(android::CameraParameters::KEY_SCENE_MODE), "hdr"))
+            params.set(android::CameraParameters::KEY_FLASH_MODE, "off");
+
 #ifdef LOG_PARAMETERS
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
@@ -126,6 +129,9 @@ static char *camera_fixup_setparams(int id, const char *settings)
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
+
+    if(!strcmp(params.get(android::CameraParameters::KEY_SCENE_MODE), "hdr"))
+            params.set(android::CameraParameters::KEY_FLASH_MODE, "off");
 
 #ifdef LOG_PARAMETERS
     ALOGV("%s: fixed parameters:", __FUNCTION__);
