@@ -41,6 +41,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libbtaddr
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8226
+
 # Charging
 PRODUCT_PACKAGES += \
     charger_res_images
