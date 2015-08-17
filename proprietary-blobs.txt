@@ -72,7 +72,7 @@ vendor/lib/libulp2.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.msm8226.so
+lib/hw/camera.vendor.msm8226.so
 lib/libhdr.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
