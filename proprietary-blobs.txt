@@ -96,6 +96,12 @@ vendor/lib/libchromatix_hw_imx135_liteon_liveshot.so
 vendor/lib/libchromatix_hw_imx135_liteon_preview.so
 vendor/lib/libchromatix_hw_imx135_liteon_snapshot.so
 vendor/lib/libchromatix_hw_imx135_liteon_video_hd.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_common.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_common_mate2.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_default_video.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_default_video_mate2.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_preview.so
+vendor/lib/libchromatix_hw_ov5648_foxconn_preview_mate2.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_common.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_common_mate2.so
 vendor/lib/libchromatix_hw_s5k4e1_sunny_default_video.so
@@ -125,6 +131,7 @@ vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_hw_imx135_liteon.so
+vendor/lib/libmmcamera_hw_ov5648_foxconn.so
 vendor/lib/libmmcamera_hw_s5k4e1_sunny.so
 vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_imx135.so
@@ -145,6 +152,7 @@ etc/camera/davinci/default/multiframe.xml
 etc/camera/davinci/device.config
 etc/camera/davinci/hw_imx135_liteon/imgproc.xml
 etc/camera/davinci/hw_imx135_liteon/multiframe.xml
+etc/camera/davinci/hw_ov5648_foxconn/imgproc.xml
 etc/camera/davinci/hw_s5k4e1_sunny/imgproc.xml
 etc/camera/tornado/FoliageMinMaxTOA.txt
 etc/camera/tornado/FoliageModelTOA.model
