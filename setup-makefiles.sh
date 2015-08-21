@@ -81,7 +81,6 @@ PRODUCT_PACKAGES += \\
     com.qualcomm.location \\
     TimeService \\
     qcrilmsgtunnel \\
-    com.google.widevine.software.drm \\
     qcnvitems \\
     qcrilhook \\
     libHevcSwDecoder
