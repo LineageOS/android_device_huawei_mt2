@@ -27,7 +27,6 @@ bin/oeminfo_server
 vendor/lib/libbtnv.so
 vendor/lib/libbtpower.so
 vendor/lib/liboeminfo.so
-vendor/lib/liboeminfo_oem_api.so
 
 # Battery firmware
 etc/batt_fw.bin
