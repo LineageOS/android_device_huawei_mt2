@@ -15,14 +15,6 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := com.google.widevine.software.drm.xml
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)/permissions
-LOCAL_MODULE_TAGS  := optional
-LOCAL_SRC_FILES    := com.google.widevine.software.drm.xml
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE       := com.qualcomm.location.xml
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)/permissions
