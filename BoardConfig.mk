@@ -44,6 +44,10 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOOTLOADER_BOARD_NAME := MT2L03
 
+# Boot
+BOARD_CHARGING_CMDLINE_NAME := "androidboot.huawei_bootmode"
+BOARD_CHARGING_CMDLINE_VALUE := "hwcharger"
+
 # Build
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -100,8 +104,6 @@ TARGET_POWERHAL_VARIANT := qcom
 TARGET_RECOVERY_DEVICE_MODULES := chargeled
 TARGET_RECOVERY_FSTAB = device/huawei/mt2/rootdir/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-BOARD_CHARGING_CMDLINE_NAME := "androidboot.huawei_bootmode"
-BOARD_CHARGING_CMDLINE_VALUE := "hwcharger"
 
 # Release tools
 TARGET_RELEASETOOLS_EXTENSIONS := device/huawei/mt2
@@ -121,10 +123,13 @@ BOARD_SEPOLICY_UNION += \
     platform_app.te
 
 # TWRP
-# TARGET_RECOVERY_DEVICE_MODULES += libQSEEComAPI.so
+#   Uncomment the lines below only when building TWRP.
+#   Do not leave SELinux permissive when building CM or Cyanogen Recovery.
+# BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 # RECOVERY_VARIANT := twrp
+# TARGET_RECOVERY_DEVICE_MODULES += libQSEEComAPI.so
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
 TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
