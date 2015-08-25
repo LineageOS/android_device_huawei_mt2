@@ -345,7 +345,7 @@
 
     <path name="voice-call voice-speaker">
         <path name="voice-call" />
-        <ctl name="RX3 Digital Volume" value="90" />
+        <ctl name="RX3 Digital Volume" value="92" />
     </path>
 
     <path name="voice-call bt-sco">
@@ -604,13 +604,13 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RDAC4 MUX" value="DEM2" />
         <ctl name="SPK DAC Switch" value="1" />
-        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="RX3 Digital Volume" value="89" />
         <ctl name="SPK DRV Volume" value="8" />
     </path>
 
     <path name="speaker-fm">
         <path name="speaker-lite" />
-        <ctl name="RX3 Digital Volume" value="86" />
+        <ctl name="RX3 Digital Volume" value="89" />
         <ctl name="SPK DRV Volume" value="8" />
     </path>
 
@@ -725,7 +725,7 @@
 
     <path name="voice-speaker">
         <path name="speaker-lite" />
-        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="RX3 Digital Volume" value="89" />
         <ctl name="SPK DRV Volume" value="8" />
     </path>
 
@@ -766,7 +766,7 @@
         <ctl name="HPHR Volume" value="20" />
         <ctl name="RX1 Digital Volume" value="60" />
         <ctl name="RX2 Digital Volume" value="60" />
-        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="RX3 Digital Volume" value="89" />
         <ctl name="SPK DRV Volume" value="8" />
     </path>
 
