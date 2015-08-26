@@ -179,7 +179,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     p2p_supplicant_overlay.conf \
     WCNSS_cfg.dat \
-    WCNSS_hw_wlan_nv.bin \
     WCNSS_qcom_cfg.ini \
     WCNSS_qcom_wlan_nv.bin \
     wcnss_service \
