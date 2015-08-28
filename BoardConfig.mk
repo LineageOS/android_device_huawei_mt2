@@ -31,6 +31,7 @@ TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+COMMON_GLOBAL_CFLAGS += -DHUAWEI_SOUND_PARAM_PATH=\"/etc/sound_param/mate2\"
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
