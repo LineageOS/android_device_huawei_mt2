@@ -84,6 +84,11 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     ueventd.qcom.rc
 
+# IPv6 tethering
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes
+
 # IRSC
 PRODUCT_PACKAGES += \
     sec_config
