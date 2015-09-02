@@ -190,6 +190,12 @@ vendor/lib/libDivxDrm.so
 vendor/lib/libExtendedExtractor.so
 -vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxAmrwbplusDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libOmxVdecHevc.so
+vendor/lib/libOmxWmaDec.so
 vendor/lib/libSHIMDivxDrm.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
