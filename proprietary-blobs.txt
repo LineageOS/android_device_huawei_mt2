@@ -9,6 +9,9 @@ vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
+vendor/lib/soundfx/libqcbassboost.so
+vendor/lib/soundfx/libqcreverb.so
+vendor/lib/soundfx/libqcvirt.so
 
 # Audio calibration
 etc/sound_param/mate2/Bluetooth_cal.acdb
