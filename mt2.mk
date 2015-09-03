@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
 
 # Audio config files
 PRODUCT_PACKAGES += \
+    audio_effects.conf \
     audio_platform_info.xml \
     audio_policy.conf \
     mixer_paths.xml
