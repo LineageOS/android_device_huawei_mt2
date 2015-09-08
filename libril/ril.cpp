@@ -49,6 +49,7 @@
 #include <assert.h>
 #include <netinet/in.h>
 #include <cutils/properties.h>
+#include <cutils/list.h>
 
 #include <ril_event.h>
 
@@ -141,6 +142,12 @@ typedef struct RequestInfo {
     RIL_SOCKET_ID socket_id;
 } RequestInfo;
 
+typedef struct PendingRequest {
+    int32_t token;
+    char cancelled;
+    struct listnode list;
+} PendingRequest;
+
 typedef struct UserCallbackInfo {
     RIL_TimedCallback p_callback;
     void *userParam;
@@ -189,7 +196,7 @@ static SocketListenParam s_ril_param_socket;
 
 static pthread_mutex_t s_pendingRequestsMutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t s_writeMutex = PTHREAD_MUTEX_INITIALIZER;
-static RequestInfo *s_pendingRequests = NULL;
+static list_declare(s_pendingRequests);
 
 static struct ril_event s_wake_timeout_event;
 static struct ril_event s_debug_event;
@@ -396,12 +403,6 @@ void   nullParcelReleaseFunction (const uint8_t* data, size_t dataSize,
 static void
 issueLocalRequest(int request, void *data, int len, RIL_SOCKET_ID socket_id) {
     RequestInfo *pRI;
-    int ret;
-    /* Hook for current context */
-    /* pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
-    pthread_mutex_t* pendingRequestsMutexHook = &s_pendingRequestsMutex;
-    /* pendingRequestsHook refer to &s_pendingRequests */
-    RequestInfo**    pendingRequestsHook = &s_pendingRequests;
 
     pRI = (RequestInfo *)calloc(1, sizeof(RequestInfo));
 
@@ -409,15 +410,6 @@ issueLocalRequest(int request, void *data, int len, RIL_SOCKET_ID socket_id) {
     pRI->token = 0xffffffff;        // token is not used in this context
     pRI->pCI = &(s_commands[request]);
     pRI->socket_id = socket_id;
-
-    ret = pthread_mutex_lock(pendingRequestsMutexHook);
-    assert (ret == 0);
-
-    pRI->p_next = *pendingRequestsHook;
-    *pendingRequestsHook = pRI;
-
-    ret = pthread_mutex_unlock(pendingRequestsMutexHook);
-    assert (ret == 0);
 
     RLOGD("C[locl]> %s", requestToString(request));
 
@@ -433,12 +425,13 @@ processCommandBuffer(void *buffer, size_t buflen, RIL_SOCKET_ID socket_id) {
     int32_t request;
     int32_t token;
     RequestInfo *pRI;
+    PendingRequest *pPR;
     int ret;
     /* Hook for current context */
     /* pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t* pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    RequestInfo**    pendingRequestsHook = &s_pendingRequests;
+    struct listnode *pendingRequestsHook = &s_pendingRequests;
 
     p.setData((uint8_t *) buffer, buflen);
 
@@ -470,11 +463,13 @@ processCommandBuffer(void *buffer, size_t buflen, RIL_SOCKET_ID socket_id) {
     pRI->pCI = &(s_commands[request]);
     pRI->socket_id = socket_id;
 
+    pPR = (PendingRequest *)calloc(1, sizeof(PendingRequest));
+    pPR->token = pRI->token;
+
     ret = pthread_mutex_lock(pendingRequestsMutexHook);
     assert (ret == 0);
 
-    pRI->p_next = *pendingRequestsHook;
-    *pendingRequestsHook = pRI;
+    list_add_tail(pendingRequestsHook, &pPR->list);
 
     ret = pthread_mutex_unlock(pendingRequestsMutexHook);
     assert (ret == 0);
@@ -3608,24 +3603,20 @@ static void processWakeupCallback(int fd, short flags, void *param) {
 
 static void onCommandsSocketClosed(RIL_SOCKET_ID socket_id) {
     int ret;
-    RequestInfo *p_cur;
+    struct listnode *node;
     /* Hook for current context
        pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t * pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    RequestInfo **    pendingRequestsHook = &s_pendingRequests;
+    struct listnode *pendingRequestsHook = &s_pendingRequests;
 
     /* mark pending requests as "cancelled" so we dont report responses */
     ret = pthread_mutex_lock(pendingRequestsMutexHook);
     assert (ret == 0);
 
-    p_cur = *pendingRequestsHook;
-
-    for (p_cur = *pendingRequestsHook
-            ; p_cur != NULL
-            ; p_cur  = p_cur->p_next
-    ) {
-        p_cur->cancelled = 1;
+    list_for_each(node, pendingRequestsHook) {
+        PendingRequest *pPR = node_to_item(node, PendingRequest, list);
+        pPR->cancelled = 1;
     }
 
     ret = pthread_mutex_unlock(pendingRequestsMutexHook);
@@ -4187,11 +4178,13 @@ RIL_register (const RIL_RadioFunctions *callbacks) {
 static int
 checkAndDequeueRequestInfo(struct RequestInfo *pRI) {
     int ret = 0;
+    struct listnode *node, *tmp;
+
     /* Hook for current context
        pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t* pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    RequestInfo ** pendingRequestsHook = &s_pendingRequests;
+    struct listnode *pendingRequestsHook = &s_pendingRequests;
 
     if (pRI == NULL) {
         return 0;
@@ -4199,14 +4192,12 @@ checkAndDequeueRequestInfo(struct RequestInfo *pRI) {
 
     pthread_mutex_lock(pendingRequestsMutexHook);
 
-    for(RequestInfo **ppCur = pendingRequestsHook
-        ; *ppCur != NULL
-        ; ppCur = &((*ppCur)->p_next)
-    ) {
-        if (pRI == *ppCur) {
+    list_for_each_safe(node, tmp, pendingRequestsHook) {
+        PendingRequest *pPR = node_to_item(node, PendingRequest, list);
+        if(pRI->token == pPR->token) {
+            list_remove(node);
+            free(pPR);
             ret = 1;
-
-            *ppCur = (*ppCur)->p_next;
             break;
         }
     }
