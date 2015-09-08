@@ -191,36 +191,6 @@ static pthread_mutex_t s_pendingRequestsMutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t s_writeMutex = PTHREAD_MUTEX_INITIALIZER;
 static RequestInfo *s_pendingRequests = NULL;
 
-#if (SIM_COUNT >= 2)
-static struct ril_event s_commands_event_socket2;
-static struct ril_event s_listen_event_socket2;
-static SocketListenParam s_ril_param_socket2;
-
-static pthread_mutex_t s_pendingRequestsMutex_socket2  = PTHREAD_MUTEX_INITIALIZER;
-static pthread_mutex_t s_writeMutex_socket2            = PTHREAD_MUTEX_INITIALIZER;
-static RequestInfo *s_pendingRequests_socket2          = NULL;
-#endif
-
-#if (SIM_COUNT >= 3)
-static struct ril_event s_commands_event_socket3;
-static struct ril_event s_listen_event_socket3;
-static SocketListenParam s_ril_param_socket3;
-
-static pthread_mutex_t s_pendingRequestsMutex_socket3  = PTHREAD_MUTEX_INITIALIZER;
-static pthread_mutex_t s_writeMutex_socket3            = PTHREAD_MUTEX_INITIALIZER;
-static RequestInfo *s_pendingRequests_socket3          = NULL;
-#endif
-
-#if (SIM_COUNT >= 4)
-static struct ril_event s_commands_event_socket4;
-static struct ril_event s_listen_event_socket4;
-static SocketListenParam s_ril_param_socket4;
-
-static pthread_mutex_t s_pendingRequestsMutex_socket4  = PTHREAD_MUTEX_INITIALIZER;
-static pthread_mutex_t s_writeMutex_socket4            = PTHREAD_MUTEX_INITIALIZER;
-static RequestInfo *s_pendingRequests_socket4          = NULL;
-#endif
-
 static struct ril_event s_wake_timeout_event;
 static struct ril_event s_debug_event;
 
@@ -316,24 +286,13 @@ static RIL_RadioState processRadioState(RIL_RadioState newRadioState);
 static bool isServiceTypeCfQuery(RIL_SsServiceType serType, RIL_SsRequestType reqType);
 
 #ifdef RIL_SHLIB
-#if defined(ANDROID_MULTI_SIM)
-extern "C" void RIL_onUnsolicitedResponse(int unsolResponse, void *data,
-                                size_t datalen, RIL_SOCKET_ID socket_id);
-#else
 extern "C" void RIL_onUnsolicitedResponse(int unsolResponse, void *data,
                                 size_t datalen);
 #endif
-#endif
 
-#if defined(ANDROID_MULTI_SIM)
-#define RIL_UNSOL_RESPONSE(a, b, c, d) RIL_onUnsolicitedResponse((a), (b), (c), (d))
-#define CALL_ONREQUEST(a, b, c, d, e) s_callbacks.onRequest((a), (b), (c), (d), (e))
-#define CALL_ONSTATEREQUEST(a) s_callbacks.onStateRequest(a)
-#else
 #define RIL_UNSOL_RESPONSE(a, b, c, d) RIL_onUnsolicitedResponse((a), (b), (c))
 #define CALL_ONREQUEST(a, b, c, d, e) s_callbacks.onRequest((a), (b), (c), (d))
 #define CALL_ONSTATEREQUEST(a) s_callbacks.onStateRequest()
-#endif
 
 static UserCallbackInfo * internalRequestTimedCallback
     (RIL_TimedCallback callback, void *param,
@@ -444,13 +403,6 @@ issueLocalRequest(int request, void *data, int len, RIL_SOCKET_ID socket_id) {
     /* pendingRequestsHook refer to &s_pendingRequests */
     RequestInfo**    pendingRequestsHook = &s_pendingRequests;
 
-#if (SIM_COUNT == 2)
-    if (socket_id == RIL_SOCKET_2) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket2;
-        pendingRequestsHook = &s_pendingRequests_socket2;
-    }
-#endif
-
     pRI = (RequestInfo *)calloc(1, sizeof(RequestInfo));
 
     pRI->local = 1;
@@ -493,25 +445,6 @@ processCommandBuffer(void *buffer, size_t buflen, RIL_SOCKET_ID socket_id) {
     // status checked at end
     status = p.readInt32(&request);
     status = p.readInt32 (&token);
-
-#if (SIM_COUNT >= 2)
-    if (socket_id == RIL_SOCKET_2) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket2;
-        pendingRequestsHook = &s_pendingRequests_socket2;
-    }
-#if (SIM_COUNT >= 3)
-    else if (socket_id == RIL_SOCKET_3) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket3;
-        pendingRequestsHook = &s_pendingRequests_socket3;
-    }
-#endif
-#if (SIM_COUNT >= 4)
-    else if (socket_id == RIL_SOCKET_4) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket4;
-        pendingRequestsHook = &s_pendingRequests_socket4;
-    }
-#endif
-#endif
 
     if (status != NO_ERROR) {
         RLOGE("invalid request block");
@@ -2080,24 +2013,6 @@ sendResponseRaw (const void *data, size_t dataSize, RIL_SOCKET_ID socket_id) {
 
     RLOGE("Send Response to %s", rilSocketIdToString(socket_id));
 
-#if (SIM_COUNT >= 2)
-    if (socket_id == RIL_SOCKET_2) {
-        fd = s_ril_param_socket2.fdCommand;
-        writeMutexHook = &s_writeMutex_socket2;
-    }
-#if (SIM_COUNT >= 3)
-    else if (socket_id == RIL_SOCKET_3) {
-        fd = s_ril_param_socket3.fdCommand;
-        writeMutexHook = &s_writeMutex_socket3;
-    }
-#endif
-#if (SIM_COUNT >= 4)
-    else if (socket_id == RIL_SOCKET_4) {
-        fd = s_ril_param_socket4.fdCommand;
-        writeMutexHook = &s_writeMutex_socket4;
-    }
-#endif
-#endif
     if (fd < 0) {
         return -1;
     }
@@ -3700,24 +3615,6 @@ static void onCommandsSocketClosed(RIL_SOCKET_ID socket_id) {
     /* pendingRequestsHook refer to &s_pendingRequests */
     RequestInfo **    pendingRequestsHook = &s_pendingRequests;
 
-#if (SIM_COUNT >= 2)
-    if (socket_id == RIL_SOCKET_2) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket2;
-        pendingRequestsHook = &s_pendingRequests_socket2;
-    }
-#if (SIM_COUNT >= 3)
-    else if (socket_id == RIL_SOCKET_3) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket3;
-        pendingRequestsHook = &s_pendingRequests_socket3;
-    }
-#endif
-#if (SIM_COUNT >= 4)
-    else if (socket_id == RIL_SOCKET_4) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket4;
-        pendingRequestsHook = &s_pendingRequests_socket4;
-    }
-#endif
-#endif
     /* mark pending requests as "cancelled" so we dont report responses */
     ret = pthread_mutex_lock(pendingRequestsMutexHook);
     assert (ret == 0);
@@ -3966,21 +3863,6 @@ static void debugCallback (int fd, short flags, void *param) {
                 case 0:
                     socket_id = RIL_SOCKET_1;
                     break;
-            #if (SIM_COUNT >= 2)
-                case 1:
-                    socket_id = RIL_SOCKET_2;
-                    break;
-            #endif
-            #if (SIM_COUNT >= 3)
-                case 2:
-                    socket_id = RIL_SOCKET_3;
-                    break;
-            #endif
-            #if (SIM_COUNT >= 4)
-                case 3:
-                    socket_id = RIL_SOCKET_4;
-                    break;
-            #endif
                 default:
                     socket_id = RIL_SOCKET_1;
                     break;
@@ -4002,12 +3884,6 @@ static void debugCallback (int fd, short flags, void *param) {
                 close(s_ril_param_socket.fdCommand);
                 s_ril_param_socket.fdCommand = -1;
             }
-        #if (SIM_COUNT == 2)
-            else if (socket_id == RIL_SOCKET_2 && s_ril_param_socket2.fdCommand > 0) {
-                close(s_ril_param_socket2.fdCommand);
-                s_ril_param_socket2.fdCommand = -1;
-            }
-        #endif
             break;
         case 2:
             RLOGI ("Debug port: issuing unsolicited voice network change.");
@@ -4175,21 +4051,6 @@ static void startListen(RIL_SOCKET_ID socket_id, SocketListenParam* socket_liste
         case RIL_SOCKET_1:
             strncpy(socket_name, RIL_getRilSocketName(), 9);
             break;
-    #if (SIM_COUNT >= 2)
-        case RIL_SOCKET_2:
-            strncpy(socket_name, SOCKET2_NAME_RIL, 9);
-            break;
-    #endif
-    #if (SIM_COUNT >= 3)
-        case RIL_SOCKET_3:
-            strncpy(socket_name, SOCKET3_NAME_RIL, 9);
-            break;
-    #endif
-    #if (SIM_COUNT >= 4)
-        case RIL_SOCKET_4:
-            strncpy(socket_name, SOCKET4_NAME_RIL, 9);
-            break;
-    #endif
         default:
             RLOGE("Socket id is wrong!!");
             return;
@@ -4262,45 +4123,6 @@ RIL_register (const RIL_RadioFunctions *callbacks) {
                         NULL                      /* p_rs */
                         };
 
-#if (SIM_COUNT >= 2)
-    s_ril_param_socket2 = {
-                        RIL_SOCKET_2,               /* socket_id */
-                        -1,                         /* fdListen */
-                        -1,                         /* fdCommand */
-                        PHONE_PROCESS,              /* processName */
-                        &s_commands_event_socket2,  /* commands_event */
-                        &s_listen_event_socket2,    /* listen_event */
-                        processCommandsCallback,    /* processCommandsCallback */
-                        NULL                        /* p_rs */
-                        };
-#endif
-
-#if (SIM_COUNT >= 3)
-    s_ril_param_socket3 = {
-                        RIL_SOCKET_3,               /* socket_id */
-                        -1,                         /* fdListen */
-                        -1,                         /* fdCommand */
-                        PHONE_PROCESS,              /* processName */
-                        &s_commands_event_socket3,  /* commands_event */
-                        &s_listen_event_socket3,    /* listen_event */
-                        processCommandsCallback,    /* processCommandsCallback */
-                        NULL                        /* p_rs */
-                        };
-#endif
-
-#if (SIM_COUNT >= 4)
-    s_ril_param_socket4 = {
-                        RIL_SOCKET_4,               /* socket_id */
-                        -1,                         /* fdListen */
-                        -1,                         /* fdCommand */
-                        PHONE_PROCESS,              /* processName */
-                        &s_commands_event_socket4,  /* commands_event */
-                        &s_listen_event_socket4,    /* listen_event */
-                        processCommandsCallback,    /* processCommandsCallback */
-                        NULL                        /* p_rs */
-                        };
-#endif
-
 
     s_registerCalled = 1;
 
@@ -4325,21 +4147,6 @@ RIL_register (const RIL_RadioFunctions *callbacks) {
 
     // start listen socket1
     startListen(RIL_SOCKET_1, &s_ril_param_socket);
-
-#if (SIM_COUNT >= 2)
-    // start listen socket2
-    startListen(RIL_SOCKET_2, &s_ril_param_socket2);
-#endif /* (SIM_COUNT == 2) */
-
-#if (SIM_COUNT >= 3)
-    // start listen socket3
-    startListen(RIL_SOCKET_3, &s_ril_param_socket3);
-#endif /* (SIM_COUNT == 3) */
-
-#if (SIM_COUNT >= 4)
-    // start listen socket4
-    startListen(RIL_SOCKET_4, &s_ril_param_socket4);
-#endif /* (SIM_COUNT == 4) */
 
 
 #if 1
@@ -4390,24 +4197,6 @@ checkAndDequeueRequestInfo(struct RequestInfo *pRI) {
         return 0;
     }
 
-#if (SIM_COUNT >= 2)
-    if (pRI->socket_id == RIL_SOCKET_2) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket2;
-        pendingRequestsHook = &s_pendingRequests_socket2;
-    }
-#if (SIM_COUNT >= 3)
-        if (pRI->socket_id == RIL_SOCKET_3) {
-            pendingRequestsMutexHook = &s_pendingRequestsMutex_socket3;
-            pendingRequestsHook = &s_pendingRequests_socket3;
-        }
-#endif
-#if (SIM_COUNT >= 4)
-    if (pRI->socket_id == RIL_SOCKET_4) {
-        pendingRequestsMutexHook = &s_pendingRequestsMutex_socket4;
-        pendingRequestsHook = &s_pendingRequests_socket4;
-    }
-#endif
-#endif
     pthread_mutex_lock(pendingRequestsMutexHook);
 
     for(RequestInfo **ppCur = pendingRequestsHook
@@ -4444,21 +4233,6 @@ RIL_onRequestComplete(RIL_Token t, RIL_Errno e, void *response, size_t responsel
     }
 
     socket_id = pRI->socket_id;
-#if (SIM_COUNT >= 2)
-    if (socket_id == RIL_SOCKET_2) {
-        fd = s_ril_param_socket2.fdCommand;
-    }
-#if (SIM_COUNT >= 3)
-        if (socket_id == RIL_SOCKET_3) {
-            fd = s_ril_param_socket3.fdCommand;
-        }
-#endif
-#if (SIM_COUNT >= 4)
-    if (socket_id == RIL_SOCKET_4) {
-        fd = s_ril_param_socket4.fdCommand;
-    }
-#endif
-#endif
     RLOGD("RequestComplete, %s", rilSocketIdToString(socket_id));
 
     if (pRI->local > 0) {
@@ -4651,15 +4425,9 @@ processRadioState(RIL_RadioState newRadioState, RIL_SOCKET_ID socket_id) {
 }
 
 
-#if defined(ANDROID_MULTI_SIM)
-extern "C"
-void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
-                                size_t datalen, RIL_SOCKET_ID socket_id)
-#else
 extern "C"
 void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
                                 size_t datalen)
-#endif
 {
     int unsolResponseIndex;
     int ret;
@@ -4667,10 +4435,6 @@ void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
     bool shouldScheduleTimeout = false;
     RIL_RadioState newState;
     RIL_SOCKET_ID soc_id = RIL_SOCKET_1;
-
-#if defined(ANDROID_MULTI_SIM)
-    soc_id = socket_id;
-#endif
 
 
     if (s_registerCalled == 0) {
@@ -5073,18 +4837,6 @@ rilSocketIdToString(RIL_SOCKET_ID socket_id)
     switch(socket_id) {
         case RIL_SOCKET_1:
             return "RIL_SOCKET_1";
-#if (SIM_COUNT >= 2)
-        case RIL_SOCKET_2:
-            return "RIL_SOCKET_2";
-#endif
-#if (SIM_COUNT >= 3)
-        case RIL_SOCKET_3:
-            return "RIL_SOCKET_3";
-#endif
-#if (SIM_COUNT >= 4)
-        case RIL_SOCKET_4:
-            return "RIL_SOCKET_4";
-#endif
         default:
             return "not a valid RIL";
     }

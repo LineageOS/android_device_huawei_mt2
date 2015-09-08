@@ -47,9 +47,7 @@ extern "C" {
 #define SIM_COUNT 1
 #endif
 
-#ifndef ANDROID_MULTI_SIM
 #define SIM_COUNT 1
-#endif
 
 #ifdef USE_RIL_VERSION_10
 #define RIL_VERSION 10
@@ -73,15 +71,6 @@ typedef void * RIL_Token;
 
 typedef enum {
     RIL_SOCKET_1,
-#if (SIM_COUNT >= 2)
-    RIL_SOCKET_2,
-#if (SIM_COUNT >= 3)
-    RIL_SOCKET_3,
-#endif
-#if (SIM_COUNT >= 4)
-    RIL_SOCKET_4,
-#endif
-#endif
     RIL_SOCKET_NUM
 } RIL_SOCKET_ID;
 
@@ -5046,26 +5035,6 @@ typedef struct {
 /***********************************************************************/
 
 
-#if defined(ANDROID_MULTI_SIM)
-/**
- * RIL_Request Function pointer
- *
- * @param request is one of RIL_REQUEST_*
- * @param data is pointer to data defined for that RIL_REQUEST_*
- *        data is owned by caller, and should not be modified or freed by callee
- * @param t should be used in subsequent call to RIL_onResponse
- * @param datalen the length of data
- *
- */
-typedef void (*RIL_RequestFunc) (int request, void *data,
-                                    size_t datalen, RIL_Token t, RIL_SOCKET_ID socket_id);
-
-/**
- * This function should return the current radio state synchronously
- */
-typedef RIL_RadioState (*RIL_RadioStateRequest)(RIL_SOCKET_ID socket_id);
-
-#else
 /* Backward compatible */
 
 /**
@@ -5085,8 +5054,6 @@ typedef void (*RIL_RequestFunc) (int request, void *data,
  * This function should return the current radio state synchronously
  */
 typedef RIL_RadioState (*RIL_RadioStateRequest)();
-
-#endif
 
 
 /**
@@ -5169,15 +5136,6 @@ struct RIL_Env {
     void (*OnRequestComplete)(RIL_Token t, RIL_Errno e,
                            void *response, size_t responselen);
 
-#if defined(ANDROID_MULTI_SIM)
-    /**
-     * "unsolResponse" is one of RIL_UNSOL_RESPONSE_*
-     * "data" is pointer to data defined for that RIL_UNSOL_RESPONSE_*
-     *
-     * "data" is owned by caller, and should not be modified or freed by callee
-     */
-    void (*OnUnsolicitedResponse)(int unsolResponse, const void *data, size_t datalen, RIL_SOCKET_ID socket_id);
-#else
     /**
      * "unsolResponse" is one of RIL_UNSOL_RESPONSE_*
      * "data" is pointer to data defined for that RIL_UNSOL_RESPONSE_*
@@ -5185,7 +5143,6 @@ struct RIL_Env {
      * "data" is owned by caller, and should not be modified or freed by callee
      */
     void (*OnUnsolicitedResponse)(int unsolResponse, const void *data, size_t datalen);
-#endif
     /**
      * Call user-specifed "callback" function on on the same thread that
      * RIL_RequestFunc is called. If "relativeTime" is specified, then it specifies
@@ -5236,17 +5193,6 @@ void RIL_register (const RIL_RadioFunctions *callbacks);
 void RIL_onRequestComplete(RIL_Token t, RIL_Errno e,
                            void *response, size_t responselen);
 
-#if defined(ANDROID_MULTI_SIM)
-/**
- * @param unsolResponse is one of RIL_UNSOL_RESPONSE_*
- * @param data is pointer to data defined for that RIL_UNSOL_RESPONSE_*
- *     "data" is owned by caller, and should not be modified or freed by callee
- * @param datalen the length of data in byte
- */
-
-void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
-                                size_t datalen, RIL_SOCKET_ID socket_id);
-#else
 /**
  * @param unsolResponse is one of RIL_UNSOL_RESPONSE_*
  * @param data is pointer to data defined for that RIL_UNSOL_RESPONSE_*
@@ -5256,7 +5202,6 @@ void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
 
 void RIL_onUnsolicitedResponse(int unsolResponse, const void *data,
                                 size_t datalen);
-#endif
 
 /**
  * Call user-specifed "callback" function on on the same thread that
