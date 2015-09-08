@@ -49,7 +49,6 @@
 #include <assert.h>
 #include <netinet/in.h>
 #include <cutils/properties.h>
-#include <cutils/list.h>
 
 #include <ril_event.h>
 
@@ -136,7 +135,7 @@ typedef struct {
 typedef struct RequestInfo {
     int32_t token;      //this is not RIL_Token
     CommandInfo *pCI;
-    struct listnode list;
+    struct RequestInfo *p_next;
     char cancelled;
     char local;         // responses to local commands do not go back to command process
     RIL_SOCKET_ID socket_id;
@@ -190,7 +189,7 @@ static SocketListenParam s_ril_param_socket;
 
 static pthread_mutex_t s_pendingRequestsMutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t s_writeMutex = PTHREAD_MUTEX_INITIALIZER;
-static list_declare(s_pendingRequests);
+static RequestInfo *s_pendingRequests = NULL;
 
 #if (SIM_COUNT >= 2)
 static struct ril_event s_commands_event_socket2;
@@ -199,7 +198,7 @@ static SocketListenParam s_ril_param_socket2;
 
 static pthread_mutex_t s_pendingRequestsMutex_socket2  = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t s_writeMutex_socket2            = PTHREAD_MUTEX_INITIALIZER;
-static list_declare(s_pendingRequests_socket2);
+static RequestInfo *s_pendingRequests_socket2          = NULL;
 #endif
 
 #if (SIM_COUNT >= 3)
@@ -209,7 +208,7 @@ static SocketListenParam s_ril_param_socket3;
 
 static pthread_mutex_t s_pendingRequestsMutex_socket3  = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t s_writeMutex_socket3            = PTHREAD_MUTEX_INITIALIZER;
-static list_declare(s_pendingRequests_socket3);
+static RequestInfo *s_pendingRequests_socket3          = NULL;
 #endif
 
 #if (SIM_COUNT >= 4)
@@ -219,7 +218,7 @@ static SocketListenParam s_ril_param_socket4;
 
 static pthread_mutex_t s_pendingRequestsMutex_socket4  = PTHREAD_MUTEX_INITIALIZER;
 static pthread_mutex_t s_writeMutex_socket4            = PTHREAD_MUTEX_INITIALIZER;
-static list_declare(s_pendingRequests_socket4);
+static RequestInfo *s_pendingRequests_socket4          = NULL;
 #endif
 
 static struct ril_event s_wake_timeout_event;
@@ -443,7 +442,7 @@ issueLocalRequest(int request, void *data, int len, RIL_SOCKET_ID socket_id) {
     /* pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t* pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    struct listnode *pendingRequestsHook = &s_pendingRequests;
+    RequestInfo**    pendingRequestsHook = &s_pendingRequests;
 
 #if (SIM_COUNT == 2)
     if (socket_id == RIL_SOCKET_2) {
@@ -462,7 +461,8 @@ issueLocalRequest(int request, void *data, int len, RIL_SOCKET_ID socket_id) {
     ret = pthread_mutex_lock(pendingRequestsMutexHook);
     assert (ret == 0);
 
-    list_add_tail(pendingRequestsHook, &pRI->list);
+    pRI->p_next = *pendingRequestsHook;
+    *pendingRequestsHook = pRI;
 
     ret = pthread_mutex_unlock(pendingRequestsMutexHook);
     assert (ret == 0);
@@ -486,7 +486,7 @@ processCommandBuffer(void *buffer, size_t buflen, RIL_SOCKET_ID socket_id) {
     /* pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t* pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    struct listnode *pendingRequestsHook = &s_pendingRequests;
+    RequestInfo**    pendingRequestsHook = &s_pendingRequests;
 
     p.setData((uint8_t *) buffer, buflen);
 
@@ -540,7 +540,8 @@ processCommandBuffer(void *buffer, size_t buflen, RIL_SOCKET_ID socket_id) {
     ret = pthread_mutex_lock(pendingRequestsMutexHook);
     assert (ret == 0);
 
-    list_add_tail(pendingRequestsHook, &pRI->list);
+    pRI->p_next = *pendingRequestsHook;
+    *pendingRequestsHook = pRI;
 
     ret = pthread_mutex_unlock(pendingRequestsMutexHook);
     assert (ret == 0);
@@ -3692,12 +3693,12 @@ static void processWakeupCallback(int fd, short flags, void *param) {
 
 static void onCommandsSocketClosed(RIL_SOCKET_ID socket_id) {
     int ret;
-    struct listnode *node;
+    RequestInfo *p_cur;
     /* Hook for current context
        pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t * pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    struct listnode *pendingRequestsHook = &s_pendingRequests;
+    RequestInfo **    pendingRequestsHook = &s_pendingRequests;
 
 #if (SIM_COUNT >= 2)
     if (socket_id == RIL_SOCKET_2) {
@@ -3721,8 +3722,12 @@ static void onCommandsSocketClosed(RIL_SOCKET_ID socket_id) {
     ret = pthread_mutex_lock(pendingRequestsMutexHook);
     assert (ret == 0);
 
-    list_for_each(node, pendingRequestsHook) {
-        RequestInfo *p_cur = node_to_item(node, RequestInfo, list);
+    p_cur = *pendingRequestsHook;
+
+    for (p_cur = *pendingRequestsHook
+            ; p_cur != NULL
+            ; p_cur  = p_cur->p_next
+    ) {
         p_cur->cancelled = 1;
     }
 
@@ -4375,13 +4380,11 @@ RIL_register (const RIL_RadioFunctions *callbacks) {
 static int
 checkAndDequeueRequestInfo(struct RequestInfo *pRI) {
     int ret = 0;
-    struct listnode *node, *tmp;
-
     /* Hook for current context
        pendingRequestsMutextHook refer to &s_pendingRequestsMutex */
     pthread_mutex_t* pendingRequestsMutexHook = &s_pendingRequestsMutex;
     /* pendingRequestsHook refer to &s_pendingRequests */
-    struct listnode *pendingRequestsHook = &s_pendingRequests;
+    RequestInfo ** pendingRequestsHook = &s_pendingRequests;
 
     if (pRI == NULL) {
         return 0;
@@ -4407,12 +4410,14 @@ checkAndDequeueRequestInfo(struct RequestInfo *pRI) {
 #endif
     pthread_mutex_lock(pendingRequestsMutexHook);
 
-    list_for_each_safe(node, tmp, pendingRequestsHook) {
-        RequestInfo *ppCur = node_to_item(node, RequestInfo, list);
-        if (pRI == ppCur) {
-            list_remove(node);
+    for(RequestInfo **ppCur = pendingRequestsHook
+        ; *ppCur != NULL
+        ; ppCur = &((*ppCur)->p_next)
+    ) {
+        if (pRI == *ppCur) {
             ret = 1;
 
+            *ppCur = (*ppCur)->p_next;
             break;
         }
     }
