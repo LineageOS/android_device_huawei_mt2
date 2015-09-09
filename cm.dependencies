@@ -1,6 +1,6 @@
 [
   {
-    "repository": "kernel_huawei_msm8928",
+    "repository": "android_kernel_huawei_msm8928",
     "target_path": "kernel/huawei/msm8928"
   },
   {
