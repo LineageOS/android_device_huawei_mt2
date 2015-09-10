@@ -80,6 +80,10 @@ PRODUCT_PACKAGES += \
     quipc.conf \
     sap.conf
 
+# Huawei extensions to libcutils
+PRODUCT_PACKAGES += \
+    libcutilz
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
