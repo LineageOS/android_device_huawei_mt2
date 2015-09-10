@@ -99,6 +99,9 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 TARGET_KERNEL_CONFIG := cyanogenmod_mt2_defconfig
 TARGET_KERNEL_SOURCE := kernel/huawei/msm8928
 
+# Libc extensions
+BOARD_PROVIDES_DEVICE_DYNAMIC_SYMBOLS := true
+
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
