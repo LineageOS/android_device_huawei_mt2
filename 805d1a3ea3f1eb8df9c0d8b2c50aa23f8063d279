@@ -16,6 +16,24 @@
       "revId": "805d1a3ea3f1eb8df9c0d8b2c50aa23f8063d279",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f1a1f67_d9cb3370",
+        "filename": "libc_device_global_symbols/Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5678
+      },
+      "writtenOn": "2015-09-11T03:20:37Z",
+      "side": 1,
+      "message": "Most binaries that link against liblog will probably also link against libc, right? So we could add the symbols to libc like we currently do and hope for the best.\nIf that doesn\u0027t work as expected we can do a similar change for liblog.\n\nAn alternative to all of that would be to create a shared library and LD_PRELOAD it. That was my original intention. But not sure if that might cause other problems.",
+      "parentUuid": "1f1a1f67_99313bf0",
+      "revId": "805d1a3ea3f1eb8df9c0d8b2c50aa23f8063d279",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
