@@ -281,14 +281,7 @@ vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
 
 # Touchscreen firmware
-etc/firmware/cyttsp4_fw_g6.bin
-etc/firmware/cyttsp4_fw_g750.bin
-etc/firmware/cyttsp4_fw_mainboard.bin
 etc/firmware/cyttsp4_fw_mate2.bin
-etc/firmware/g620L_junda_fw.img
-etc/firmware/g620L_ofilm_fw.img
-etc/firmware/g660L_ofilm_fw.img
-etc/firmware/g660L_truly_fw.img
 
 # Listen service
 vendor/lib/liblistensoundmodel.so
