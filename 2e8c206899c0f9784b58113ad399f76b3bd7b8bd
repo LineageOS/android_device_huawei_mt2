@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_7c940de9",
+        "filename": "libc_huawei_symbols/hw_cutils.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2015-09-11T21:43:50Z",
+      "side": 1,
+      "message": "You could just throw out the logging to avoid globbing liblog. The logging isn\u0027t essential to the functionality of the library after all.",
+      "revId": "2e8c206899c0f9784b58113ad399f76b3bd7b8bd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
