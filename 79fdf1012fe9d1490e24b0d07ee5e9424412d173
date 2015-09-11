@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_a7fe12ac",
+        "filename": "libc_huawei_symbols/hw_cutils.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5678
+      },
+      "writtenOn": "2015-09-11T23:04:58Z",
+      "side": 1,
+      "message": "LENGTH",
+      "revId": "79fdf1012fe9d1490e24b0d07ee5e9424412d173",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
