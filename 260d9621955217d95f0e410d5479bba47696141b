@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_fcf81d7d",
+        "filename": "libc_huawei_symbols/hw_cutils.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5531
+      },
+      "writtenOn": "2015-09-11T19:51:40Z",
+      "side": 1,
+      "message": "Doh, it looks like the max supported strlen is 31, not 32, according to fs/proc/app_info.c. Will update this to use APP_INFO_VALUE_LENTH as in the kernel.",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 34
+      },
+      "revId": "260d9621955217d95f0e410d5479bba47696141b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
