@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_36135669",
+        "filename": "libc_device_global_symbols/huawei.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6351
+      },
+      "writtenOn": "2015-09-11T01:05:25Z",
+      "side": 1,
+      "message": "You don\u0027t really need this .h at all, do you?",
+      "revId": "1a5299fe3b67d0ddf7eb50971e441bfa82c8ede8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f1a1f67_f60cbe43",
+        "filename": "libc_device_global_symbols/huawei.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6351
+      },
+      "writtenOn": "2015-09-11T01:05:25Z",
+      "side": 1,
+      "message": "Suggestion: instead of using a comment and convention, you could put each different lib\u0027s extensions into a separate .c file?",
+      "revId": "1a5299fe3b67d0ddf7eb50971e441bfa82c8ede8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
