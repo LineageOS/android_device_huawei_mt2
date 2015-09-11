@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f1a1f67_99313bf0",
+        "filename": "libc_device_global_symbols/Android.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6351
+      },
+      "writtenOn": "2015-09-11T01:34:50Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like you need libcutils here at all, do you?\n\nIf lib or executable A is looking for get_app_info and on stock it is define in libcutils, then that lib/exec will link against both libcutils (which in our case is missing the symbol) and libc (which now has it).  You don\u0027t need to duplicate all the libcutils code here as a whole-static lib.\n\nThe liblog is yuckier.  I wasn\u0027t sure how to do logging in bionic.  If there is a right way to do it there, that would be better than doing the ALOG_ calls and requiring another separate copy of this lib (although that\u0027s hardly the end of the world as it\u0027s not all that big).",
+      "revId": "805d1a3ea3f1eb8df9c0d8b2c50aa23f8063d279",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
