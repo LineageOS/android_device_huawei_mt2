@@ -16,6 +16,24 @@
       "revId": "79fdf1012fe9d1490e24b0d07ee5e9424412d173",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f1a1f67_272c4246",
+        "filename": "libc_huawei_symbols/hw_cutils.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5531
+      },
+      "writtenOn": "2015-09-11T23:07:07Z",
+      "side": 1,
+      "message": "This is a direct copy/paste from kernel... kind of want to keep it as a reminder of where to look.",
+      "parentUuid": "1f1a1f67_a7fe12ac",
+      "revId": "79fdf1012fe9d1490e24b0d07ee5e9424412d173",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
