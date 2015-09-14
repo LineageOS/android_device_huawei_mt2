@@ -65,6 +65,7 @@ vendor/lib/liblocationservice.so
 vendor/lib/libquipc_os_api.so
 vendor/lib/libquipc_ulp_adapter.so
 vendor/lib/libulp2.so
+vendor/lib/libxtwifi_ulp_adaptor.so
 
 # Camera
 bin/mm-qcamera-daemon
