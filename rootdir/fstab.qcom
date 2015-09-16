@@ -9,10 +9,12 @@
 #/*mount log-partition first, then logserver can save storage-diagnose-log to storage.log */
 /dev/block/platform/msm_sdcc.1/by-name/boot       /boot       emmc    defaults                                            defaults
 /dev/block/platform/msm_sdcc.1/by-name/recovery   /recovery   emmc    defaults                                            defaults
-/dev/block/platform/msm_sdcc.1/by-name/system     /system     ext4    ro,barrier=1                                        wait
-/dev/block/platform/msm_sdcc.1/by-name/cache      /cache      ext4    nosuid,nodev,barrier=1                              wait,check
-/dev/block/platform/msm_sdcc.1/by-name/userdata   /data       ext4    nosuid,nodev,barrier=1,noauto_da_alloc              wait,check,formattable,encryptable=footer
-/dev/block/platform/msm_sdcc.1/by-name/persist    /persist    ext4    nosuid,nodev,barrier=1                              wait,check
+/dev/block/platform/msm_sdcc.1/by-name/system     /system     ext4    ro                                                  wait
+/dev/block/platform/msm_sdcc.1/by-name/cache      /cache      ext4    noatime,nosuid,nodev                                wait,check
+/dev/block/platform/msm_sdcc.1/by-name/cache      /cache      f2fs    noatime,nosuid,nodev,inline_xattr                   wait,check
+/dev/block/platform/msm_sdcc.1/by-name/userdata   /data       ext4    noatime,nosuid,nodev,noauto_da_alloc,errors=panic   wait,check,formattable,encryptable=footer
+/dev/block/platform/msm_sdcc.1/by-name/userdata   /data       f2fs    noatime,nosuid,nodev,inline_xattr                   wait,check,encryptable=footer
+/dev/block/platform/msm_sdcc.1/by-name/persist    /persist    ext4    noatime,nosuid,nodev                                wait,check
 /dev/block/platform/msm_sdcc.1/by-name/modem      /firmware   vfat    ro,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0  wait
 /dev/block/platform/msm_sdcc.1/by-name/misc       /misc       emmc    defaults                                            defaults
 
