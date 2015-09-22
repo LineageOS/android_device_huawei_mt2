@@ -52,7 +52,7 @@ sys.io.scheduler=bfq
 # Media
 av.offload.enable=true
 av.streaming.offload.enable=false
-mm.enable.qcom_parser=103027
+mm.enable.qcom_parser=3310113
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
 
