@@ -28,7 +28,7 @@
 #include <sys/epoll.h>
 #include <sys/timerfd.h>
 
-#define POWER_SUPPLY_CHG_MSG "change@/devices/f9a55000.usb/power_supply/usb"
+#define POWER_SUPPLY_SUBSYSTEM "power_supply"
 
 #define BATTERY_STATUS_FILE "/sys/class/power_supply/battery/status"
 #define RED_LED "/sys/class/leds/red/brightness"
@@ -202,7 +202,7 @@ static void uevent_event() {
     KLOG_DEBUG(LOG_TAG, "%s: %s\n", __func__, msg);
 
     while (*cp) {
-        if (!strcmp(cp, POWER_SUPPLY_CHG_MSG)) {
+        if (strstr(cp, POWER_SUPPLY_SUBSYSTEM) != NULL) {
             sleep(1);
             chargeled_update();
             break;
