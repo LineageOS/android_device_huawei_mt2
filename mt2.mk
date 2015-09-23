@@ -33,10 +33,12 @@ PRODUCT_PACKAGES += \
 
 # Audio config files
 PRODUCT_PACKAGES += \
-    audio_effects.conf \
     audio_platform_info.xml \
     audio_policy.conf \
     mixer_paths.xml
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # Bluetooth
 PRODUCT_PACKAGES += \
