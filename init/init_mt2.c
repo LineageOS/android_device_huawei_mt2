@@ -30,10 +30,6 @@
 #define SERIAL_PROP "ro.serialno"
 #define REAL_SERIAL_PROP "usb.serial"
 
-/* Bootmode */
-#define HW_BOOTMODE_PROP "androidboot.huawei_bootmode"
-#define BOOTMODE_PROP "ro.bootmode"
-
 /* Bootloader version */
 /* Example: MSM8926C00B309_BOOT */
 #define BOOTLOADER_PROP "ro.bootloader"
@@ -42,7 +38,6 @@ static void import_kernel_nv(char *name, int for_emulator)
 {
 	prop_info *pi;
 	int ret = 0;
-	char bootmode[32] = { 0 };
 
 	char *value = strchr(name, '=');
 	if(!value)
@@ -56,17 +51,6 @@ static void import_kernel_nv(char *name, int for_emulator)
 			ret = __system_property_update(pi, value, strlen(value));
 		else
 			ret = __system_property_add(SERIAL_PROP, strlen(SERIAL_PROP), value, strlen(value));
-	} else if (!strncmp(name, HW_BOOTMODE_PROP, 27)) {
-		if (!strncmp(value, "hwcharger", 9))
-			snprintf(bootmode, 8, "%s", "charger");
-		else
-			snprintf(bootmode, 32, "%s", value);
-
-		pi = (prop_info*) __system_property_find(BOOTMODE_PROP);
-		if (pi)
-			ret = __system_property_update(pi, bootmode, strlen(bootmode));
-		else
-			ret = __system_property_add(BOOTMODE_PROP, strlen(BOOTMODE_PROP), bootmode, strlen(bootmode));
 	}
 }
 
