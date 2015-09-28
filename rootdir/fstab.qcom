@@ -18,5 +18,5 @@
 /dev/block/platform/msm_sdcc.1/by-name/modem      /firmware   vfat    ro,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0  wait
 /dev/block/platform/msm_sdcc.1/by-name/misc       /misc       emmc    defaults                                            defaults
 
-/devices/msm_sdcc.2/mmc_host/mmc1*                auto        auto    defaults                                            voldmanaged=sdcard1:auto
+/devices/msm_sdcc.2/mmc_host/mmc1*                auto        auto    defaults                                            voldmanaged=sdcard1:auto,noemulatedsd
 /devices/platform/msm_hsusb_host*                 auto        auto    defaults                                            voldmanaged=usbdisk0:auto
