@@ -284,9 +284,6 @@ vendor/lib/libTimeService.so
 # Touchscreen firmware
 etc/firmware/cyttsp4_fw_mate2.bin
 
-# Listen service
-vendor/lib/liblistensoundmodel.so
-
 # Quick charge
 bin/hvdcp
 
