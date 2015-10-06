@@ -180,6 +180,7 @@ on post-fs-data
     # Sensors
     mkdir /data/misc/sensors 0775 root system
     mkdir /data/system/sensors 0775 root system
+    chown system system /sys/set_app_info/set_app_info_node
 
 
 on property:bluetooth.dun.status=running
