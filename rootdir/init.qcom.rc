@@ -73,6 +73,8 @@ on boot
     write /sys/bus/i2c/drivers/ft5x06_ts/5-0038/update_fw 1
     write /sys/bus/i2c/drivers/bq27510-battery/state /system/etc/batt_fw.bin
 
+    chown system system /sys/touch_screen/glove_func/signal_disparity
+
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
