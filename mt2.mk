@@ -46,7 +46,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8226
+    camera.msm8226 \
+    libcam
 
 # Charging
 PRODUCT_PACKAGES += \
