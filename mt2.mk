@@ -82,6 +82,10 @@ PRODUCT_PACKAGES += \
     quipc.conf \
     sap.conf
 
+# Huawei symbols
+PRODUCT_PACKAGES += \
+    libhuawei_symbols
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \

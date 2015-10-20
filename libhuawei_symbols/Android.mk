@@ -19,12 +19,11 @@ LOCAL_SRC_FILES := \
     hw_cutils.c \
     hw_log.c
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-LOCAL_MODULE := libc_huawei_symbols
+LOCAL_MODULE := libhuawei_symbols
 LOCAL_MODULE_TAGS := optional
 
 # Debugging (uncomment to enable)
 # LOCAL_CFLAGS += -DHW_LIBC_DEBUG
 # LOCAL_WHOLE_STATIC_LIBRARIES := liblog
 
-include $(BUILD_STATIC_LIBRARY)
+include $(BUILD_SHARED_LIBRARY)
