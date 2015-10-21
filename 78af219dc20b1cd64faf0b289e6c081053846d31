@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_0255b850",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5531
+      },
+      "writtenOn": "2015-10-21T22:41:05Z",
+      "side": 1,
+      "message": "mt2: ...",
+      "revId": "78af219dc20b1cd64faf0b289e6c081053846d31",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_2260b432",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 5531
+      },
+      "writtenOn": "2015-10-21T22:41:05Z",
+      "side": 1,
+      "message": "\u003c!-- Set this to true to enable the platform\u0027s auto-power-save modes like doze and\n     app standby.  These are not enabled by default because they require a standard\n     cloud-to-device messaging service for apps to interact correctly with the modes\n     (such as to be able to deliver an instant message to the device even when it is\n     dozing).  This should be enabled if you have such services and expect apps to\n     correctly use them when installed on your device.  Otherwise, keep this disabled\n     so that applications can still use their own mechanisms. --\u003e",
+      "revId": "78af219dc20b1cd64faf0b289e6c081053846d31",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
