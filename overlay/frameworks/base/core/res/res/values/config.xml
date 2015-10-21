@@ -250,4 +250,7 @@
          for "perf_profile_values" array. Leave it blank if the device do not support
          performance profiles  -->
     <string name="config_perf_profile_default_entry" translatable="false">1</string>
+
+	<!-- Enable doze support since doze is off by default -->
+	<bool name="config_enableAutoPowerModes">true</bool>
 </resources>
