@@ -1,1 +1,3 @@
+typeattribute time_daemon domain, domain_deprecated, mlstrustedsubject;
+
 allow time_daemon self:capability dac_override;
