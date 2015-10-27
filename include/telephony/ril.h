@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
  * Copyright (C) 2006 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,27 +32,9 @@ extern "C" {
 #endif
 
 
-#ifndef RIL_QCOM_VERSION
-#define RIL_QCOM_VERSION 3
-#endif
-
-#if defined(ANDROID_SIM_COUNT_2)
-#define SIM_COUNT 2
-#elif defined(ANDROID_SIM_COUNT_3)
-#define SIM_COUNT 3
-#elif defined(ANDROID_SIM_COUNT_4)
-#define SIM_COUNT 4
-#else
-#define SIM_COUNT 1
-#endif
-
 #define SIM_COUNT 1
 
-#ifdef USE_RIL_VERSION_10
-#define RIL_VERSION 10
-#else
 #define RIL_VERSION 11     /* Current version */
-#endif
 #define RIL_VERSION_MIN 6 /* Minimum RIL_VERSION supported */
 
 #define CDMA_ALPHA_INFO_BUFFER_LENGTH 64
@@ -111,7 +92,8 @@ typedef enum {
     RIL_E_SS_MODIFIED_TO_DIAL = 24,             /* SS request modified to DIAL */
     RIL_E_SS_MODIFIED_TO_USSD = 25,             /* SS request modified to USSD */
     RIL_E_SUBSCRIPTION_NOT_SUPPORTED = 26,      /* Subscription not supported by RIL */
-    RIL_E_SS_MODIFIED_TO_SS = 27                /* SS request modified to different SS request */
+    RIL_E_SS_MODIFIED_TO_SS = 27,               /* SS request modified to different SS request */
+    RIL_E_LCE_NOT_SUPPORTED = 36                /* LCE service not supported(36 in RILConstants.java) */
 
 
 } RIL_Errno;
@@ -380,7 +362,6 @@ typedef struct {
                                  via PCO(Protocol Configuration Option) for IMS client. */
 } RIL_Data_Call_Response_v9;
 
-#if (RIL_VERSION == 11)
 typedef struct {
     int             status;     /* A RIL_DataCallFailCause, 0 which is PDP_FAIL_NONE if no error */
     int             suggestedRetryTime; /* If status != 0, this fields indicates the suggested retry
@@ -416,7 +397,6 @@ typedef struct {
                                    Value <= 0 means network has either not sent a value or
                                    sent an invalid value */
 } RIL_Data_Call_Response_v11;
-#endif
 
 typedef enum {
     RADIO_TECH_3GPP = 1, /* 3GPP Technologies - GSM, WCDMA */
@@ -476,7 +456,7 @@ typedef struct {
 } RIL_Dial;
 
 typedef struct {
-    int padding;
+    int padding;    /* Huawei */
     int command;    /* one of the commands listed for TS 27.007 +CRSM*/
     int fileid;     /* EF id */
     char *path;     /* "pathid" from TS 27.007 +CRSM command.
@@ -491,7 +471,7 @@ typedef struct {
 } RIL_SIM_IO_v5;
 
 typedef struct {
-    int padding;
+    int padding;    /* Huawei */
     int command;    /* one of the commands listed for TS 27.007 +CRSM*/
     int fileid;     /* EF id */
     char *path;     /* "pathid" from TS 27.007 +CRSM command.
@@ -568,56 +548,34 @@ typedef struct {
                         */
 } RIL_NeighboringCell;
 
+typedef struct {
+  char lce_status;                 /* LCE service status:
+                                    * -1 = not supported;
+                                    * 0 = stopped;
+                                    * 1 = active.
+                                    */
+  unsigned int actual_interval_ms; /* actual LCE reporting interval,
+                                    * meaningful only if LCEStatus = 1.
+                                    */
+} RIL_LceStatusInfo;
+
+typedef struct {
+  unsigned int last_hop_capacity_kbps; /* last-hop cellular capacity: kilobits/second. */
+  unsigned char confidence_level;      /* capacity estimate confidence: 0-100 */
+  unsigned char lce_suspended;         /* LCE report going to be suspended? (e.g., radio
+                                        * moves to inactive state or network type change)
+                                        * 1 = suspended;
+                                        * 0 = not suspended.
+                                        */
+} RIL_LceDataInfo;
+
 /* See RIL_REQUEST_LAST_CALL_FAIL_CAUSE */
 typedef enum {
     CALL_FAIL_UNOBTAINABLE_NUMBER = 1,
-    CALL_FAIL_NO_ROUTE_TO_DESTINATION = 3,
-    CALL_FAIL_CHANNEL_UNACCEPTABLE = 6,
-    CALL_FAIL_OPERATOR_DETERMINED_BARRING = 8,
     CALL_FAIL_NORMAL = 16,
     CALL_FAIL_BUSY = 17,
-    CALL_FAIL_NO_USER_RESPONDING = 18,
-    CALL_FAIL_NO_ANSWER_FROM_USER = 19,
-    CALL_FAIL_CALL_REJECTED = 21,
-    CALL_FAIL_NUMBER_CHANGED = 22,
-    CALL_FAIL_PREEMPTION = 25,
-    CALL_FAIL_DESTINATION_OUT_OF_ORDER = 27,
-    CALL_FAIL_INVALID_NUMBER_FORMAT = 28,
-    CALL_FAIL_FACILITY_REJECTED = 29,
-    CALL_FAIL_RESP_TO_STATUS_ENQUIRY = 30,
-    CALL_FAIL_NORMAL_UNSPECIFIED = 31,
     CALL_FAIL_CONGESTION = 34,
-    CALL_FAIL_NETWORK_OUT_OF_ORDER = 38,
-    CALL_FAIL_TEMPORARY_FAILURE = 41,
-    CALL_FAIL_SWITCHING_EQUIPMENT_CONGESTION = 42,
-    CALL_FAIL_ACCESS_INFORMATION_DISCARDED = 43,
-    CALL_FAIL_REQUESTED_CIRCUIT_OR_CHANNEL_NOT_AVAILABLE = 44,
-    CALL_FAIL_RESOURCES_UNAVAILABLE_OR_UNSPECIFIED = 47,
-    CALL_FAIL_QOS_UNAVAILABLE = 49,
-    CALL_FAIL_REQUESTED_FACILITY_NOT_SUBSCRIBED = 50,
-    CALL_FAIL_INCOMING_CALLS_BARRED_WITHIN_CUG = 55,
-    CALL_FAIL_BEARER_CAPABILITY_NOT_AUTHORIZED = 57,
-    CALL_FAIL_BEARER_CAPABILITY_UNAVAILABLE = 58,
-    CALL_FAIL_SERVICE_OPTION_NOT_AVAILABLE = 63,
-    CALL_FAIL_BEARER_SERVICE_NOT_IMPLEMENTED = 65,
     CALL_FAIL_ACM_LIMIT_EXCEEDED = 68,
-    CALL_FAIL_REQUESTED_FACILITY_NOT_IMPLEMENTED = 69,
-    CALL_FAIL_ONLY_DIGITAL_INFORMATION_BEARER_AVAILABLE = 70,
-    CALL_FAIL_SERVICE_OR_OPTION_NOT_IMPLEMENTED = 79,
-    CALL_FAIL_INVALID_TRANSACTION_IDENTIFIER = 81,
-    CALL_FAIL_USER_NOT_MEMBER_OF_CUG = 87,
-    CALL_FAIL_INCOMPATIBLE_DESTINATION = 88,
-    CALL_FAIL_INVALID_TRANSIT_NW_SELECTION = 91,
-    CALL_FAIL_SEMANTICALLY_INCORRECT_MESSAGE = 95,
-    CALL_FAIL_INVALID_MANDATORY_INFORMATION = 96,
-    CALL_FAIL_MESSAGE_TYPE_NON_IMPLEMENTED = 97,
-    CALL_FAIL_MESSAGE_TYPE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE = 98,
-    CALL_FAIL_INFORMATION_ELEMENT_NON_EXISTENT = 99,
-    CALL_FAIL_CONDITIONAL_IE_ERROR = 100,
-    CALL_FAIL_MESSAGE_NOT_COMPATIBLE_WITH_PROTOCOL_STATE = 101,
-    CALL_FAIL_RECOVERY_ON_TIMER_EXPIRED = 102,
-    CALL_FAIL_PROTOCOL_ERROR_UNSPECIFIED = 111,
-    CALL_FAIL_INTERWORKING_UNSPECIFIED = 127,
     CALL_FAIL_CALL_BARRED = 240,
     CALL_FAIL_FDN_BLOCKED = 241,
     CALL_FAIL_IMSI_UNKNOWN_IN_VLR = 242,
@@ -638,6 +596,11 @@ typedef enum {
     CALL_FAIL_CDMA_ACCESS_BLOCKED = 1009, /* CDMA network access probes blocked */
     CALL_FAIL_ERROR_UNSPECIFIED = 0xffff
 } RIL_LastCallFailCause;
+
+typedef struct {
+  RIL_LastCallFailCause cause_code;
+  char *                vendor_cause;
+} RIL_LastCallFailCauseInfo;
 
 /* See RIL_REQUEST_LAST_DATA_CALL_FAIL_CAUSE */
 typedef enum {
@@ -1434,11 +1397,23 @@ typedef struct {
     int enabled;
 } RIL_DataProfileInfo;
 
-/* Data Call Profile: Simple IP User Profile Parameters*/
+/* Tx Power Levels */
+#define RIL_NUM_TX_POWER_LEVELS     5
+
 typedef struct {
-  int  profileId;
-  int  priority;       /* priority. [0..255], 0 - highest */
-} RIL_DataCallProfileInfo;
+
+  /* period (in ms) when modem is power collapsed */
+  uint32_t sleep_mode_time_ms;
+
+  /* period (in ms) when modem is awake and in idle mode*/
+  uint32_t idle_mode_time_ms;
+
+  /* period (in ms) for which Tx is active */
+  uint32_t tx_mode_time_ms[RIL_NUM_TX_POWER_LEVELS];
+
+  /* period (in ms) for which Rx is active */
+  uint32_t rx_mode_time_ms;
+} RIL_ActivityStatsInfo;
 
 /**
  * RIL_REQUEST_GET_SIM_STATUS
@@ -1599,13 +1574,12 @@ typedef struct {
 #define RIL_REQUEST_CHANGE_SIM_PIN2 7
 
 /**
- * RIL_REQUEST_ENTER_DEPERSONALIZATION_CODE
+ * RIL_REQUEST_ENTER_NETWORK_DEPERSONALIZATION
  *
- * Requests that personlization be deactivated
+ * Requests that network personlization be deactivated
  *
  * "data" is const char **
- * ((const char **)(data))[0]] is personlization type
- * ((const char **)(data))[1]] is depersonlization code
+ * ((const char **)(data))[0]] is network depersonlization code
  *
  * "response" is int *
  * ((int *)response)[0] is the number of retries remaining, or -1 if unknown
@@ -1619,7 +1593,7 @@ typedef struct {
  *     (code is invalid)
  */
 
-#define RIL_REQUEST_ENTER_DEPERSONALIZATION_CODE 8
+#define RIL_REQUEST_ENTER_NETWORK_DEPERSONALIZATION 8
 
 /**
  * RIL_REQUEST_GET_CURRENT_CALLS
@@ -4300,6 +4274,7 @@ typedef struct {
 /**
  * RIL_REQUEST_GET_DC_RT_INFO
  *
+ * The request is DEPRECATED, use RIL_REQUEST_GET_ACTIVITY_INFO
  * Requests the Data Connection Real Time Info
  *
  * "data" is NULL
@@ -4318,6 +4293,7 @@ typedef struct {
 /**
  * RIL_REQUEST_SET_DC_RT_INFO_RATE
  *
+ * The request is DEPRECATED
  * This is the minimum number of milliseconds between successive
  * RIL_UNSOL_DC_RT_INFO_CHANGED messages and defines the highest rate
  * at which RIL_UNSOL_DC_RT_INFO_CHANGED's will be sent. A value of
@@ -4365,15 +4341,12 @@ typedef struct {
  */
 #define RIL_REQUEST_SHUTDOWN 129
 
-
 /**
  * RIL_REQUEST_GET_RADIO_CAPABILITY
  *
  * Used to get phone radio capablility.
  *
- * "data" is int *
- * ((int *)data)[0] is the phone radio access family defined in
- * RadioAccessFamily. It's a bit mask value to represent the support type.
+ * "data" is the RIL_RadioCapability structure
  *
  * Valid errors:
  *  SUCCESS
@@ -4402,39 +4375,63 @@ typedef struct {
 #define RIL_REQUEST_SET_RADIO_CAPABILITY 131
 
 /**
- * RIL_REQUEST_GET_DATA_CALL_PROFILE
+ * RIL_REQUEST_START_LCE
  *
- * Get the Data Call Profile for a particular app type
- *
- * "data" is const int*
- * (const int*)data[0] - App type. Value is specified the RUIM spec C.S0023-D
- *
- *
- * "response" is a const char * containing the count and the array of profiles
- * ((const int *)response)[0] Number RIL_DataCallProfileInfo structs(count)
- * ((const char *)response)[1] is the buffer that contains 'count' number of
- *                              RIL_DataCallProfileInfo structs.
- *
- * Valid errors:
- *  SUCCESS
- *  GENERIC_FAILURE
- *  RIL_E_DATA_CALL_PROFILE_ERROR
- *  RIL_E_DATA_CALL_PROFILE_NOT_AVAILABLE
- *
- */
-#define RIL_REQUEST_GET_DATA_CALL_PROFILE 132
-
-/**
- * RIL_REQUEST_SIM_GET_ATR
- *
- * Get the ATR from SIM Card
- *
- * Only valid when radio state is "RADIO_STATE_ON"
+ * Start Link Capacity Estimate (LCE) service if supported by the radio.
  *
  * "data" is const int *
- * ((const int *)data)[0] contains the slot index on the SIM from which ATR is requested.
+ * ((const int*)data)[0] specifies the desired reporting interval (ms).
+ * ((const int*)data)[1] specifies the LCE service mode. 1: PULL; 0: PUSH.
  *
- * "response" is a const char * containing the ATR, See ETSI 102.221 8.1 and ISO/IEC 7816 3
+ * "response" is the RIL_LceStatusInfo.
+ *
+ * Valid errors:
+ * SUCCESS
+ * RADIO_NOT_AVAILABLE
+ * LCE_NOT_SUPPORTED
+ */
+#define RIL_REQUEST_START_LCE 132
+
+/**
+ * RIL_REQUEST_STOP_LCE
+ *
+ * Stop Link Capacity Estimate (LCE) service, the STOP operation should be
+ * idempotent for the radio modem.
+ *
+ * "response" is the RIL_LceStatusInfo.
+ *
+ * Valid errors:
+ * SUCCESS
+ * RADIO_NOT_AVAILABLE
+ * LCE_NOT_SUPPORTED
+ */
+#define RIL_REQUEST_STOP_LCE 133
+
+/**
+ * RIL_REQUEST_PULL_LCEDATA
+ *
+ * Pull LCE service for capacity information.
+ *
+ * "response" is the RIL_LceDataInfo.
+ *
+ * Valid errors:
+ * SUCCESS
+ * RADIO_NOT_AVAILABLE
+ * LCE_NOT_SUPPORTED
+ */
+#define RIL_REQUEST_PULL_LCEDATA 134
+
+/**
+ * RIL_REQUEST_GET_ACTIVITY_INFO
+ *
+ * Get modem activity statisitics info.
+ *
+ * There can be multiple RIL_REQUEST_GET_ACTIVITY_INFO calls to modem.
+ * Once the response for the request is sent modem will clear
+ * current statistics information.
+ *
+ * "data" is null
+ * "response" is const RIL_ActivityStatsInfo *
  *
  * Valid errors:
  *
@@ -4442,7 +4439,7 @@ typedef struct {
  * RADIO_NOT_AVAILABLE (radio resetting)
  * GENERIC_FAILURE
  */
-#define RIL_REQUEST_SIM_GET_ATR 133
+#define RIL_REQUEST_GET_ACTIVITY_INFO 135
 
 /***********************************************************************/
 
@@ -4990,6 +4987,7 @@ typedef struct {
 /**
  * RIL_UNSOL_DC_RT_INFO_CHANGED
  *
+ * The message is DEPRECATED, use RIL_REQUEST_GET_ACTIVITY_INFO
  * Sent when the DC_RT_STATE changes but the time
  * between these messages must not be less than the
  * value set by RIL_REQUEST_SET_DC_RT_RATE.
@@ -5031,6 +5029,16 @@ typedef struct {
  *
  */
 #define RIL_UNSOL_STK_CC_ALPHA_NOTIFY 1044
+
+/**
+ * RIL_UNSOL_LCEDATA_RECV
+ *
+ * Called when there is an incoming Link Capacity Estimate (LCE) info report.
+ *
+ * "data" is the RIL_LceDataInfo structure.
+ *
+ */
+#define RIL_UNSOL_LCEDATA_RECV 1045
 
 /***********************************************************************/
 
