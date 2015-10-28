@@ -33,6 +33,7 @@ MALLOC_IMPL := dlmalloc
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 COMMON_GLOBAL_CFLAGS += -DHUAWEI_SOUND_PARAM_PATH=\"/etc/sound_param/mate2\"
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT := true
