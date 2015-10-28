@@ -56,6 +56,9 @@ mm.enable.qcom_parser=3310113
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
 
+# Performance
+ro.vendor.extension_library=/vendor/lib/libqc-opt.so
+
 # Radio
 persist.data.netmgrd.qos.enable=true
 persist.radio.apm_sim_not_pwdn=1
@@ -70,8 +73,10 @@ ro.telephony.default_network=9
 ro.use_data_netmgrd=true
 telephony.lteOnGsmDevice=1
 
-# Performance
-ro.vendor.extension_library=/vendor/lib/libqc-opt.so
+# Sensors
+ro.qualcomm.sensors.smd=true
+ro.qc.sensors.step_detector=true
+ro.qc.sensors.step_counter=true
 
 # Time
 persist.timed.enable=true
