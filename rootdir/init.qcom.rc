@@ -458,7 +458,7 @@ service ssr_diag /system/bin/ssr_diag
     user system
     group system
 
-service thermal-engine /system/bin/thermal-engine
+service thermal-engine /system/vendor/bin/thermal-engine
     class main
     user root
     group root
