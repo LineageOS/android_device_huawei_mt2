@@ -35,7 +35,7 @@ on early-init
     write /sys/block/mmcblk1/bdi/read_ahead_kb 512
 
 on init
-    export LD_PRELOAD /system/lib/libhuawei_symbols.so
+    export LD_PRELOAD /system/lib/libhuawei_symbols.so:/system/lib/libboringssl-compat.so
 
     mkdir /factory 0775 system system
     mkdir /cust
