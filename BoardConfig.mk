@@ -84,7 +84,6 @@ TARGET_INIT_VENDOR_LIB := libinit_mt2
 TARGET_LIBINIT_DEFINES_FILE := device/huawei/mt2/init/init_mt2.c
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/huawei/mt2/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x0
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37
 BOARD_KERNEL_PAGESIZE := 2048
