@@ -20,6 +20,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libgui libbinder libutils
+LOCAL_ADDITIONAL_DEPENDENCIES := libboringssl-compat
 
 LOCAL_SRC_FILES := \
     hw_camera.c
