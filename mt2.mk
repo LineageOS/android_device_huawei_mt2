@@ -172,6 +172,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     thermal-engine-8226.conf
 
+# Time
+PRODUCT_PACKAGES += \
+    TimeKeep \
+    timekeep
+
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd \
