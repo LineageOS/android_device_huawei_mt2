@@ -1,2 +1,0 @@
-# For UMS
-allow kernel block_device:blk_file write;
