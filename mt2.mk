@@ -79,7 +79,8 @@ PRODUCT_PACKAGES += \
 
 # Huawei symbols
 PRODUCT_PACKAGES += \
-    libhuawei_symbols
+    libhw_cutils \
+    libhw_log
 
 # Init
 PRODUCT_PACKAGES += \
