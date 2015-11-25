@@ -1,3 +1,0 @@
-# our dumbass sensor service stuffs the socket in /data/app/
-type_transition sensors apk_data_file:sock_file sensors_socket "sensor_ctl_socket";
-allow sensors apk_data_file:dir rw_dir_perms;
