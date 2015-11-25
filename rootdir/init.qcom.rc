@@ -35,7 +35,7 @@ on early-init
     write /sys/block/mmcblk1/bdi/read_ahead_kb 512
 
 on init
-    export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/liblog.so|libhw_log.so:/system/lib/libcutils.so|libhw_cutils.so
+    export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/liblog.so|libhw_log.so:/system/lib/libcutils.so|libhw_cutils.so:/system/lib/hw/camera.vendor.msm8226.so|libhw_gui.so
 
     mkdir /factory 0775 system system
     mkdir /cust

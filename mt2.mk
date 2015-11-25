@@ -46,9 +46,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8226 \
-    libboringssl-compat \
-    libcam
+    camera.msm8226
 
 # Charging
 PRODUCT_PACKAGES += \
@@ -76,11 +74,6 @@ PRODUCT_PACKAGES += \
     izat.conf \
     quipc.conf \
     sap.conf
-
-# Huawei symbols
-PRODUCT_PACKAGES += \
-    libhw_cutils \
-    libhw_log
 
 # Init
 PRODUCT_PACKAGES += \
@@ -168,6 +161,13 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     sensor_def_qcomdev.conf
+
+# Shim libraries
+PRODUCT_PACKAGES += \
+    libboringssl-compat \
+    libhw_cutils \
+    libhw_gui \
+    libhw_log
 
 # Thermal
 PRODUCT_PACKAGES += \
