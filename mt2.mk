@@ -78,6 +78,7 @@ PRODUCT_COPY_FILES += \
     device/huawei/mt2/configs/gps.conf:system/etc/gps.conf
 
 PRODUCT_PACKAGES += \
+    flp.conf \
     izat.conf \
     quipc.conf \
     sap.conf

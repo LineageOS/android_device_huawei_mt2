@@ -58,6 +58,7 @@ lib/libloc_core.so
 lib/libloc_ds_api.so
 lib/libloc_eng.so
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
+vendor/lib/hw/flp.default.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
