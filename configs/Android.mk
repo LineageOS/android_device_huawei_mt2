@@ -20,6 +20,13 @@ LOCAL_PATH:= $(call my-dir)
 # so PRODUCT_COPY_FILES instead
 
 include $(CLEAR_VARS)
+LOCAL_MODULE       := flp.conf
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS  := optional
+LOCAL_SRC_FILES    := flp.conf
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE       := izat.conf
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_TAGS  := optional
