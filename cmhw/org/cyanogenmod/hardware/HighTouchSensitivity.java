@@ -25,7 +25,7 @@ import org.cyanogenmod.hardware.util.FileUtils;
 public class HighTouchSensitivity {
 
     private static final String GLOVE_PATH = "/sys/touch_screen/glove_func/signal_disparity";
-    private static final int GLOVE_OFF = 128;
+    private static final int GLOVE_ON = 136;
 
     /**
      * Whether device supports high touch sensitivity.
@@ -47,7 +47,7 @@ public class HighTouchSensitivity {
         int i;
         i = Integer.parseInt(FileUtils.readOneLine(GLOVE_PATH));
 
-        return (i != GLOVE_OFF);
+        return (i == GLOVE_ON);
     }
 
     /**
