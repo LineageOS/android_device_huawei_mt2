@@ -17,15 +17,4 @@ ifeq ($(TARGET_DEVICE),mt2)
 LOCAL_PATH := $(call my-dir)
 include $(LOCAL_PATH)/chargeled/Android.mk
 
-ifeq ($(RECOVERY_VARIANT),twrp)
-
-TWRP_VENDOR_LIBS := libQSEEComAPI.so
-$(TWRP_VENDOR_LIBS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Decryption library for TWRP: $@"
-	@mkdir -p $(dir $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/$@)
-	@rm -rf $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/$@
-	$(hide) cp vendor/huawei/mt2/proprietary/vendor/lib/$(notdir $@) $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/$@
-
-endif
-
 endif
