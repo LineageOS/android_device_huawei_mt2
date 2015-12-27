@@ -111,23 +111,8 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/huawei/mt2
 -include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/huawei/mt2/sepolicy
 
-# TWRP
-#   Uncomment the lines below only when building TWRP.
-#   Do not leave SELinux permissive when building CM or Cyanogen Recovery.
-# BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-RECOVERY_SDCARD_ON_DATA := true
-# RECOVERY_VARIANT := twrp
-# TARGET_RECOVERY_DEVICE_MODULES += libQSEEComAPI.so
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
-TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
-TW_INCLUDE_CRYPTO := true
-TW_THEME := portrait_hdpi
-
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 25
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
