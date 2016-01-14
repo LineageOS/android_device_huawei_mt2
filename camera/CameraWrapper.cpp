@@ -126,6 +126,8 @@ static char *camera_fixup_getparams(const char *settings)
 
 static char *camera_fixup_setparams(int id, const char *settings)
 {
+    bool isVideo = false;
+
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
@@ -138,6 +140,13 @@ static char *camera_fixup_setparams(int id, const char *settings)
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
             "auto,asd,landscape,snow,beach,sunset,night,portrait,backlight,sports,"
             "steadyphoto,flowers,candlelight,fireworks,party,night-portrait,theatre,action,AR");
+
+    if (params.get(android::CameraParameters::KEY_RECORDING_HINT))
+        isVideo = !strcmp(params.get(android::CameraParameters::KEY_RECORDING_HINT), "true");
+
+    /* TODO: If HDR is ever re-enabled, do not set zsl=on here for HDR mode*/
+    if (!isVideo)
+        params.set(android::CameraParameters::KEY_ZSL, "on");
 
 #ifdef LOG_PARAMETERS
     ALOGV("%s: fixed parameters:", __FUNCTION__);

@@ -16,8 +16,10 @@
 
 #define CAMERA_PARAMETERS_EXTRA_C \
 const char CameraParameters::KEY_MULTIFOCUS_SHOT_MODE[] = "is_multifocus_mode"; \
+const char CameraParameters::KEY_ZSL[] = "zsl"; \
 const char CameraParameters::SCENE_MODE_HWAUTO[] = "hwauto";
 
 #define CAMERA_PARAMETERS_EXTRA_H \
     static const char KEY_MULTIFOCUS_SHOT_MODE[]; \
+    static const char KEY_ZSL[]; \
     static const char SCENE_MODE_HWAUTO[];
