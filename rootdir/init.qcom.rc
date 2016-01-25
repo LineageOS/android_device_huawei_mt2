@@ -381,6 +381,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
+    setenv LD_PRELOAD /vendor/lib/libqcamerasvr-c++.so
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main

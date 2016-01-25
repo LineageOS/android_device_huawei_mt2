@@ -136,6 +136,7 @@ vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmcamera_wavelet_lib.so
 vendor/lib/liboemcamera.so
+vendor/lib/libqcamerasvr-c++.so
 
 # Camera configuration
 etc/camera/davinci/default/cm_correction.dat
