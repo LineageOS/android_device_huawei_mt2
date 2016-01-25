@@ -250,10 +250,9 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 
-# Offmode charging
 on charger
-    setprop sys.boot_completed 1
-    setprop sys.perf.profile 1
+    write /sys/class/leds/lcd-backlight/trigger battery-charging-or-full
+    trigger enable-low-power
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
@@ -264,7 +263,6 @@ service adsprpcd /system/bin/adsprpcd
     user media
     group media
 
-# Offmode charging
 service charger /sbin/healthd -c
     class charger
     critical
