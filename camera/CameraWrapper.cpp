@@ -103,11 +103,6 @@ static char *camera_fixup_getparams(const char *settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
-#ifdef LOG_PARAMETERS
-    ALOGV("%s: original parameters:", __FUNCTION__);
-    params.dump();
-#endif
-
     /* Way too lazy to tokenize */
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
             "auto,asd,landscape,snow,beach,sunset,night,portrait,backlight,sports,"
@@ -128,11 +123,6 @@ static char *camera_fixup_setparams(int id, const char *settings)
 {
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
-
-#ifdef LOG_PARAMETERS
-    ALOGV("%s: original parameters:", __FUNCTION__);
-    params.dump();
-#endif
 
     /* Way too lazy to tokenize */
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
