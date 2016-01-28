@@ -58,6 +58,7 @@ TARGET_USE_COMPAT_GRALLOC_ALIGN := true
 
 # CMHW
 BOARD_HARDWARE_CLASS := device/huawei/mt2/cmhw
+TARGET_TAP_TO_WAKE_NODE := "/sys/touch_screen/easy_wakeup_gesture"
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)

@@ -62,6 +62,7 @@ on boot
     write /sys/bus/i2c/drivers/bq27510-battery/state /system/etc/batt_fw.bin
 
     chown system system /sys/touch_screen/glove_func/signal_disparity
+    chown system system /sys/touch_screen/easy_wakeup_gesture
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
