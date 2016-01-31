@@ -1,1 +1,2 @@
-allow vold persist_file:dir { getattr read ioctl open };
+allow vold cache_file:dir create;
+allow vold persist_file:dir r_dir_perms;
