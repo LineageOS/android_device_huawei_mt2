@@ -58,7 +58,6 @@ on early-boot
 on boot
     chmod 0664 /proc/cmdline
 
-    write /sys/bus/i2c/drivers/ft5x06_ts/5-0038/update_fw 1
     write /sys/bus/i2c/drivers/bq27510-battery/state /system/etc/batt_fw.bin
 
     chown system system /sys/touch_screen/glove_func/signal_disparity
@@ -217,7 +216,6 @@ on property:ro.use_data_netmgrd=false
     stop netmgrd
 
 on enable-low-power
-    write /sys/block/mmcblk0/queue/scheduler row
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -249,6 +247,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 80
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
+    write /dev/cpuctl/cpu.notify_on_migrate 1
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 
 on charger
