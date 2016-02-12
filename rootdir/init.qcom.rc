@@ -381,6 +381,12 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
+service ptt_socket_app /system/bin/ptt_socket_app -d
+    class main
+    user root
+    group root
+    oneshot
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
