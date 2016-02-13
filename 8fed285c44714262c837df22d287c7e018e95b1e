@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffb9cba7_78e1a3fe",
+        "filename": "wifi/WCNSS_qcom_cfg.ini",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 5531
+      },
+      "writtenOn": "2016-02-13T00:58:45Z",
+      "side": 1,
+      "message": "maybe worth reverting to 0",
+      "revId": "8fed285c44714262c837df22d287c7e018e95b1e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
