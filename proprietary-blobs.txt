@@ -34,40 +34,6 @@ vendor/lib/liboeminfo.so
 # Battery firmware
 etc/batt_fw.bin
 
-# DRM
-bin/qseecomd
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/libQSEEComAPI.so
-vendor/lib/libWVStreamControlAPI_L1.so
-vendor/lib/libdrmdecrypt.so
-vendor/lib/libdrmdiag.so
-vendor/lib/libdrmfs.so
-vendor/lib/libdrmtime.so
-vendor/lib/librpmb.so
-vendor/lib/libssd.so
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
-vendor/lib/mediadrm/libwvdrmengine.so
-
-# GPS
-bin/gsiff_daemon
-lib/hw/gps.default.so
-lib/libgps.utils.so
-lib/libloc_api_v02.so
-lib/libloc_core.so
-lib/libloc_ds_api.so
-lib/libloc_eng.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
-vendor/lib/hw/flp.default.so
-vendor/lib/libgeofence.so
-vendor/lib/libizat_core.so
-vendor/lib/liblbs_core.so
-vendor/lib/liblocationservice.so
-vendor/lib/libquipc_os_api.so
-vendor/lib/libquipc_ulp_adapter.so
-vendor/lib/libulp2.so
-vendor/lib/libxtwifi_ulp_adaptor.so
-
 # Camera
 bin/mm-qcamera-daemon
 lib/hw/camera.vendor.msm8226.so
@@ -173,6 +139,40 @@ etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 
+# DRM
+bin/qseecomd
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libQSEEComAPI.so
+vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/libdrmdecrypt.so
+vendor/lib/libdrmdiag.so
+vendor/lib/libdrmfs.so
+vendor/lib/libdrmtime.so
+vendor/lib/librpmb.so
+vendor/lib/libssd.so
+vendor/lib/libwvdrm_L1.so
+vendor/lib/libwvm.so
+vendor/lib/mediadrm/libwvdrmengine.so
+
+# GPS
+bin/gsiff_daemon
+lib/hw/gps.default.so
+lib/libgps.utils.so
+lib/libloc_api_v02.so
+lib/libloc_core.so
+lib/libloc_ds_api.so
+lib/libloc_eng.so
+-priv-app/com.qualcomm.location/com.qualcomm.location.apk
+vendor/lib/hw/flp.default.so
+vendor/lib/libgeofence.so
+vendor/lib/libizat_core.so
+vendor/lib/liblbs_core.so
+vendor/lib/liblocationservice.so
+vendor/lib/libquipc_os_api.so
+vendor/lib/libquipc_ulp_adapter.so
+vendor/lib/libulp2.so
+vendor/lib/libxtwifi_ulp_adaptor.so
+
 # Graphics
 vendor/lib/egl/eglsubAndroid.so
 vendor/lib/egl/libEGL_adreno.so
@@ -244,6 +244,9 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 vendor/lib/libqmiservices.so
 
+# Quick charge
+bin/hvdcp
+
 # Radio
 -app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 bin/netmgrd
@@ -279,9 +282,6 @@ vendor/lib/libTimeService.so
 
 # Touchscreen firmware
 etc/firmware/cyttsp4_fw_mate2.bin
-
-# Quick charge
-bin/hvdcp
 
 # Venus (media) firmware
 etc/firmware/venus.b00
