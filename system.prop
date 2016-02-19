@@ -74,12 +74,5 @@ ro.qualcomm.sensors.smd=true
 ro.qc.sensors.step_detector=true
 ro.qc.sensors.step_counter=true
 
-# Time
-persist.timed.enable=true
-
-# USB
-persist.sys.isUsbOtgEnabled=true
-
 # Wifi
 wifi.interface=wlan0
-net.tcp.buffersize.wifi=524288,2097152,4194304,262144,524288,1048576
