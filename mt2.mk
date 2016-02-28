@@ -83,6 +83,7 @@ PRODUCT_PACKAGES += \
     init.qcom.bt.sh \
     init.qcom.rc \
     init.qcom.usb.rc \
+    speed.sh \
     ueventd.qcom.rc
 
 # IPv6 tethering

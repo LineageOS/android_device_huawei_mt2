@@ -430,6 +430,11 @@ service sensors /system/bin/sensors.qcom
     user root
     group root
 
+service speed /system/etc/speed.sh
+    class core
+    user root
+    oneshot
+
 service ssr_diag /system/bin/ssr_diag
     class late_start
     user system
