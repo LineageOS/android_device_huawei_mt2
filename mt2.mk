@@ -173,7 +173,6 @@ PRODUCT_PACKAGES += \
     thermal-engine-8226.conf
 
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
     hostapd \
     hostapd_default.conf \
     libwcnss_qmi \
