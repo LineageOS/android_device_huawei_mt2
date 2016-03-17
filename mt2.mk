@@ -94,10 +94,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sec_config
 
-# Keylayouts and Keychars
+# Keylayouts
 PRODUCT_COPY_FILES += \
-    device/huawei/mt2/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    device/huawei/mt2/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
+    device/huawei/mt2/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 # Media
 PRODUCT_PACKAGES += \
