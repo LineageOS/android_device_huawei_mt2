@@ -307,7 +307,7 @@ service libqmi_oem_main /system/bin/libqmi_oem_main
 service mpdecision /system/bin/mpdecision --avg_comp
     class late_start
     user root
-    group system
+    group root readproc
     disabled
 
 service netmgrd /system/bin/netmgrd
