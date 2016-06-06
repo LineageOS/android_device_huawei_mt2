@@ -59,6 +59,16 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 BOARD_HARDWARE_CLASS := device/huawei/mt2/cmhw
 TARGET_TAP_TO_WAKE_NODE := "/sys/touch_screen/easy_wakeup_gesture"
 
+# Dex pre-optimization
+ifeq ($(HOST_OS),linux)
+ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+    WITH_DEXPREOPT_COMP := false
+    WITH_DEXPREOPT_PIC := true
+    DONT_DEXPREOPT_PREBUILTS := true
+endif
+endif
+
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
