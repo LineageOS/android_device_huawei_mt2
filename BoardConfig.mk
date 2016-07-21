@@ -102,6 +102,9 @@ TARGET_KERNEL_SOURCE := kernel/huawei/msm8928
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
+# Malloc
+MALLOC_SVELTE := true
+
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
