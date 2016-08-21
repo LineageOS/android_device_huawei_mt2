@@ -592,14 +592,6 @@
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
     </path>
 
-    <path name="adc3">
-        <ctl name="AIF1_CAP Mixer SLIM TX1" value="1"/>
-        <ctl name="SLIM_0_TX Channels" value="One" />
-        <ctl name="SLIM TX1 MUX" value="DEC1" />
-        <ctl name="DEC1 MUX" value="ADC3" />
-        <ctl name="IIR1 INP1 MUX" value="DEC1" />
-    </path>
-
     <path name="dmic1">
         <ctl name="AIF1_CAP Mixer SLIM TX1" value="1"/>
         <ctl name="SLIM_0_TX Channels" value="One" />
