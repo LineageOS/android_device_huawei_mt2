@@ -40,6 +40,15 @@
 <ctl name="DEC2 Volume" value="84" />
 <ctl name="EAR PA Gain" value="POS_6_DB" />
 <ctl name="HAC" value="OFF" />
+<ctl name="HDMI Mixer MultiMedia1" value="0" />
+<ctl name="HDMI Mixer MultiMedia2" value="0" />
+<ctl name="HDMI Mixer MultiMedia3" value="0" />
+<ctl name="HDMI Mixer MultiMedia4" value="0" />
+<ctl name="HDMI Mixer MultiMedia5" value="0" />
+<ctl name="HDMI_RX Port Mixer MI2S_TX" value="0" />
+<ctl name="HDMI_RX_Voice Mixer CSVoice" value="0" />
+<ctl name="HDMI_RX_Voice Mixer Voice2" value="0" />
+<ctl name="HDMI_RX_Voice Mixer VoLTE" value="0" />
 <ctl name="HPHL DAC Switch" value="0" />
 <ctl name="HPHL Volume" value="14" />
 <ctl name="HPHR Volume" value="14" />
@@ -203,7 +212,16 @@
         <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia1" value="1" />
     </path>
 
+    <path name="deep-buffer-playback hdmi">
+        <ctl name="HDMI Mixer MultiMedia1" value="1" />
+    </path>
+
     <path name="deep-buffer-playback speaker">
+        <path name="deep-buffer-playback" />
+    </path>
+
+    <path name="deep-buffer-playback speaker-and-hdmi">
+        <path name="deep-buffer-playback hdmi" />
         <path name="deep-buffer-playback" />
     </path>
 
@@ -241,6 +259,10 @@
         <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="1" />
     </path>
 
+    <path name="low-latency-playback hdmi">
+        <ctl name="HDMI Mixer MultiMedia5" value="1" />
+    </path>
+
     <path name="low-latency-playback bt-sco">
         <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia5" value="1" />
     </path>
@@ -251,6 +273,11 @@
     </path>
 
     <path name="low-latency-playback speaker">
+        <path name="low-latency-playback" />
+    </path>
+
+    <path name="low-latency-playback speaker-and-hdmi">
+        <path name="low-latency-playback hdmi" />
         <path name="low-latency-playback" />
     </path>
 
@@ -273,6 +300,10 @@
 
     <path name="low-latency-playback transmission-fm">
         <ctl name="INTERNAL_FM_RX Audio Mixer MultiMedia5" value="1" />
+    </path>
+
+    <path name="multi-channel-playback hdmi">
+        <ctl name="HDMI Mixer MultiMedia2" value="1" />
     </path>
 
     <path name="multi-channel-playback afe-proxy">
@@ -362,6 +393,11 @@
         <ctl name="Voice_Tx Mixer SLIM_0_TX_Voice" value="1" />
     </path>
 
+    <path name="voice-call hdmi">
+        <ctl name="HDMI_RX_Voice Mixer CSVoice" value="1" />
+        <ctl name="Voice_Tx Mixer SLIM_0_TX_Voice" value="1" />
+    </path>
+
     <path name="voice-call voice-speaker">
         <path name="voice-call" />
         <ctl name="RX3 Digital Volume" value="92" />
@@ -393,6 +429,11 @@
 
     <path name="voice2-call">
         <ctl name="SLIM_0_RX_Voice Mixer Voice2" value="1" />
+        <ctl name="Voice2_Tx Mixer SLIM_0_TX_Voice2" value="1" />
+    </path>
+
+    <path name="voice2-call hdmi">
+        <ctl name="HDMI_RX_Voice Mixer Voice2" value="1" />
         <ctl name="Voice2_Tx Mixer SLIM_0_TX_Voice2" value="1" />
     </path>
 
@@ -429,6 +470,11 @@
 
     <path name="volte-call">
         <ctl name="SLIM_0_RX_Voice Mixer VoLTE" value="1" />
+        <ctl name="VoLTE_Tx Mixer SLIM_0_TX_VoLTE" value="1" />
+    </path>
+
+    <path name="volte-call hdmi">
+        <ctl name="HDMI_RX_Voice Mixer VoLTE" value="1" />
         <ctl name="VoLTE_Tx Mixer SLIM_0_TX_VoLTE" value="1" />
     </path>
 
@@ -892,9 +938,17 @@
         <path name="sidetone-iir" />
     </path>
 
+    <path name="hdmi">
+    </path>
+
     <path name="speaker-and-usb-headphones">
         <path name="speaker" />
         <path name="usb-headphones" />
+    </path>
+
+    <path name="speaker-and-hdmi">
+        <path name="speaker" />
+        <path name="hdmi" />
     </path>
 
     <path name="voice-rec-mic">
@@ -902,6 +956,10 @@
     </path>
 
     <path name="camcorder-mic">
+        <path name="handset-mic" />
+    </path>
+
+    <path name="hdmi-tx">
         <path name="handset-mic" />
     </path>
 
