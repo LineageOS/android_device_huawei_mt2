@@ -28,6 +28,7 @@
 <ctl name="AIF1_CAP Mixer SLIM TX2" value="0" />
 <ctl name="AIF1_CAP Mixer SLIM TX3" value="0" />
 <ctl name="AIF1_CAP Mixer SLIM TX4" value="0" />
+<ctl name="AUDIO_REF_EC_UL1 MUX" value="None" />
 <ctl name="AUX_PCM_RX Audio Mixer MultiMedia5" value="0" />
 <ctl name="AUX_PCM_RX_Voice Mixer CSVoice" value="0" />
 <ctl name="CLASS_H_DSM MUX" value="ZERO" />
@@ -361,6 +362,10 @@
     <path name="voice-call usb-headphones">
         <ctl name="AFE_PCM_RX_Voice Mixer CSVoice" value="1" />
         <ctl name="Voice_Tx Mixer AFE_PCM_TX_Voice" value="1" />
+    </path>
+
+    <path name="echo-reference">
+        <ctl name="AUDIO_REF_EC_UL1 MUX" value="SLIM_RX" />
     </path>
 
     <path name="voice2-call">
@@ -987,10 +992,6 @@
 
     <path name="listen-handset-mic">
         <path name="adc1" />
-    </path>
-
-    <path name="echo-reference">
-        <ctl name="AUDIO_REF_EC_UL1 MUX" value="SLIM_RX" />
     </path>
 
 </mixer>
