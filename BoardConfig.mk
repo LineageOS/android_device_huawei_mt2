@@ -28,7 +28,6 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := krait
 TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
-MALLOC_IMPL := dlmalloc
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
