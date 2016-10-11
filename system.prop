@@ -52,6 +52,8 @@ ro.sf.lcd_density=320
 # Media
 av.offload.enable=true
 av.streaming.offload.enable=false
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
 
