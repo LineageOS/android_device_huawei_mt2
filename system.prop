@@ -54,6 +54,8 @@ av.offload.enable=true
 av.streaming.offload.enable=false
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 
 # Performance
 ro.vendor.extension_library=/vendor/lib/libqc-opt.so
