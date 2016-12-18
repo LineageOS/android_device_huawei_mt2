@@ -1,1 +1,2 @@
+allow init debugfs:file write;
 allow init self:capability sys_nice;
