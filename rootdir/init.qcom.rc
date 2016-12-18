@@ -372,6 +372,7 @@ service rmt_oeminfo /system/bin/rmt_oeminfo
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    seclabel u:r:rmt_storage:s0
 
 service sensors /system/bin/sensors.qcom
     class late_start
