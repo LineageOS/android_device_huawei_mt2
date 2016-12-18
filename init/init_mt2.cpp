@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
+ * Copyright (C) 2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,29 +34,26 @@
 /* Example: MSM8926C00B309_BOOT */
 #define BOOTLOADER_PROP "ro.bootloader"
 
-static void import_kernel_nv(char *name, int for_emulator)
+static void import_kernel_nv(const std::string& key, const std::string& value,
+							 bool for_emulator)
 {
-	prop_info *pi;
-	int ret = 0;
-
-	char *value = strchr(name, '=');
-	if(!value)
+	if (key.empty())
 		return;
 
-	*value++ = 0;
+	prop_info *pi;
 
-	if(!strncmp(name, REAL_SERIAL_PROP, 10)) {
+	if (key == REAL_SERIAL_PROP) {
 		pi = (prop_info*) __system_property_find(SERIAL_PROP);
-		if(pi)
-			ret = __system_property_update(pi, value, strlen(value));
+		if (pi)
+			__system_property_update(pi, value.c_str(), strlen(value.c_str()));
 		else
-			ret = __system_property_add(SERIAL_PROP, strlen(SERIAL_PROP), value, strlen(value));
+			__system_property_add(SERIAL_PROP, strlen(SERIAL_PROP),
+					value.c_str(), strlen(value.c_str()));
 	}
 }
 
 static void get_bootloader_version()
 {
-	int ret = 0;
 	char buf[128] = { 0 };
 	char value[32] = { 0 };
 	char *tok;
@@ -82,12 +79,10 @@ static void get_bootloader_version()
 
 	if (strlen(value) > 0) {
 		pi = (prop_info*) __system_property_find(BOOTLOADER_PROP);
-		if(pi)
-			ret = __system_property_update(pi, value,
-					strlen(value));
+		if (pi)
+			__system_property_update(pi, value, strlen(value));
 		else
-			ret = __system_property_add(BOOTLOADER_PROP,
-					strlen(BOOTLOADER_PROP),
+			__system_property_add(BOOTLOADER_PROP, strlen(BOOTLOADER_PROP),
 					value, strlen(value));
 	}
 
