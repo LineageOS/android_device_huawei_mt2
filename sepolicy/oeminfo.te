@@ -6,8 +6,9 @@ type_transition oeminfo socket_device:sock_file oeminfoserver_socket;
 
 allow oeminfo block_device:dir search;
 allow oeminfo oeminfo_partition_device:blk_file { read write open };
+allow oeminfo oeminfoserver_socket:sock_file { create setattr unlink };
+allow oeminfo proc:file r_file_perms;
 allow oeminfo self:capability { fowner chown fsetid dac_override };
 allow oeminfo self:socket { read bind create write ioctl };
-allow oeminfo socket_device:dir { write add_name remove_name };
-allow oeminfo oeminfoserver_socket:sock_file { create setattr unlink };
 allow oeminfo smem_log_device:chr_file { read write ioctl open };
+allow oeminfo socket_device:dir { write add_name remove_name };
