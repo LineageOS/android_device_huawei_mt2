@@ -286,6 +286,7 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
     user bluetooth
     group bluetooth net_bt_admin
+    seclabel u:r:bluetooth_loader:s0
     disabled
     oneshot
 
@@ -372,6 +373,7 @@ service rmt_oeminfo /system/bin/rmt_oeminfo
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    seclabel u:r:rmt_storage:s0
 
 service sensors /system/bin/sensors.qcom
     class late_start
