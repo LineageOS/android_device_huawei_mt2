@@ -46,6 +46,8 @@ extern void _ZN7android13SensorManagerC1ERKNS_8String16E(void *sensorMgr, void *
 //android::SensorManager::createEventQueue(android::String8, int)
 extern void _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void **retVal, void *sensorMgr, void **str8P, int mode);
 
+//android::SensorManager::getSensorList(android::Sensor const* const**) const
+extern ssize_t _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void*, void*);
 
 //data exports we must provide for camera library to be happy
 
@@ -122,6 +124,10 @@ void _ZN7android13SensorManager16createEventQueueEv(void **retVal, void *sensorM
     _ZN7android7String8C1EPKc(&string, "");
     _ZN7android13SensorManager16createEventQueueENS_7String8Ei(retVal, sensorMgr, &string, 0);
     _ZN7android7String8D1Ev(&string);
+}
+
+ssize_t _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void* thiz, void* list) {
+    return _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(thiz, list);
 }
 
 /*
