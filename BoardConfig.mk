@@ -30,8 +30,8 @@ TARGET_CPU_VARIANT := krait
 TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
 
 # Audio
-BOARD_GLOBAL_CFLAGS += -DHUAWEI_SOUND_PARAM_PATH=\"/etc/sound_param/mate2\"
 BOARD_USES_ALSA_AUDIO := true
+HUAWEI_SOUND_PARAM_PATH := "/etc/sound_param/mate2"
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
