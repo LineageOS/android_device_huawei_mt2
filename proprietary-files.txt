@@ -141,18 +141,13 @@ etc/firmware/cpp_firmware_v1_2_0.fw
 
 # DRM
 bin/qseecomd
-vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/libQSEEComAPI.so
-vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/libdrmdecrypt.so
 vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
-vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
 bin/gsiff_daemon
@@ -290,6 +285,18 @@ etc/firmware/venus.b03
 etc/firmware/venus.b04
 etc/firmware/venus.mbn
 etc/firmware/venus.mdt
+
+# Widevine
+etc/firmware/widevine.b00
+etc/firmware/widevine.b01
+etc/firmware/widevine.b02
+etc/firmware/widevine.b03
+etc/firmware/widevine.mdt
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libwvdrm_L1.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/mediadrm/libwvdrmengine.so
 
 # WiFi
 bin/ptt_socket_app
