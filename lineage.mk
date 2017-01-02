@@ -25,7 +25,7 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, device/huawei/mt2/mt2.mk)
 
 PRODUCT_DEVICE := mt2
-PRODUCT_NAME := cm_mt2
+PRODUCT_NAME := lineage_mt2
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
 	PRODUCT_NAME=MT2L03 \
