@@ -1,3 +1,4 @@
+# Copyright (C) 2017 The LineageOS Project
 # Copyright (C) 2015 The CyanogenMod Project
 # Copyright (C) 2011 The Android Open-Source Project
 #
@@ -91,7 +92,7 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
-TARGET_KERNEL_CONFIG := cyanogenmod_mt2_defconfig
+TARGET_KERNEL_CONFIG := mt2_defconfig
 TARGET_KERNEL_SOURCE := kernel/huawei/msm8928
 
 # Lights
