@@ -46,8 +46,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8226 \
-    Snap
+    camera.msm8226
 
 # Charging
 PRODUCT_PACKAGES += \
