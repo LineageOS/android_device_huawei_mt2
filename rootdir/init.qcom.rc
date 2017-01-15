@@ -63,6 +63,8 @@ on boot
 
     chown system system /sys/touch_screen/glove_func/signal_disparity
     chown system system /sys/touch_screen/easy_wakeup_gesture
+    chown system system /sys/devices/8789.huawei_hall_sensor/enable_hall_sensor
+    write /sys/devices/8789.huawei_hall_sensor/enable_hall_sensor 1
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio

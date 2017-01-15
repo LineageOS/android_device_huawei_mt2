@@ -56,6 +56,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     keystore.msm8226
 
+# FlipFlap
+PRODUCT_PACKAGES += \
+    FlipFlap
+
 # FM radio
 PRODUCT_PACKAGES += \
     FM2 \
