@@ -176,6 +176,7 @@ vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/libC2D2.so
 vendor/lib/libCB.so
+vendor/lib/libOpenCL.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
@@ -185,6 +186,8 @@ vendor/lib/libllvm-qcom.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/libsc-a3xx.so
+vendor/lib/libscale.so
+vendor/lib/libuiblur.so
 
 # Graphics firmware
 etc/firmware/a330_pfp.fw
