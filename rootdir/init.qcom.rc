@@ -220,9 +220,6 @@ on property:dev.bootcomplete=1
     start mpdecision
 
 on enable-low-power
-    write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu2/online 1
-    write /sys/devices/system/cpu/cpu3/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
@@ -251,7 +248,6 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 80
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 
 on charger
     write /sys/class/leds/lcd-backlight/trigger battery-charging-or-full
