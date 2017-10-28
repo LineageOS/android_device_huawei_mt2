@@ -192,7 +192,7 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     wpa_supplicant_overlay.conf
 
-$(call inherit-product,frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product,frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 
 # inherit from the non-open-source side, if present
 $(call inherit-product-if-exists, vendor/huawei/mt2/mt2-vendor.mk)
